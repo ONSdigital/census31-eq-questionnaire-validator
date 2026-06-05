@@ -117,3 +117,5 @@ node_modules
 .ruff_cache/
 
 megalinter-reports/
+
+.application-version
