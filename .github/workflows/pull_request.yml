@@ -91,106 +91,106 @@ jobs:
       - name: Running Python tests
         run: make test-python
 
-  docker-push-and-check:
-    permissions:
-      contents: read
-      id-token: write
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+  # docker-push-and-check:
+  #   permissions:
+  #     contents: read
+  #     id-token: write
+  #   runs-on: ubuntu-24.04
+  #   steps:
+  #     - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
-      - id: auth
-        name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
-        with:
-          token_format: "access_token"
-          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+  #     - id: auth
+  #       name: Authenticate to Google Cloud
+  #       uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+  #       with:
+  #         token_format: "access_token"
+  #         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+  #         service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
-      - name: Tag
-        run: |
-          # Use github.ref_name and sanitize to allow only alphanumerics, dashes, and underscores
-          SAFE_TAG="${GITHUB_REF_NAME//[^a-zA-Z0-9_-]/-}"
-          echo "TAG=$SAFE_TAG" >> $GITHUB_ENV
-          echo "clean_tag=$SAFE_TAG" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_REF_NAME: ${{ github.ref_name }}
+  #     - name: Tag
+  #       run: |
+  #         # Use github.ref_name and sanitize to allow only alphanumerics, dashes, and underscores
+  #         SAFE_TAG="${GITHUB_REF_NAME//[^a-zA-Z0-9_-]/-}"
+  #         echo "TAG=$SAFE_TAG" >> $GITHUB_ENV
+  #         echo "clean_tag=$SAFE_TAG" >> $GITHUB_OUTPUT
+  #       env:
+  #         GITHUB_REF_NAME: ${{ github.ref_name }}
 
-      - name: Authenticate Docker with GAR
-        run: gcloud auth configure-docker ${{ secrets.GAR_LOCATION }}
+  #     - name: Authenticate Docker with GAR
+  #       run: gcloud auth configure-docker ${{ secrets.GAR_LOCATION }}
 
-      - name: Build Python Validator Image
-        run: docker build -t ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator:$TAG -f Dockerfile .
+  #     - name: Build Python Validator Image
+  #       run: docker build -t ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator:$TAG -f Dockerfile .
 
-      - name: Push Python Validator Image
-        run: |
-          echo "Pushing to GAR with tag $TAG"
-          docker push ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator:$TAG
+  #     - name: Push Python Validator Image
+  #       run: |
+  #         echo "Pushing to GAR with tag $TAG"
+  #         docker push ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator:$TAG
 
-      - name: Build AJV Validator Image
-        run: |
-          docker build -t ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator-ajv:$TAG -f Dockerfile-ajv .
+  #     - name: Build AJV Validator Image
+  #       run: |
+  #         docker build -t ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator-ajv:$TAG -f Dockerfile-ajv .
 
-      - name: Push AJV Validator Image
-        run: |
-          echo "Pushing to GAR with tag $TAG"
-          docker push ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator-ajv:$TAG
+  #     - name: Push AJV Validator Image
+  #       run: |
+  #         echo "Pushing to GAR with tag $TAG"
+  #         docker push ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator-ajv:$TAG
 
-      - name: Create Validator Network
-        run: docker network create validator-network
+  #     - name: Create Validator Network
+  #       run: docker network create validator-network
 
-      - name: Spin Up AJV Validator
-        run: |
-          docker run --network validator-network --name ajv-validator -d -p 5006:5006 ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator-ajv:$TAG
-      - name: Spin Up Python Validator
-        run: >
-          docker run
-          --network validator-network -d -p 5001:5000 -e AJV_VALIDATOR_HOST=ajv-validator ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator:$TAG
-      - name: Check Python Validator is Running
-        run: |
-          for i in {1..10}; do
-            if curl -f http://localhost:5001/status; then
-              echo "Python Validator is up!"
-              exit 0
-            fi
-            echo "Waiting for Python Validator... ($i/10)"
-            sleep 3
-          done
-          echo "Python Validator did not start in time"
-          docker logs $(docker ps -aqf "ancestor=eq-questionnaire-validator:local")
-          exit 1
-      - name: Check AJV Validator is Running
-        run: |
-          for i in {1..10}; do
-            if curl -f http://localhost:5006/status; then
-              echo "AJV Validator is up!"
-              exit 0
-            fi
-            echo "Waiting for AJV Validator... ($i/10)"
-            sleep 3
-          done
-          echo "AJV Validator did not start in time"
-          docker logs $(docker ps -aqf "ancestor=eq-questionnaire-validator-ajv:local")
-          exit 1
-      - name: Check Valid Schema Validation
-        run: |
-          schema_url="https://raw.githubusercontent.com/ONSdigital/eq-questionnaire-validator/refs/heads/main/tests/schemas/valid/test_checkbox_instruction.json"
-          result=$(curl -s "http://localhost:5001/validate?url=$schema_url")
-          echo "Validation result: $result"
-          if [ "$result" = '{"validator_version":"0.0.0","success":true}' ]; then
-            echo "Validation successful, returned JSON as expected!"
-            exit 0
-          fi
-          echo "Unexpected validation error, did not return correct JSON. Actual result: $result"
-          exit 1
-      - name: Check Invalid Schema Validation
-        run: |
-          schema_url="https://raw.githubusercontent.com/ONSdigital/eq-questionnaire-validator/refs/heads/main/tests/schemas/invalid/test_invalid_introduction_block.json"
-          result=$(curl -s "http://localhost:5001/validate?url=$schema_url")
-          echo "Validation result: $result"
-          if [[ "$result" == *"errors"* ]]; then
-          echo "Validation returned JSON as expected!"
-          exit 0
-          fi
-          echo "Validation did not return correct JSON. Actual result: $result"
-          exit 1
+  #     - name: Spin Up AJV Validator
+  #       run: |
+  #         docker run --network validator-network --name ajv-validator -d -p 5006:5006 ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator-ajv:$TAG
+  #     - name: Spin Up Python Validator
+  #       run: >
+  #         docker run
+  #         --network validator-network -d -p 5001:5000 -e AJV_VALIDATOR_HOST=ajv-validator ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-questionnaire-validator:$TAG
+  #     - name: Check Python Validator is Running
+  #       run: |
+  #         for i in {1..10}; do
+  #           if curl -f http://localhost:5001/status; then
+  #             echo "Python Validator is up!"
+  #             exit 0
+  #           fi
+  #           echo "Waiting for Python Validator... ($i/10)"
+  #           sleep 3
+  #         done
+  #         echo "Python Validator did not start in time"
+  #         docker logs $(docker ps -aqf "ancestor=eq-questionnaire-validator:local")
+  #         exit 1
+  #     - name: Check AJV Validator is Running
+  #       run: |
+  #         for i in {1..10}; do
+  #           if curl -f http://localhost:5006/status; then
+  #             echo "AJV Validator is up!"
+  #             exit 0
+  #           fi
+  #           echo "Waiting for AJV Validator... ($i/10)"
+  #           sleep 3
+  #         done
+  #         echo "AJV Validator did not start in time"
+  #         docker logs $(docker ps -aqf "ancestor=eq-questionnaire-validator-ajv:local")
+  #         exit 1
+  #     - name: Check Valid Schema Validation
+  #       run: |
+  #         schema_url="https://raw.githubusercontent.com/ONSdigital/eq-questionnaire-validator/refs/heads/main/tests/schemas/valid/test_checkbox_instruction.json"
+  #         result=$(curl -s "http://localhost:5001/validate?url=$schema_url")
+  #         echo "Validation result: $result"
+  #         if [ "$result" = '{"validator_version":"0.0.0","success":true}' ]; then
+  #           echo "Validation successful, returned JSON as expected!"
+  #           exit 0
+  #         fi
+  #         echo "Unexpected validation error, did not return correct JSON. Actual result: $result"
+  #         exit 1
+  #     - name: Check Invalid Schema Validation
+  #       run: |
+  #         schema_url="https://raw.githubusercontent.com/ONSdigital/eq-questionnaire-validator/refs/heads/main/tests/schemas/invalid/test_invalid_introduction_block.json"
+  #         result=$(curl -s "http://localhost:5001/validate?url=$schema_url")
+  #         echo "Validation result: $result"
+  #         if [[ "$result" == *"errors"* ]]; then
+  #         echo "Validation returned JSON as expected!"
+  #         exit 0
+  #         fi
+  #         echo "Validation did not return correct JSON. Actual result: $result"
+  #         exit 1

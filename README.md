@@ -1,6 +1,6 @@
-# eq-questionnaire-validator
+# census31-eq-questionnaire-validator
 
-An API for validating survey schemas.
+An API for validating questionnaire schemas.
 
 ## Setup
 
@@ -91,7 +91,7 @@ As Validator runs on `localhost:5001` by default, here is an
 example of a command you can use to validate a schema via a URL:
 
 ```shell
-http://localhost:5001/validate?url=https://raw.githubusercontent.com/ONSdigital/eq-questionnaire-runner/refs/heads/main/schemas/test/en/test_address.json
+http://localhost:5001/validate?url=https://raw.githubusercontent.com/ONSdigital/census31-eq-questionnaire-runner/refs/heads/main/schemas/test/en/test_address.json
 ```
 
 Only the following URLs and domains are accepted:
@@ -106,7 +106,7 @@ only against repos with the owner "ONSdigital".
 
 ### Running against eQ Runner
 
-Also once you have Validator running it can be used to run against eQ Runner (`https://github.com/ONSdigital/eq-questionnaire-runner`).
+Also once you have Validator running it can be used to run against eQ Runner (`https://github.com/ONSdigital/census31-eq-questionnaire-runner`).
 If you have eQ Runner spun up you can from within the root of eQ Runner run:
 
 ```shell
@@ -173,7 +173,7 @@ make run
 ```
 
 Then, in another terminal, navigate to a checked out copy
-of `https://github.com/ONSdigital/eq-questionnaire-runner` and run:
+of `https://github.com/ONSdigital/census31-eq-questionnaire-runner` and run:
 
 ```shell
 make validate-test-schemas
