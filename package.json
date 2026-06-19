@@ -39,13 +39,13 @@
     "glob": "13.0.6"
   },
   "devDependencies": {
-    "@babel/cli": "7.29.7",
-    "@babel/core": "7.29.7",
-    "@babel/preset-env": "7.29.7",
-    "@babel/register": "7.29.7",
+    "@babel/cli": "8.0.1",
+    "@babel/core": "8.0.1",
+    "@babel/preset-env": "8.0.2",
+    "@babel/register": "8.0.1",
     "@eslint/json": "^2.0.0",
     "eslint": "9.39.4",
-    "eslint-plugin-chai-friendly": "1.2.0",
+    "eslint-plugin-chai-friendly": "1.2.1",
     "eslint-plugin-security": "4.0.1",
     "globals": "^17.6.0",
     "jsonc-eslint-parser": "^3.1.0",
