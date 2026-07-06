@@ -43,7 +43,7 @@
     "@babel/core": "8.0.1",
     "@babel/preset-env": "8.0.2",
     "@babel/register": "8.0.1",
-    "@eslint/json": "^2.0.0",
+    "@eslint/json": "^2.0.1",
     "eslint": "9.39.4",
     "eslint-plugin-chai-friendly": "1.2.1",
     "eslint-plugin-security": "4.0.1",
