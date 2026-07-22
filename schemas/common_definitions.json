@@ -1,339 +1,339 @@
 {
-  "$id": "/common_definitions.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "q_code": {
-    "description": "A question code used by downstream systems to identify answers.",
-    "pattern": "^[a-zA-Z0-9._-]+$"
-  },
-  "identifier": {
-    "type": "string",
-    "description": "Used to identify groups, blocks, questions and answers.",
-    "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
-  },
-  "metadata_identifier": {
-    "description": "The id of a metadata provided by the calling service from which to obtain the value",
-    "pattern": "^[A-Za-z0-9][A-Za-z0-9\\-_]*[A-Za-z0-9]$"
-  },
-  "question_definitions": {
-    "description": "Allows customisation of question definition title and description.",
-    "type": "array",
-    "minItems": 1,
-    "maxItems": 1,
-    "items": {
-      "$ref": "#/definition"
-    }
-  },
-  "question_definition": {
-    "description": "Allows customisation of question definition title and description.",
-    "type": "object",
-    "$ref": "#/definition"
-  },
-  "contents": {
-    "description": "Collection of flexible content (headings, paragraphs, lists).",
-    "type": "array",
-    "minItems": 1,
-    "items": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+    "$id": "/common_definitions.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "q_code": {
+        "description": "A question code used by downstream systems to identify answers.",
+        "pattern": "^[a-zA-Z0-9._-]+$"
+    },
+    "identifier": {
+        "type": "string",
+        "description": "Used to identify groups, blocks, questions and answers.",
+        "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
+    },
+    "metadata_identifier": {
+        "description": "The id of a metadata provided by the calling service from which to obtain the value",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9\\-_]*[A-Za-z0-9]$"
+    },
+    "question_definitions": {
+        "description": "Allows customisation of question definition title and description.",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1,
+        "items": {
+            "$ref": "#/definition"
+        }
+    },
+    "question_definition": {
+        "description": "Allows customisation of question definition title and description.",
+        "type": "object",
+        "$ref": "#/definition"
+    },
+    "contents": {
+        "description": "Collection of flexible content (headings, paragraphs, lists).",
+        "type": "array",
+        "minItems": 1,
+        "items": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+                },
+                "description": {
+                    "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+                    }
+                },
+                "definition": {
+                    "$ref": "#/definition"
+                },
+                "guidance": {
+                    "$ref": "#/guidance"
+                }
+            },
+            "additionalProperties": false,
+            "anyOf": [
+                {
+                    "required": ["title"]
+                },
+                {
+                    "required": ["description"]
+                },
+                {
+                    "required": ["list"]
+                },
+                {
+                    "required": ["definition"]
+                },
+                {
+                    "required": ["guidance"]
+                }
+            ]
+        }
+    },
+    "definition": {
+        "description": "Definition title and contents.",
+        "type": "object",
+        "required": ["title", "contents"],
+        "properties": {
+            "title": {
+                "$ref": "#/non_empty_string"
+            },
+            "contents": {
+                "$ref": "#/contents"
+            }
         },
-        "description": {
-          "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+        "additionalProperties": false
+    },
+    "skip_conditions": {
+        "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
+        "type": "object",
+        "properties": {
+            "when": {
+                "$ref": "rules/boolean_rule.json"
+            }
         },
-        "list": {
-          "type": "array",
-          "items": {
+        "additionalProperties": false,
+        "required": ["when"]
+    },
+    "section_enabled": {
+        "description": "When the value evaluates to false, this section will not be included in the questionnaire. When the enabled key is not present, the default value is true. By adding more than one `when` element it will evaluate as an or rule.",
+        "type": "object",
+        "properties": {
+            "when": {
+                "$ref": "rules/boolean_rule.json"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["when"]
+    },
+    "messages": {
+        "type": "object",
+        "description": "These messages override the standard error messages.",
+        "properties": {
+            "MANDATORY_DROPDOWN": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_TEXTFIELD": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_NUMBER": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_TEXTAREA": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_RADIO": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_CHECKBOX": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_DATE": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_DURATION": {
+                "$ref": "#/non_empty_string"
+            },
+            "MANDATORY_MOBILE_NUMBER": {
+                "$ref": "#/non_empty_string"
+            },
+            "NUMBER_TOO_SMALL": {
+                "$ref": "#/non_empty_string"
+            },
+            "NUMBER_TOO_LARGE": {
+                "$ref": "#/non_empty_string"
+            },
+            "NUMBER_TOO_SMALL_EXCLUSIVE": {
+                "$ref": "#/non_empty_string"
+            },
+            "NUMBER_TOO_LARGE_EXCLUSIVE": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_NUMBER": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_INTEGER": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_DECIMAL": {
+                "$ref": "#/non_empty_string"
+            },
+            "MAX_LENGTH_EXCEEDED": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_DATE": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_DATE_RANGE": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_DURATION": {
+                "$ref": "#/non_empty_string"
+            },
+            "INVALID_MOBILE_NUMBER": {
+                "$ref": "#/non_empty_string"
+            }
+        },
+        "additionalProperties": false
+    },
+    "offset_by_yyyy_mm_dd": {
+        "type": "object",
+        "properties": {
+            "days": {
+                "type": "integer"
+            },
+            "months": {
+                "type": "integer"
+            },
+            "years": {
+                "type": "integer"
+            }
+        },
+        "additionalProperties": false,
+        "anyOf": [
+            {
+                "required": ["days"]
+            },
+            {
+                "required": ["months"]
+            },
+            {
+                "required": ["years"]
+            }
+        ]
+    },
+    "date_value": {
+        "type:": "object",
+        "properties": {
+            "value": {
+                "pattern": "^(\\d{4}-\\d{2}-\\d{2}|\\d{4}-\\d{2}|\\d{4}|now)$"
+            }
+        },
+        "additionalProperties": false
+    },
+    "offset_by_yyyy_mm": {
+        "type": "object",
+        "properties": {
+            "months": {
+                "type": "integer"
+            },
+            "years": {
+                "type": "integer"
+            }
+        },
+        "additionalProperties": false,
+        "anyOf": [
+            {
+                "required": ["months"]
+            },
+            {
+                "required": ["years"]
+            }
+        ]
+    },
+    "offset_by_yyyy": {
+        "type": "object",
+        "properties": {
+            "years": {
+                "type": "integer"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["years"]
+    },
+    "value_reference": {
+        "oneOf": [
+            {
+                "description": "A string or number value",
+                "type": ["string", "number"]
+            },
+            {
+                "$ref": "value_sources.json#/answer_value_source"
+            },
+            {
+                "$ref": "value_sources.json#/metadata_value_source"
+            },
+            {
+                "$ref": "value_sources.json#/calculated_summary_value_source"
+            },
+            {
+                "$ref": "value_sources.json#/grand_calculated_summary_value_source"
+            },
+            {
+                "$ref": "value_sources.json#/supplementary_data_value_source"
+            }
+        ]
+    },
+    "routing_rules": {
+        "type": "array",
+        "description": "Used to direct the journey through a survey (in conjunction with navigation).",
+        "items": {
+            "type": "object",
+            "properties": {
+                "block": {
+                    "$ref": "#/non_empty_string",
+                    "description": "The id of another block in the same group."
+                },
+                "group": {
+                    "$ref": "#/non_empty_string",
+                    "description": "The id of another group. The first block in that group will be routed to."
+                },
+                "section": {
+                    "type": "string",
+                    "description": "Routes to the end of the current section",
+                    "const": "End"
+                },
+                "when": {
+                    "$ref": "rules/boolean_rule.json"
+                }
+            },
+            "oneOf": [
+                {
+                    "required": ["block"]
+                },
+                {
+                    "required": ["group"]
+                },
+                {
+                    "required": ["section"]
+                }
+            ],
+            "additionalProperties": false
+        }
+    },
+    "non_empty_string": {
+        "type": "string",
+        "minLength": 1
+    },
+    "string_array": {
+        "type": "array",
+        "items": {
+            "$ref": "#/non_empty_string"
+        },
+        "uniqueItems": true,
+        "minItems": 1
+    },
+    "string_array_with_placeholders": {
+        "type": "array",
+        "items": {
             "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
-          }
-        },
-        "definition": {
-          "$ref": "#/definition"
-        },
-        "guidance": {
-          "$ref": "#/guidance"
         }
-      },
-      "additionalProperties": false,
-      "anyOf": [
-        {
-          "required": ["title"]
-        },
-        {
-          "required": ["description"]
-        },
-        {
-          "required": ["list"]
-        },
-        {
-          "required": ["definition"]
-        },
-        {
-          "required": ["guidance"]
+    },
+    "interviewer_only": {
+        "description": "Marks the page as for the interviewer only. Only applies for questionnaires that will be completed by an interviewer.",
+        "type": "boolean"
+    },
+    "guidance": {
+        "description": "Question or contents guidance",
+        "type": "object",
+        "properties": {
+            "contents": {
+                "$ref": "#/contents"
+            }
         }
-      ]
     }
-  },
-  "definition": {
-    "description": "Definition title and contents.",
-    "type": "object",
-    "required": ["title", "contents"],
-    "properties": {
-      "title": {
-        "$ref": "#/non_empty_string"
-      },
-      "contents": {
-        "$ref": "#/contents"
-      }
-    },
-    "additionalProperties": false
-  },
-  "skip_conditions": {
-    "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
-    "type": "object",
-    "properties": {
-      "when": {
-        "$ref": "rules/boolean_rule.json"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["when"]
-  },
-  "section_enabled": {
-    "description": "When the value evaluates to false, this section will not be included in the questionnaire. When the enabled key is not present, the default value is true. By adding more than one `when` element it will evaluate as an or rule.",
-    "type": "object",
-    "properties": {
-      "when": {
-        "$ref": "rules/boolean_rule.json"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["when"]
-  },
-  "messages": {
-    "type": "object",
-    "description": "These messages override the standard error messages.",
-    "properties": {
-      "MANDATORY_DROPDOWN": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_TEXTFIELD": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_NUMBER": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_TEXTAREA": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_RADIO": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_CHECKBOX": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_DATE": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_DURATION": {
-        "$ref": "#/non_empty_string"
-      },
-      "MANDATORY_MOBILE_NUMBER": {
-        "$ref": "#/non_empty_string"
-      },
-      "NUMBER_TOO_SMALL": {
-        "$ref": "#/non_empty_string"
-      },
-      "NUMBER_TOO_LARGE": {
-        "$ref": "#/non_empty_string"
-      },
-      "NUMBER_TOO_SMALL_EXCLUSIVE": {
-        "$ref": "#/non_empty_string"
-      },
-      "NUMBER_TOO_LARGE_EXCLUSIVE": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_NUMBER": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_INTEGER": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_DECIMAL": {
-        "$ref": "#/non_empty_string"
-      },
-      "MAX_LENGTH_EXCEEDED": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_DATE": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_DATE_RANGE": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_DURATION": {
-        "$ref": "#/non_empty_string"
-      },
-      "INVALID_MOBILE_NUMBER": {
-        "$ref": "#/non_empty_string"
-      }
-    },
-    "additionalProperties": false
-  },
-  "offset_by_yyyy_mm_dd": {
-    "type": "object",
-    "properties": {
-      "days": {
-        "type": "integer"
-      },
-      "months": {
-        "type": "integer"
-      },
-      "years": {
-        "type": "integer"
-      }
-    },
-    "additionalProperties": false,
-    "anyOf": [
-      {
-        "required": ["days"]
-      },
-      {
-        "required": ["months"]
-      },
-      {
-        "required": ["years"]
-      }
-    ]
-  },
-  "date_value": {
-    "type:": "object",
-    "properties": {
-      "value": {
-        "pattern": "^(\\d{4}-\\d{2}-\\d{2}|\\d{4}-\\d{2}|\\d{4}|now)$"
-      }
-    },
-    "additionalProperties": false
-  },
-  "offset_by_yyyy_mm": {
-    "type": "object",
-    "properties": {
-      "months": {
-        "type": "integer"
-      },
-      "years": {
-        "type": "integer"
-      }
-    },
-    "additionalProperties": false,
-    "anyOf": [
-      {
-        "required": ["months"]
-      },
-      {
-        "required": ["years"]
-      }
-    ]
-  },
-  "offset_by_yyyy": {
-    "type": "object",
-    "properties": {
-      "years": {
-        "type": "integer"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["years"]
-  },
-  "value_reference": {
-    "oneOf": [
-      {
-        "description": "A string or number value",
-        "type": ["string", "number"]
-      },
-      {
-        "$ref": "value_sources.json#/answer_value_source"
-      },
-      {
-        "$ref": "value_sources.json#/metadata_value_source"
-      },
-      {
-        "$ref": "value_sources.json#/calculated_summary_value_source"
-      },
-      {
-        "$ref": "value_sources.json#/grand_calculated_summary_value_source"
-      },
-      {
-        "$ref": "value_sources.json#/supplementary_data_value_source"
-      }
-    ]
-  },
-  "routing_rules": {
-    "type": "array",
-    "description": "Used to direct the journey through a survey (in conjunction with navigation).",
-    "items": {
-      "type": "object",
-      "properties": {
-        "block": {
-          "$ref": "#/non_empty_string",
-          "description": "The id of another block in the same group."
-        },
-        "group": {
-          "$ref": "#/non_empty_string",
-          "description": "The id of another group. The first block in that group will be routed to."
-        },
-        "section": {
-          "type": "string",
-          "description": "Routes to the end of the current section",
-          "const": "End"
-        },
-        "when": {
-          "$ref": "rules/boolean_rule.json"
-        }
-      },
-      "oneOf": [
-        {
-          "required": ["block"]
-        },
-        {
-          "required": ["group"]
-        },
-        {
-          "required": ["section"]
-        }
-      ],
-      "additionalProperties": false
-    }
-  },
-  "non_empty_string": {
-    "type": "string",
-    "minLength": 1
-  },
-  "string_array": {
-    "type": "array",
-    "items": {
-      "$ref": "#/non_empty_string"
-    },
-    "uniqueItems": true,
-    "minItems": 1
-  },
-  "string_array_with_placeholders": {
-    "type": "array",
-    "items": {
-      "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
-    }
-  },
-  "interviewer_only": {
-    "description": "Marks the page as for the interviewer only. Only applies for questionnaires that will be completed by an interviewer.",
-    "type": "boolean"
-  },
-  "guidance": {
-    "description": "Question or contents guidance",
-    "type": "object",
-    "properties": {
-      "contents": {
-        "$ref": "#/contents"
-      }
-    }
-  }
 }

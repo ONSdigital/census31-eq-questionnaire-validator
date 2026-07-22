@@ -1,63 +1,63 @@
 {
-  "data_version": "0.0.3",
-  "description": "A questionnaire to test schema id regex",
-  "legal_basis": "StatisticsOfTradeAct",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    }
-  ],
-  "mime_type": "application/json/ons/eq",
-  "language": "en",
-  "schema_version": "0.0.1",
-  "questionnaire_flow": {
-    "type": "Linear",
-    "options": {
-      "summary": {
-        "collapsible": false
-      }
-    }
-  },
-  "sections": [
-    {
-      "groups": [
+    "data_version": "0.0.3",
+    "description": "A questionnaire to test schema id regex",
+    "legal_basis": "StatisticsOfTradeAct",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "id": "block",
-              "question": {
-                "answers": [
-                  {
-                    "label": "Enter your age",
-                    "id": "answer",
-                    "mandatory": false,
-                    "type": "Number"
-                  }
-                ],
-                "id": "question",
-                "title": "Test Question",
-                "type": "General"
-              },
-              "type": "Question"
-            }
-          ],
-          "id": "group",
-          "title": "Test Group"
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
         }
-      ],
-      "id": "section1"
-    }
-  ],
-  "survey_id": "0",
-  "theme": "default",
-  "title": "Test Schema ID"
+    ],
+    "mime_type": "application/json/ons/eq",
+    "language": "en",
+    "schema_version": "0.0.1",
+    "questionnaire_flow": {
+        "type": "Linear",
+        "options": {
+            "summary": {
+                "collapsible": false
+            }
+        }
+    },
+    "sections": [
+        {
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "id": "block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "label": "Enter your age",
+                                        "id": "answer",
+                                        "mandatory": false,
+                                        "type": "Number"
+                                    }
+                                ],
+                                "id": "question",
+                                "title": "Test Question",
+                                "type": "General"
+                            },
+                            "type": "Question"
+                        }
+                    ],
+                    "id": "group",
+                    "title": "Test Group"
+                }
+            ],
+            "id": "section1"
+        }
+    ],
+    "survey_id": "0",
+    "theme": "default",
+    "title": "Test Schema ID"
 }

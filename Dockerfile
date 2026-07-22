@@ -1,15 +1,14 @@
 FROM python:3.13-slim
 
-RUN apt-get update && apt-get install --no-install-recommends -y git \
+RUN apt-get update && apt-get install --no-install-recommends -y git=1:2.39.* \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install \
-    setuptools \
-    "poetry==2.1.2"
-RUN poetry config virtualenvs.create false
-
-RUN mkdir -p /usr/src/
+RUN pip install --no-cache-dir \
+    "setuptools==80.9.0" \
+    "poetry==2.1.2" \
+    && poetry config virtualenvs.create false \
+    && mkdir -p /usr/src/
 WORKDIR /usr/src/
 
 COPY app /usr/src/app

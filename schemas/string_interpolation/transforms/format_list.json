@@ -1,27 +1,27 @@
 {
-  "$id": "/string_interpolation/transforms/format_list.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "format_list": {
-    "description": "A transform for outputting a list",
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "format_list"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/format_list.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "format_list": {
+        "description": "A transform for outputting a list",
         "type": "object",
         "properties": {
-          "list_to_format": {
-            "description": "This should be set to something that produces a list e.g. an answer that repeats, or provide multiple answer ids.",
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          }
+            "transform": {
+                "type": "string",
+                "const": "format_list"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "list_to_format": {
+                        "description": "This should be set to something that produces a list e.g. an answer that repeats, or provide multiple answer ids.",
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["list_to_format"]
+            }
         },
         "additionalProperties": false,
-        "required": ["list_to_format"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

@@ -1,7 +1,7 @@
 {
-  "$id": "/rules/non_array_value_rule.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "description": "Top level non array value operator rule",
-  "$ref": "definitions.json#/non_array_value_operators"
+    "$id": "/rules/non_array_value_rule.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "Top level non array value operator rule",
+    "$ref": "definitions.json#/non_array_value_operators"
 }

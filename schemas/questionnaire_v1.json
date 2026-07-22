@@ -1,434 +1,449 @@
 {
-  "$id": "/questionnaire_v1.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "required": ["mime_type", "schema_version", "data_version", "survey_id", "title", "sections", "theme", "metadata", "language", "questionnaire_flow"],
-  "properties": {
-    "language": {
-      "enum": ["cy", "en", "eo", "ga"]
-    },
-    "messages": {
-      "$ref": "common_definitions.json#/messages"
-    },
-    "mime_type": {
-      "type": "string"
-    },
-    "schema_version": {
-      "type": "string"
-    },
-    "data_version": {
-      "enum": ["0.0.1", "0.0.3"]
-    },
-    "survey_id": {
-      "type": "string",
-      "description": "The ONS id of the survey derived from the inquiry code already in use for that survey.",
-      "pattern": "^[0-9a-z]+$"
-    },
-    "session_timeout_in_seconds": {
-      "description": "The amount of time in seconds before timing out a users session.",
-      "type": "integer"
-    },
-    "title": {
-      "$ref": "common_definitions.json#/non_empty_string"
-    },
-    "description": {
-      "$ref": "common_definitions.json#/non_empty_string"
-    },
-    "sds_schema_version": {
-      "type": "string"
-    },
-    "supplementary_data": {
-      "type": "object",
-      "description": "A object containing the lists which come from supplementary data",
-      "properties": {
-        "lists": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "$ref": "common_definitions.json#/non_empty_string"
-          },
-          "uniqueItems": true
-        }
-      },
-      "required": ["lists"],
-      "additionalProperties": false
-    },
-    "theme": {
-      "enum": ["business", "social", "default", "health", "northernireland", "dbt", "dbt-ni", "dbt-dsit", "dbt-dsit-ni", "orr", "desnz", "desnz-ni", "ukhsa-ons", "ons-nhs"]
-    },
-    "legal_basis": {
-      "$ref": "common_definitions.json#/non_empty_string"
-    },
-    "form_type": {
-      "type": "string",
-      "pattern": "^[0-9A-Za-z_]+$"
-    },
-    "region_code": {
-      "type": "string",
-      "pattern": "^GB-[A-Z]{3}$",
-      "description": "An ISO 3166-2:GB region code"
-    },
-    "answer_codes": {
-      "type": "array",
-      "minItems": 1,
-      "uniqueItems": true,
-      "items": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "pattern": "^[a-zA-Z0-9._-]+$",
-            "description": "User defined answer code for a matching answer id"
-          },
-          "answer_id": {
-            "$ref": "common_definitions.json#/identifier",
-            "description": "The `answer_id` this `code` mapping is for."
-          },
-          "answer_value": {
-            "$ref": "common_definitions.json#/non_empty_string",
-            "description": "Optional answer value for the given answer code. This should only used for answers that support `options`."
-          }
+    "$id": "/questionnaire_v1.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "required": ["mime_type", "schema_version", "data_version", "survey_id", "title", "sections", "theme", "metadata", "language", "questionnaire_flow"],
+    "properties": {
+        "language": {
+            "enum": ["cy", "en", "eo", "ga"]
         },
-        "additionalProperties": false,
-        "required": ["answer_id", "code"]
-      }
-    },
-    "metadata": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "pattern": "^[a-zA-Z0-9-_]+$"
-          },
-          "type": {
+        "messages": {
+            "$ref": "common_definitions.json#/messages"
+        },
+        "mime_type": {
+            "type": "string"
+        },
+        "schema_version": {
+            "type": "string"
+        },
+        "data_version": {
+            "enum": ["0.0.1", "0.0.3"]
+        },
+        "survey_id": {
             "type": "string",
-            "enum": ["boolean", "date", "string", "uuid", "url"]
-          },
-          "min_length": {
-            "type": "integer",
-            "description": "The minimum length of a string field",
-            "minimum": 1
-          },
-          "max_length": {
-            "type": "integer",
-            "description": "The maximum length of a string field",
-            "minimum": 1
-          },
-          "length": {
-            "type": "integer",
-            "description": "The length of a string field must be equal to this",
-            "minimum": 0
-          },
-          "optional": {
-            "description": "Whether an error should be raised if this field is not provided.",
-            "type": "boolean"
-          }
+            "description": "The ONS id of the survey derived from the inquiry code already in use for that survey.",
+            "pattern": "^[0-9a-z]+$"
         },
-        "additionalProperties": false,
-        "required": ["name", "type"]
-      }
-    },
-    "variables": {
-      "type": "object",
-      "properties": {
-        "period": {
-          "$ref": "common_definitions.json#/non_empty_string"
-        }
-      }
-    },
-    "navigation": {
-      "type": "object",
-      "description": "Used in conjunction with routing to take user through a survey. ",
-      "properties": {
-        "visible": {
-          "type": "boolean"
-        }
-      }
-    },
-    "questionnaire_flow": {
-      "$ref": "questionnaire_flow/definitions.json#/flow"
-    },
-    "submission": {
-      "type": "object",
-      "properties": {
-        "button": {
-          "$ref": "common_definitions.json#/non_empty_string",
-          "description": "The submit button text when the questionnaire is complete."
-        },
-        "guidance": {
-          "$ref": "common_definitions.json#/non_empty_string",
-          "description": "The guidance when the questionnaire is complete."
+        "session_timeout_in_seconds": {
+            "description": "The amount of time in seconds before timing out a users session.",
+            "type": "integer"
         },
         "title": {
-          "$ref": "common_definitions.json#/non_empty_string",
-          "description": "The main heading when the questionnaire is complete."
+            "$ref": "common_definitions.json#/non_empty_string"
         },
-        "warning": {
-          "$ref": "common_definitions.json#/non_empty_string",
-          "description": "The warning when the questionnaire is complete."
-        }
-      },
-      "additionalProperties": false,
-      "minProperties": 1
-    },
-    "post_submission": {
-      "type": "object",
-      "properties": {
-        "guidance": {
-          "description": "Guidance displayed after the questionnaire is submitted.",
-          "type": "object",
-          "properties": {
-            "contents": {
-              "$ref": "common_definitions.json#/contents"
-            }
-          },
-          "required": ["contents"],
-          "additionalProperties": false
+        "description": {
+            "$ref": "common_definitions.json#/non_empty_string"
         },
-        "confirmation_email": {
-          "type": "boolean",
-          "description": "A flag that is used to determine if an email confirmation is available on questionnaire completion"
+        "sds_schema_version": {
+            "type": "string"
         },
-        "feedback": {
-          "type": "boolean",
-          "description": "A flag that is used to determine if a feedback is available on questionnaire completion"
+        "supplementary_data": {
+            "type": "object",
+            "description": "A object containing the lists which come from supplementary data",
+            "properties": {
+                "lists": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "common_definitions.json#/non_empty_string"
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": ["lists"],
+            "additionalProperties": false
         },
-        "view_response": {
-          "type": "boolean",
-          "description": "A flag that is used to determine if the users response is viewable after submission"
-        }
-      },
-      "additionalProperties": false,
-      "minProperties": 1
-    },
-    "individual_response": {
-      "$ref": "individual_response/definitions.json#/individual_response"
-    },
-    "sections": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "common_definitions.json#/identifier"
-          },
-          "title": {
-            "$ref": "common_definitions.json#/non_empty_string",
-            "description": "Title used for the navigation container."
-          },
-          "title_from_answers": {
+        "theme": {
+            "enum": [
+                "business",
+                "social",
+                "default",
+                "health",
+                "northernireland",
+                "dbt",
+                "dbt-ni",
+                "dbt-dsit",
+                "dbt-dsit-ni",
+                "orr",
+                "desnz",
+                "desnz-ni",
+                "ukhsa-ons",
+                "ons-nhs"
+            ]
+        },
+        "legal_basis": {
+            "$ref": "common_definitions.json#/non_empty_string"
+        },
+        "form_type": {
+            "type": "string",
+            "pattern": "^[0-9A-Za-z_]+$"
+        },
+        "region_code": {
+            "type": "string",
+            "pattern": "^GB-[A-Z]{3}$",
+            "description": "An ISO 3166-2:GB region code"
+        },
+        "answer_codes": {
             "type": "array",
-            "description": "Takes a list of answer ids. Title will be generated from answer values concatenated together with spaces."
-          },
-          "repeat": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "pattern": "^[a-zA-Z0-9._-]+$",
+                        "description": "User defined answer code for a matching answer id"
+                    },
+                    "answer_id": {
+                        "$ref": "common_definitions.json#/identifier",
+                        "description": "The `answer_id` this `code` mapping is for."
+                    },
+                    "answer_value": {
+                        "$ref": "common_definitions.json#/non_empty_string",
+                        "description": "Optional answer value for the given answer code. This should only used for answers that support `options`."
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["answer_id", "code"]
+            }
+        },
+        "metadata": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "pattern": "^[a-zA-Z0-9-_]+$"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["boolean", "date", "string", "uuid", "url"]
+                    },
+                    "min_length": {
+                        "type": "integer",
+                        "description": "The minimum length of a string field",
+                        "minimum": 1
+                    },
+                    "max_length": {
+                        "type": "integer",
+                        "description": "The maximum length of a string field",
+                        "minimum": 1
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "The length of a string field must be equal to this",
+                        "minimum": 0
+                    },
+                    "optional": {
+                        "description": "Whether an error should be raised if this field is not provided.",
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["name", "type"]
+            }
+        },
+        "variables": {
             "type": "object",
             "properties": {
-              "for_list": {
-                "$ref": "common_definitions.json#/non_empty_string"
-              },
-              "title": {
-                "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
-              },
-              "page_title": {
-                "$ref": "common_definitions.json#/non_empty_string"
-              }
+                "period": {
+                    "$ref": "common_definitions.json#/non_empty_string"
+                }
+            }
+        },
+        "navigation": {
+            "type": "object",
+            "description": "Used in conjunction with routing to take user through a survey. ",
+            "properties": {
+                "visible": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "questionnaire_flow": {
+            "$ref": "questionnaire_flow/definitions.json#/flow"
+        },
+        "submission": {
+            "type": "object",
+            "properties": {
+                "button": {
+                    "$ref": "common_definitions.json#/non_empty_string",
+                    "description": "The submit button text when the questionnaire is complete."
+                },
+                "guidance": {
+                    "$ref": "common_definitions.json#/non_empty_string",
+                    "description": "The guidance when the questionnaire is complete."
+                },
+                "title": {
+                    "$ref": "common_definitions.json#/non_empty_string",
+                    "description": "The main heading when the questionnaire is complete."
+                },
+                "warning": {
+                    "$ref": "common_definitions.json#/non_empty_string",
+                    "description": "The warning when the questionnaire is complete."
+                }
             },
             "additionalProperties": false,
-            "required": ["for_list", "title"]
-          },
-          "summary": {
+            "minProperties": 1
+        },
+        "post_submission": {
             "type": "object",
             "properties": {
-              "show_on_completion": {
-                "type": "boolean",
-                "description": "A boolean that is used to determine whether to show the section summary on completion of the section."
-              },
-              "collapsible": {
-                "type": "boolean"
-              },
-              "items": {
-                "type": "array",
-                "minItems": 1,
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "const": "List"
+                "guidance": {
+                    "description": "Guidance displayed after the questionnaire is submitted.",
+                    "type": "object",
+                    "properties": {
+                        "contents": {
+                            "$ref": "common_definitions.json#/contents"
+                        }
                     },
-                    "for_list": {
-                      "$ref": "common_definitions.json#/non_empty_string"
-                    },
-                    "title": {
-                      "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
-                    },
-                    "add_link_text": {
-                      "$ref": "common_definitions.json#/non_empty_string"
-                    },
-                    "empty_list_text": {
-                      "$ref": "common_definitions.json#/non_empty_string"
-                    },
-                    "related_answers": {
-                      "type": "array",
-                      "minItems": 1,
-                      "uniqueItems": true,
-                      "items": {
-                        "$ref": "value_sources.json#/answer_value_source"
-                      },
-                      "description": "Value sources of answers to be displayed on the list summary, excluding the answer used for the item title"
-                    },
-                    "item_anchor_answer_id": {
-                      "$ref": "common_definitions.json#/identifier",
-                      "description": "The main answer_id for the item title used as anchor in summary links"
-                    },
-                    "item_label": {
-                      "$ref": "string_interpolation/definitions.json#/string_with_placeholders",
-                      "description": "The accompanying label for the item title on list summary",
-                      "examples": ["Name of company", "Full name"]
-                    }
-                  },
-                  "additionalProperties": false
+                    "required": ["contents"],
+                    "additionalProperties": false
+                },
+                "confirmation_email": {
+                    "type": "boolean",
+                    "description": "A flag that is used to determine if an email confirmation is available on questionnaire completion"
+                },
+                "feedback": {
+                    "type": "boolean",
+                    "description": "A flag that is used to determine if a feedback is available on questionnaire completion"
+                },
+                "view_response": {
+                    "type": "boolean",
+                    "description": "A flag that is used to determine if the users response is viewable after submission"
                 }
-              },
-              "title": {
-                "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
-              },
-              "page_title": {
-                "$ref": "common_definitions.json#/non_empty_string"
-              },
-              "show_non_item_answers": {
-                "type": "boolean",
-                "description": "When true, non list collector answers will be displayed on the section summary. When false, a list summary is used where only list items are displayed."
-              }
             },
-            "if": {
-              "properties": {
-                "show_non_item_answers": {
-                  "not": {
-                    "const": true
-                  }
-                }
-              }
-            },
-            "then": {
-              "required": ["show_on_completion"]
-            },
-            "else": {
-              "required": ["items", "show_on_completion"]
-            },
-            "additionalProperties": false
-          },
-          "show_on_hub": {
-            "type": "boolean",
-            "description": "When the hub is enabled, this will determine if the section appears. Default is true"
-          },
-          "groups": {
+            "additionalProperties": false,
+            "minProperties": 1
+        },
+        "individual_response": {
+            "$ref": "individual_response/definitions.json#/individual_response"
+        },
+        "sections": {
             "type": "array",
             "minItems": 1,
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "$ref": "common_definitions.json#/identifier"
+                "additionalProperties": false,
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "common_definitions.json#/identifier"
+                    },
+                    "title": {
+                        "$ref": "common_definitions.json#/non_empty_string",
+                        "description": "Title used for the navigation container."
+                    },
+                    "title_from_answers": {
+                        "type": "array",
+                        "description": "Takes a list of answer ids. Title will be generated from answer values concatenated together with spaces."
+                    },
+                    "repeat": {
+                        "type": "object",
+                        "properties": {
+                            "for_list": {
+                                "$ref": "common_definitions.json#/non_empty_string"
+                            },
+                            "title": {
+                                "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+                            },
+                            "page_title": {
+                                "$ref": "common_definitions.json#/non_empty_string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["for_list", "title"]
+                    },
+                    "summary": {
+                        "type": "object",
+                        "properties": {
+                            "show_on_completion": {
+                                "type": "boolean",
+                                "description": "A boolean that is used to determine whether to show the section summary on completion of the section."
+                            },
+                            "collapsible": {
+                                "type": "boolean"
+                            },
+                            "items": {
+                                "type": "array",
+                                "minItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "const": "List"
+                                        },
+                                        "for_list": {
+                                            "$ref": "common_definitions.json#/non_empty_string"
+                                        },
+                                        "title": {
+                                            "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+                                        },
+                                        "add_link_text": {
+                                            "$ref": "common_definitions.json#/non_empty_string"
+                                        },
+                                        "empty_list_text": {
+                                            "$ref": "common_definitions.json#/non_empty_string"
+                                        },
+                                        "related_answers": {
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "uniqueItems": true,
+                                            "items": {
+                                                "$ref": "value_sources.json#/answer_value_source"
+                                            },
+                                            "description": "Value sources of answers to be displayed on the list summary, excluding the answer used for the item title"
+                                        },
+                                        "item_anchor_answer_id": {
+                                            "$ref": "common_definitions.json#/identifier",
+                                            "description": "The main answer_id for the item title used as anchor in summary links"
+                                        },
+                                        "item_label": {
+                                            "$ref": "string_interpolation/definitions.json#/string_with_placeholders",
+                                            "description": "The accompanying label for the item title on list summary",
+                                            "examples": ["Name of company", "Full name"]
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "title": {
+                                "$ref": "string_interpolation/definitions.json#/string_with_placeholders"
+                            },
+                            "page_title": {
+                                "$ref": "common_definitions.json#/non_empty_string"
+                            },
+                            "show_non_item_answers": {
+                                "type": "boolean",
+                                "description": "When true, non list collector answers will be displayed on the section summary. When false, a list summary is used where only list items are displayed."
+                            }
+                        },
+                        "if": {
+                            "properties": {
+                                "show_non_item_answers": {
+                                    "not": {
+                                        "const": true
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": ["show_on_completion"]
+                        },
+                        "else": {
+                            "required": ["items", "show_on_completion"]
+                        },
+                        "additionalProperties": false
+                    },
+                    "show_on_hub": {
+                        "type": "boolean",
+                        "description": "When the hub is enabled, this will determine if the section appears. Default is true"
+                    },
+                    "groups": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "$ref": "common_definitions.json#/identifier"
+                                },
+                                "title": {
+                                    "$ref": "common_definitions.json#/non_empty_string"
+                                },
+                                "hide_in_navigation": {
+                                    "type": "boolean"
+                                },
+                                "skip_conditions": {
+                                    "$ref": "common_definitions.json#/skip_conditions"
+                                },
+                                "routing_rules": {
+                                    "$ref": "common_definitions.json#/routing_rules"
+                                },
+                                "blocks": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "blocks/answer_summary.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/calculated_summary.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/grand_calculated_summary.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/confirmation_question.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/interstitial.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/introduction.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/list_collector.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/list_collector_content.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/list_collector_driving_question.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/primary_person_list_collector.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/question.json#/block"
+                                            },
+                                            {
+                                                "$ref": "blocks/relationship_collector.json#/block"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": ["id", "blocks"]
+                        }
+                    },
+                    "enabled": {
+                        "$ref": "common_definitions.json#/section_enabled"
+                    }
                 },
-                "title": {
-                  "$ref": "common_definitions.json#/non_empty_string"
-                },
-                "hide_in_navigation": {
-                  "type": "boolean"
-                },
-                "skip_conditions": {
-                  "$ref": "common_definitions.json#/skip_conditions"
-                },
-                "routing_rules": {
-                  "$ref": "common_definitions.json#/routing_rules"
-                },
-                "blocks": {
-                  "type": "array",
-                  "minItems": 1,
-                  "items": {
-                    "oneOf": [
-                      {
-                        "$ref": "blocks/answer_summary.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/calculated_summary.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/grand_calculated_summary.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/confirmation_question.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/interstitial.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/introduction.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/list_collector.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/list_collector_content.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/list_collector_driving_question.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/primary_person_list_collector.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/question.json#/block"
-                      },
-                      {
-                        "$ref": "blocks/relationship_collector.json#/block"
-                      }
-                    ]
-                  }
-                }
-              },
-              "additionalProperties": false,
-              "required": ["id", "blocks"]
+                "required": ["id", "groups"]
             }
-          },
-          "enabled": {
-            "$ref": "common_definitions.json#/section_enabled"
-          }
         },
-        "required": ["id", "groups"]
-      }
+        "preview_questions": {
+            "type": "boolean",
+            "description": "A flag that is used to determine if the questions can be previewed before the questionnaire start"
+        }
     },
-    "preview_questions": {
-      "type": "boolean",
-      "description": "A flag that is used to determine if the questions can be previewed before the questionnaire start"
-    }
-  },
-  "allOf": [
-    {
-      "if": {
-        "properties": {
-          "questionnaire_flow": {
-            "properties": {
-              "type": {
-                "const": "Hub"
-              }
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "questionnaire_flow": {
+                        "properties": {
+                            "type": {
+                                "const": "Hub"
+                            }
+                        }
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "sections": {
+                        "items": {
+                            "required": ["title"]
+                        }
+                    }
+                }
             }
-          }
         }
-      },
-      "then": {
-        "properties": {
-          "sections": {
-            "items": {
-              "required": ["title"]
-            }
-          }
-        }
-      }
-    }
-  ],
-  "additionalProperties": false
+    ],
+    "additionalProperties": false
 }

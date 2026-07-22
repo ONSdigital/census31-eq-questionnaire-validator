@@ -1,50 +1,50 @@
 [
-  {
-    "description": "Two non-array values",
-    "rule": {
-      "==": [1, 1]
+    {
+        "description": "Two non-array values",
+        "rule": {
+            "==": [1, 1]
+        }
+    },
+    {
+        "description": "Two array values",
+        "rule": {
+            "==": [[], []]
+        }
+    },
+    {
+        "description": "An answer and a value",
+        "rule": {
+            "==": [
+                {
+                    "source": "answers",
+                    "identifier": "test"
+                },
+                "Yes"
+            ]
+        }
+    },
+    {
+        "description": "An un-answered answer",
+        "rule": {
+            "==": [
+                {
+                    "source": "answers",
+                    "identifier": "test"
+                },
+                null
+            ]
+        }
+    },
+    {
+        "description": "Compare metadata to a boolean",
+        "rule": {
+            "==": [
+                {
+                    "source": "metadata",
+                    "identifier": "test"
+                },
+                true
+            ]
+        }
     }
-  },
-  {
-    "description": "Two array values",
-    "rule": {
-      "==": [[], []]
-    }
-  },
-  {
-    "description": "An answer and a value",
-    "rule": {
-      "==": [
-        {
-          "source": "answers",
-          "identifier": "test"
-        },
-        "Yes"
-      ]
-    }
-  },
-  {
-    "description": "An un-answered answer",
-    "rule": {
-      "==": [
-        {
-          "source": "answers",
-          "identifier": "test"
-        },
-        null
-      ]
-    }
-  },
-  {
-    "description": "Compare metadata to a boolean",
-    "rule": {
-      "==": [
-        {
-          "source": "metadata",
-          "identifier": "test"
-        },
-        true
-      ]
-    }
-  }
 ]

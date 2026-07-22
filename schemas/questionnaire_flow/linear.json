@@ -1,22 +1,22 @@
 {
-  "$id": "/questionnaire_flow/linear.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "options": {
-    "type": "object",
-    "properties": {
-      "summary": {
+    "$id": "/questionnaire_flow/linear.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "options": {
         "type": "object",
-        "description": "Using this property will include a summary on the submit page",
         "properties": {
-          "collapsible": {
-            "description": "Determines if the summary sections are collapsible",
-            "type": "boolean"
-          }
+            "summary": {
+                "type": "object",
+                "description": "Using this property will include a summary on the submit page",
+                "properties": {
+                    "collapsible": {
+                        "description": "Determines if the summary sections are collapsible",
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["collapsible"]
+            }
         },
-        "additionalProperties": false,
-        "required": ["collapsible"]
-      }
-    },
-    "additionalProperties": false
-  }
+        "additionalProperties": false
+    }
 }

@@ -23,8 +23,8 @@ the answer value to a user-defined code relationship.
 Additionally, it avoids the need for Runner to map it when Author needs to anyway.
 - This mapping will be filtered to cover only the relevant answers for the submission and then sent in the downstream payload.
 - For answers with options, an optional `answer_value` must be provided to allow mapping to a single option value.
-    The validation that enforces the label must match the value will be removed to prevent
-    downstream mappings from changing when the label changes.
+  The validation that enforces the label must match the value will be removed to prevent
+  downstream mappings from changing when the label changes.
 - If `answer_codes` are defined, then there must be a code for every answer.
 
 **Example:**
@@ -64,14 +64,14 @@ Additionally, it avoids the need for Runner to map it when Author needs to anywa
 - When a user-defined code is assigned to each answer option,
 the downstream payload will expose both the `answer_id` and the `answer_value` for a given code.
 - The user-defined code is not defined as the `option. value` because:
-    - We need to allow the label's value to have a different meaning to the user-defined code.
-        For example, when talking about Standard industrial classification of economic activities (SIC) codes,
-        the label might be `Growing of rice`, and the value might be the literal `SIC` code, i.e. `01120`.
-        However, the user-defined code might mean something else entirely, i.e. get `1` to mean it was the
-        first in the list. We should keep the two meanings separate.
-    - Not all surveys need a mapping to the individual options.
-    - It makes option answers mapping inconsistent with other answers.
-    - We need to support dynamic answer options, which are only available at runtime.
+  - We need to allow the label's value to have a different meaning to the user-defined code.
+    For example, when talking about Standard industrial classification of economic activities (SIC) codes,
+    the label might be `Growing of rice`, and the value might be the literal `SIC` code, i.e. `01120`.
+    However, the user-defined code might mean something else entirely, i.e. get `1` to mean it was the
+    first in the list. We should keep the two meanings separate.
+  - Not all surveys need a mapping to the individual options.
+  - It makes option answers mapping inconsistent with other answers.
+  - We need to support dynamic answer options, which are only available at runtime.
 
 Example option answer with a user-defined code:
 
@@ -146,7 +146,7 @@ This mapping implies:
 
 - The option value `None` has a code of `1a`
 - Any dynamically generated answers will have a code of `1`. Downstream will use this as a suffix/prefix,
-as you may have various dynamic answers.
+  as you may have various dynamic answers.
 
 _**JSON Schema:**_
 
@@ -159,11 +159,10 @@ _**JSON Schema:**_
         "values": {...}
     },
     "transform": {...}
-    },
     "options": [
         {
-        "label": "None of the above",
-        "value": "None"
+            "label": "None of the above",
+            "value": "None"
         }
     ]
 }

@@ -1,67 +1,67 @@
 {
-  "$id": "/answers/checkbox.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "answer": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "q_code": {
-        "$ref": "../common_definitions.json#/q_code"
-      },
-      "label": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "instruction": {
-        "oneOf": [
-          {
-            "$ref": "../common_definitions.json#/non_empty_string"
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
-      "guidance": {
-        "$ref": "definitions.json#/answer_guidance"
-      },
-      "description": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "type": {
-        "type": "string",
-        "const": "Checkbox"
-      },
-      "dynamic_options": {
-        "$ref": "definitions.json#/dynamic_options"
-      },
-      "options": {
-        "$ref": "definitions.json#/options"
-      },
-      "mandatory": {
-        "type": "boolean"
-      },
-      "validation": {
+    "$id": "/answers/checkbox.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "answer": {
         "type": "object",
         "properties": {
-          "messages": {
-            "MANDATORY_CHECKBOX": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
+            },
+            "q_code": {
+                "$ref": "../common_definitions.json#/q_code"
+            },
+            "label": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "instruction": {
+                "oneOf": [
+                    {
+                        "$ref": "../common_definitions.json#/non_empty_string"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ]
+            },
+            "guidance": {
+                "$ref": "definitions.json#/answer_guidance"
+            },
+            "description": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "type": {
+                "type": "string",
+                "const": "Checkbox"
+            },
+            "dynamic_options": {
+                "$ref": "definitions.json#/dynamic_options"
+            },
+            "options": {
+                "$ref": "definitions.json#/options"
+            },
+            "mandatory": {
+                "type": "boolean"
+            },
+            "validation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "MANDATORY_CHECKBOX": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "mandatory"],
-    "anyOf": [
-      {
-        "required": ["options"]
-      },
-      {
-        "required": ["dynamic_options"]
-      }
-    ]
-  }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type", "mandatory"],
+        "anyOf": [
+            {
+                "required": ["options"]
+            },
+            {
+                "required": ["dynamic_options"]
+            }
+        ]
+    }
 }

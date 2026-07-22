@@ -1,47 +1,47 @@
 {
-  "$id": "/blocks/answer_summary.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "block": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "title": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "page_title": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "type": {
-        "type": "string",
-        "const": "AnswerSummary"
-      },
-      "label": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "routing_rules": {
-        "$ref": "../common_definitions.json#/routing_rules"
-      },
-      "skip_conditions": {
-        "$ref": "../common_definitions.json#/skip_conditions"
-      },
-      "answer_ids": {
-        "type": "array",
-        "items": {
-          "$ref": "../common_definitions.json#/non_empty_string"
+    "$id": "/blocks/answer_summary.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "block": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
+            },
+            "title": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "page_title": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "type": {
+                "type": "string",
+                "const": "AnswerSummary"
+            },
+            "label": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "routing_rules": {
+                "$ref": "../common_definitions.json#/routing_rules"
+            },
+            "skip_conditions": {
+                "$ref": "../common_definitions.json#/skip_conditions"
+            },
+            "answer_ids": {
+                "type": "array",
+                "items": {
+                    "$ref": "../common_definitions.json#/non_empty_string"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+            },
+            "answer_label": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "icon": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            }
         },
-        "minItems": 1,
-        "uniqueItems": true
-      },
-      "answer_label": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "icon": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "title", "label", "answer_ids"]
-  }
+        "additionalProperties": false,
+        "required": ["id", "type", "title", "label", "answer_ids"]
+    }
 }

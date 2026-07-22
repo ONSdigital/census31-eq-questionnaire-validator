@@ -1,7 +1,7 @@
 {
-  "$id": "/rules/list_value_rule.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "description": "Top level value operator rule that returns a list of values",
-  "$ref": "definitions.json#/list_value_operators"
+    "$id": "/rules/list_value_rule.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "Top level value operator rule that returns a list of values",
+    "$ref": "definitions.json#/list_value_operators"
 }

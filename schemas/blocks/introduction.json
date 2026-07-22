@@ -1,98 +1,98 @@
 {
-  "$id": "/blocks/introduction.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "block": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "title": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "page_title": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "type": {
-        "type": "string",
-        "const": "Introduction"
-      },
-      "primary_content": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "$ref": "../common_definitions.json#/identifier"
-            },
-            "title": {
-              "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-            },
-            "contents": {
-              "$ref": "../common_definitions.json#/contents"
-            }
-          },
-          "additionalProperties": true,
-          "required": ["id"],
-          "anyOf": [
-            {
-              "required": ["title"]
-            },
-            {
-              "required": ["contents"]
-            }
-          ]
-        }
-      },
-      "preview_content": {
+    "$id": "/blocks/introduction.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "block": {
         "type": "object",
         "properties": {
-          "id": {
-            "$ref": "../common_definitions.json#/identifier"
-          },
-          "title": {
-            "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-          },
-          "questions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "$ref": "../common_definitions.json#/identifier"
-                },
-                "question": {
-                  "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-                },
-                "contents": {
-                  "$ref": "../common_definitions.json#/contents"
-                }
-              }
-            }
-          },
-          "contents": {
-            "$ref": "../common_definitions.json#/contents"
-          }
-        },
-        "additionalProperties": false
-      },
-      "secondary_content": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
             "id": {
-              "$ref": "../common_definitions.json#/identifier"
+                "$ref": "../common_definitions.json#/identifier"
             },
-            "contents": {
-              "$ref": "../common_definitions.json#/contents"
+            "title": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "page_title": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "type": {
+                "type": "string",
+                "const": "Introduction"
+            },
+            "primary_content": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "$ref": "../common_definitions.json#/identifier"
+                        },
+                        "title": {
+                            "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+                        },
+                        "contents": {
+                            "$ref": "../common_definitions.json#/contents"
+                        }
+                    },
+                    "additionalProperties": true,
+                    "required": ["id"],
+                    "anyOf": [
+                        {
+                            "required": ["title"]
+                        },
+                        {
+                            "required": ["contents"]
+                        }
+                    ]
+                }
+            },
+            "preview_content": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../common_definitions.json#/identifier"
+                    },
+                    "title": {
+                        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+                    },
+                    "questions": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "$ref": "../common_definitions.json#/identifier"
+                                },
+                                "question": {
+                                    "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+                                },
+                                "contents": {
+                                    "$ref": "../common_definitions.json#/contents"
+                                }
+                            }
+                        }
+                    },
+                    "contents": {
+                        "$ref": "../common_definitions.json#/contents"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "secondary_content": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "$ref": "../common_definitions.json#/identifier"
+                        },
+                        "contents": {
+                            "$ref": "../common_definitions.json#/contents"
+                        }
+                    },
+                    "additionalProperties": false
+                }
             }
-          },
-          "additionalProperties": false
-        }
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type"]
-  }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type"]
+    }
 }

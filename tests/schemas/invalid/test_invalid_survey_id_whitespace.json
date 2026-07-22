@@ -1,56 +1,56 @@
 {
-  "data_version": "0.0.3",
-  "description": "Labour Market Survey Schema (Alpha)",
-  "eq_id": "lms",
-  "form_type": "1",
-  "legal_basis": "Voluntary",
-  "mime_type": "application/json/ons/eq",
-  "navigation": {
-    "visible": true
-  },
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
+    "data_version": "0.0.3",
+    "description": "Labour Market Survey Schema (Alpha)",
+    "eq_id": "lms",
+    "form_type": "1",
+    "legal_basis": "Voluntary",
+    "mime_type": "application/json/ons/eq",
+    "navigation": {
+        "visible": true
     },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    },
-    {
-      "name": "test_metadata",
-      "type": "string"
-    }
-  ],
-  "language": "en",
-  "schema_version": "0.0.1",
-  "survey_id": "lms ",
-  "theme": "default",
-  "title": "Labour Market Survey (Alpha)",
-  "questionnaire_flow": {
-    "type": "Linear",
-    "options": {}
-  },
-  "sections": [
-    {
-      "id": "section3",
-      "title": "",
-      "groups": [
+    "metadata": [
         {
-          "id": "confirmation-group",
-          "title": "confirmation",
-          "blocks": [
-            {
-              "type": "Introduction",
-              "id": "introduction"
-            }
-          ]
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "test_metadata",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "language": "en",
+    "schema_version": "0.0.1",
+    "survey_id": "lms ",
+    "theme": "default",
+    "title": "Labour Market Survey (Alpha)",
+    "questionnaire_flow": {
+        "type": "Linear",
+        "options": {}
+    },
+    "sections": [
+        {
+            "id": "section3",
+            "title": "",
+            "groups": [
+                {
+                    "id": "confirmation-group",
+                    "title": "confirmation",
+                    "blocks": [
+                        {
+                            "type": "Introduction",
+                            "id": "introduction"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

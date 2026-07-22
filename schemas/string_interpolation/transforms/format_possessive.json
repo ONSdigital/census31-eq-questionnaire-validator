@@ -1,25 +1,25 @@
 {
-  "$id": "/string_interpolation/transforms/format_possessive.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "format_possessive": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "format_possessive"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/format_possessive.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "format_possessive": {
         "type": "object",
         "properties": {
-          "string_to_format": {
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          }
+            "transform": {
+                "type": "string",
+                "const": "format_possessive"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "string_to_format": {
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["string_to_format"]
+            }
         },
         "additionalProperties": false,
-        "required": ["string_to_format"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

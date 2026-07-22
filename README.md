@@ -184,8 +184,8 @@ This will run Validator against all eQ Runner test schemas.
 Or you can run it against a specific eQ Runner schema, to do this:
 
 - set the following vars passing them into the following command:
-    - `SCHEMA_PATH` to the path of the schema file (if not specified defaults to `./schemas/test/en/`)
-    - `SCHEMA` to the schema file name without the `.json`
+  - `SCHEMA_PATH` to the path of the schema file (if not specified defaults to `./schemas/test/en/`)
+  - `SCHEMA` to the schema file name without the `.json`
 - then run (for example):
 
 ```shell
