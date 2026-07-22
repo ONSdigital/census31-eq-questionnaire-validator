@@ -28,9 +28,6 @@ clean: ## Clean the temporary files.
 	rm -rf .ruff_cache
 	rm -rf megalinter-reports
 
-lint: lint-python
-	npm run lint
-
 .PHONY: ruff
 ruff: ## Run ruff linter code check.
 	poetry run ruff check .
@@ -49,9 +46,6 @@ test-ajv:
 	npm run test
 
 test: test-python test-ajv
-
-format: format-python
-	npm run format
 
 format-python:
 	poetry run isort .

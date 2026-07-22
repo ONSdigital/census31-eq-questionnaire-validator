@@ -1,64 +1,64 @@
 {
-  "mime_type": "application/json/ons/eq",
-  "language": "en",
-  "schema_version": "0.0.1",
-  "data_version": "0.0.3",
-  "survey_id": "001",
-  "title": "Textfield Suggestions",
-  "theme": "default",
-  "description": "A questionnaire to test textfield suggestions",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    }
-  ],
-  "questionnaire_flow": {
-    "type": "Linear",
-    "options": {
-      "summary": {
-        "collapsible": false
-      }
-    }
-  },
-  "sections": [
-    {
-      "id": "default-section",
-      "groups": [
+    "mime_type": "application/json/ons/eq",
+    "language": "en",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.3",
+    "survey_id": "001",
+    "title": "Textfield Suggestions",
+    "theme": "default",
+    "description": "A questionnaire to test textfield suggestions",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "type": "Question",
-              "id": "country-block",
-              "question": {
-                "answers": [
-                  {
-                    "id": "country-answer",
-                    "label": "What is your country of birth?",
-                    "mandatory": false,
-                    "suggestions": {
-                      "url": "/json/countries"
-                    },
-                    "type": "TextField"
-                  }
-                ],
-                "id": "country-of-birth-question",
-                "title": "Title",
-                "type": "General"
-              }
-            }
-          ],
-          "id": "group"
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
         }
-      ]
-    }
-  ]
+    ],
+    "questionnaire_flow": {
+        "type": "Linear",
+        "options": {
+            "summary": {
+                "collapsible": false
+            }
+        }
+    },
+    "sections": [
+        {
+            "id": "default-section",
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "type": "Question",
+                            "id": "country-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "country-answer",
+                                        "label": "What is your country of birth?",
+                                        "mandatory": false,
+                                        "suggestions": {
+                                            "url": "/json/countries"
+                                        },
+                                        "type": "TextField"
+                                    }
+                                ],
+                                "id": "country-of-birth-question",
+                                "title": "Title",
+                                "type": "General"
+                            }
+                        }
+                    ],
+                    "id": "group"
+                }
+            ]
+        }
+    ]
 }

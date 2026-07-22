@@ -1,37 +1,37 @@
 {
-  "$id": "/string_interpolation/transforms/format_date.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "format_date": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "format_date"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/format_date.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "format_date": {
         "type": "object",
         "properties": {
-          "date_to_format": {
-            "oneOf": [
-              {
-                "$ref": "../definitions.json#/placeholder_value_sources"
-              },
-              {
-                "$ref": "../../common_definitions.json#/date_value"
-              }
-            ]
-          },
-          "date_format": {
-            "type": "string",
-            "description": "See https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns",
-            "enum": ["EEEE d MMMM", "EEEE d MMMM yyyy", "d MMMM yyyy"]
-          }
+            "transform": {
+                "type": "string",
+                "const": "format_date"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "date_to_format": {
+                        "oneOf": [
+                            {
+                                "$ref": "../definitions.json#/placeholder_value_sources"
+                            },
+                            {
+                                "$ref": "../../common_definitions.json#/date_value"
+                            }
+                        ]
+                    },
+                    "date_format": {
+                        "type": "string",
+                        "description": "See https://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns",
+                        "enum": ["EEEE d MMMM", "EEEE d MMMM yyyy", "d MMMM yyyy"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["date_to_format"]
+            }
         },
         "additionalProperties": false,
-        "required": ["date_to_format"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

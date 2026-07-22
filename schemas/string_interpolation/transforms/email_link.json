@@ -1,32 +1,32 @@
 {
-  "$id": "/string_interpolation/transforms/email_link.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "email_link": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "email_link"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/email_link.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "email_link": {
         "type": "object",
         "properties": {
-          "email_address": {
-            "type": "string",
-            "pattern": "^[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+.[A-Za-z.]+$"
-          },
-          "email_subject": {
-            "$ref": "../../common_definitions.json#/non_empty_string"
-          },
-          "email_subject_append": {
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          }
+            "transform": {
+                "type": "string",
+                "const": "email_link"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "email_address": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+.[A-Za-z.]+$"
+                    },
+                    "email_subject": {
+                        "$ref": "../../common_definitions.json#/non_empty_string"
+                    },
+                    "email_subject_append": {
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["email_address"]
+            }
         },
         "additionalProperties": false,
-        "required": ["email_address"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

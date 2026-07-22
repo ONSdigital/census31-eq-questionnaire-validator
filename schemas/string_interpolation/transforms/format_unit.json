@@ -1,34 +1,34 @@
 {
-  "$id": "/string_interpolation/transforms/format_unit.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "format_unit": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "format_unit"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/format_unit.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "format_unit": {
         "type": "object",
         "properties": {
-          "value": {
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          },
-          "unit_length": {
-            "description": "The formatting length. e.g. 1h (narrow) / 1 hr (short) / 1 hour (long)",
-            "default": "short",
-            "type": "string",
-            "enum": ["short", "narrow", "long"]
-          },
-          "unit": {
-            "$ref": "../../lists/units.json#/unit"
-          }
+            "transform": {
+                "type": "string",
+                "const": "format_unit"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    },
+                    "unit_length": {
+                        "description": "The formatting length. e.g. 1h (narrow) / 1 hr (short) / 1 hour (long)",
+                        "default": "short",
+                        "type": "string",
+                        "enum": ["short", "narrow", "long"]
+                    },
+                    "unit": {
+                        "$ref": "../../lists/units.json#/unit"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["value", "unit"]
+            }
         },
         "additionalProperties": false,
-        "required": ["value", "unit"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

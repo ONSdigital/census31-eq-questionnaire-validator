@@ -1,57 +1,57 @@
 {
-  "$id": "/answers/address.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "answer": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "q_code": {
-        "$ref": "../common_definitions.json#/q_code"
-      },
-      "guidance": {
-        "$ref": "definitions.json#/answer_guidance"
-      },
-      "type": {
-        "type": "string",
-        "const": "Address"
-      },
-      "mandatory": {
-        "type": "boolean"
-      },
-      "validation": {
+    "$id": "/answers/address.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "answer": {
         "type": "object",
         "properties": {
-          "messages": {
-            "MANDATORY_ADDRESS": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
+            },
+            "q_code": {
+                "$ref": "../common_definitions.json#/q_code"
+            },
+            "guidance": {
+                "$ref": "definitions.json#/answer_guidance"
+            },
+            "type": {
+                "type": "string",
+                "const": "Address"
+            },
+            "mandatory": {
+                "type": "boolean"
+            },
+            "validation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "MANDATORY_ADDRESS": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        }
+                    }
+                }
+            },
+            "lookup_options": {
+                "type": "object",
+                "properties": {
+                    "address_type": {
+                        "type": "string",
+                        "enum": ["Educational", "Residential", "Workplace"]
+                    },
+                    "one_year_ago": {
+                        "type": "boolean",
+                        "description": "Setting this to true will search the address index as of one year ago. If omitted, the latest index will be searched."
+                    },
+                    "region_code": {
+                        "type": "string",
+                        "enum": ["GB-ENG", "GB-WLS", "GB-NIR"],
+                        "description": "Which region to search for addresses in."
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["address_type", "region_code"]
             }
-          }
-        }
-      },
-      "lookup_options": {
-        "type": "object",
-        "properties": {
-          "address_type": {
-            "type": "string",
-            "enum": ["Educational", "Residential", "Workplace"]
-          },
-          "one_year_ago": {
-            "type": "boolean",
-            "description": "Setting this to true will search the address index as of one year ago. If omitted, the latest index will be searched."
-          },
-          "region_code": {
-            "type": "string",
-            "enum": ["GB-ENG", "GB-WLS", "GB-NIR"],
-            "description": "Which region to search for addresses in."
-          }
         },
         "additionalProperties": false,
-        "required": ["address_type", "region_code"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "mandatory"]
-  }
+        "required": ["id", "type", "mandatory"]
+    }
 }

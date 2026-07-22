@@ -1,28 +1,28 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "/rules/operators/comparison/equal.json",
-  "description": "Evaluates if the arguments are equal",
-  "type": "object",
-  "properties": {
-    "==": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "../../definitions.json#/any_value"
-          },
-          {
-            "$ref": "../value/date.json"
-          },
-          {
-            "$ref": "../value/count.json"
-          }
-        ]
-      }
-    }
-  },
-  "required": ["=="],
-  "additionalProperties": false
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "/rules/operators/comparison/equal.json",
+    "description": "Evaluates if the arguments are equal",
+    "type": "object",
+    "properties": {
+        "==": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "../../definitions.json#/any_value"
+                    },
+                    {
+                        "$ref": "../value/date.json"
+                    },
+                    {
+                        "$ref": "../value/count.json"
+                    }
+                ]
+            }
+        }
+    },
+    "required": ["=="],
+    "additionalProperties": false
 }

@@ -3,42 +3,37 @@
 #
 # See all available variables at https://megalinter.io/latest/config-file/ and in
 # linters documentation
-
 # all, none, or list of linter keys
-APPLY_FIXES: none
-
-FORMATTERS_DISABLE_ERRORS: false
 
 # If you use ENABLE variable, all other languages/formats/tooling-formats will
 # be disabled by default
+# Have decided not to enable the Python linter as has been recommended in point 7
+# in the [python template readme](https://github.com/ONSdigital/ons-python-template#3-megalinter)
 ENABLE:
-  - COPYPASTE
+  - ACTION
+  - BASH
+  - DOCKERFILE
   - EDITORCONFIG
   - JSON
+  - JAVASCRIPT
+  - MAKEFILE
   - MARKDOWN
-  - PYTHON
   - REPOSITORY
   - YAML
 
-SHOW_ELAPSED_TIME: true
+DISABLE_LINTERS:
+  - JAVASCRIPT_STANDARD # Disabled because its rules conflict with our rules set up in ESLint
 
-FILEIO_REPORTER: false
-# Uncomment if you want MegaLinter to detect errors but not block CI to pass
-# DISABLE_ERRORS: true
+FORMATTERS_DISABLE_ERRORS: false # Ensures code is actually fixable when using `make megalint-apply`
+SHOW_ELAPSED_TIME: true # Displays execution time for each linter
+FLAVOR_SUGGESTIONS: false # Disables suggestions to use different MegaLinter flavors
 
-# Use yml file to allow the use of comments. Megalinter's default is .markdown-lint.json
-MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdown-lint.yml
+# ESLint v10 flat-config workaround: install project deps before running MegaLinter via CI
+JAVASCRIPT_ES_PRE_COMMANDS:
+  - command: npm ci --include=dev
+    cwd: workspace
+    continue_if_failed: false
+JAVASCRIPT_ES_CLI_EXECUTABLE: [node_modules/.bin/eslint]
 
-# Dependabot yaml in SchemaStore is currently not up to date. Dependabot is validated on push by GitHub by default.
-YAML_V8R_FILTER_REGEX_EXCLUDE: "dependabot.yml"
-
-PYTHON_FLAKE8_ARGUMENTS: "--max-line-length=120"
-
-# Skips Bandit rule preventing the use of assert statements in tests
-PYTHON_BANDIT_ARGUMENTS: "--skip B101"
-
-# Excludes `poetry.lock` from EditorConfig checks, as it is an auto-generated file
-EDITORCONFIG_EDITORCONFIG_CHECKER_FILTER_REGEX_EXCLUDE: "poetry.lock"
-
-# Disables import-error check for Pylint to prevent false positive errors
-PYTHON_PYLINT_ARGUMENTS: "--disable=import-error"
+ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
+  - GITHUB_TOKEN

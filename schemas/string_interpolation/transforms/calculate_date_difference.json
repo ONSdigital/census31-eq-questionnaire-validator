@@ -1,42 +1,42 @@
 {
-  "$id": "/string_interpolation/transforms/calculate_date_difference.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "calculate_date_difference": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "calculate_date_difference"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/calculate_date_difference.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "calculate_date_difference": {
         "type": "object",
         "properties": {
-          "first_date": {
-            "oneOf": [
-              {
-                "$ref": "../definitions.json#/placeholder_value_sources"
-              },
-              {
-                "$ref": "../../common_definitions.json#/date_value"
-              }
-            ]
-          },
-          "second_date": {
-            "oneOf": [
-              {
-                "$ref": "../definitions.json#/placeholder_value_sources"
-              },
-              {
-                "$ref": "../../common_definitions.json#/date_value"
-              }
-            ]
-          }
+            "transform": {
+                "type": "string",
+                "const": "calculate_date_difference"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "first_date": {
+                        "oneOf": [
+                            {
+                                "$ref": "../definitions.json#/placeholder_value_sources"
+                            },
+                            {
+                                "$ref": "../../common_definitions.json#/date_value"
+                            }
+                        ]
+                    },
+                    "second_date": {
+                        "oneOf": [
+                            {
+                                "$ref": "../definitions.json#/placeholder_value_sources"
+                            },
+                            {
+                                "$ref": "../../common_definitions.json#/date_value"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["first_date", "second_date"]
+            }
         },
         "additionalProperties": false,
-        "required": ["first_date", "second_date"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

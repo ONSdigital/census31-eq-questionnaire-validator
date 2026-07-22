@@ -315,11 +315,11 @@ Note: The repetition of placeholder resolution in the same block is rare
 ## Other notes
 
 - No provision has been made in the schema design for group instances. It is assumed that:
-    - When a placeholder is used in a non-repeating group that any reference to answers resolves to
+  - When a placeholder is used in a non-repeating group that any reference to answers resolves to
     all answers that match the answer id.
-    - When a placeholder is used in a repeating group that any reference to answers resolves to the
+  - When a placeholder is used in a repeating group that any reference to answers resolves to the
     answer that matches within the current repeat.
 - `format_date_range` and `format_datetime` should be done via two separate placeholders rather than a transform,
-so that the 'to' and 'at' are in the sentence to be translated.
+  so that the 'to' and 'at' are in the sentence to be translated.
 - Jinja filters are used to resolve values in the variables schema e.g. `period` in 1_0005.
-This will no longer work and will require some further design outside of the scope of this proposal.
+  This will no longer work and will require some further design outside of the scope of this proposal.

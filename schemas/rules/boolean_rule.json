@@ -1,7 +1,7 @@
 {
-  "$id": "/rules/boolean_rule.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "description": "Top level boolean operator rule",
-  "$ref": "definitions.json#/boolean_operators"
+    "$id": "/rules/boolean_rule.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "Top level boolean operator rule",
+    "$ref": "definitions.json#/boolean_operators"
 }

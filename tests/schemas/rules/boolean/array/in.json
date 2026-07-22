@@ -1,42 +1,42 @@
 [
-  {
-    "description": "Is an answer one of a list of values",
-    "rule": {
-      "in": [
-        {
-          "source": "answers",
-          "identifier": "answer-1"
-        },
-        ["Yes, I have one", "Yes, they have one"]
-      ]
-    }
-  },
-  {
-    "description": "Does an answer contain a value",
-    "rule": {
-      "in": [
-        "Green",
-        {
-          "source": "answers",
-          "identifier": "answer-1"
+    {
+        "description": "Is an answer one of a list of values",
+        "rule": {
+            "in": [
+                {
+                    "source": "answers",
+                    "identifier": "answer-1"
+                },
+                ["Yes, I have one", "Yes, they have one"]
+            ]
         }
-      ]
-    }
-  },
-  {
-    "description": "Does supplementary data contain an answer value",
-    "rule": {
-      "in": [
-        {
-          "source": "answers",
-          "identifier": "answer-1"
-        },
-        {
-          "source": "supplementary_data",
-          "identifier": "top_level_key",
-          "selectors": ["selector"]
+    },
+    {
+        "description": "Does an answer contain a value",
+        "rule": {
+            "in": [
+                "Green",
+                {
+                    "source": "answers",
+                    "identifier": "answer-1"
+                }
+            ]
         }
-      ]
+    },
+    {
+        "description": "Does supplementary data contain an answer value",
+        "rule": {
+            "in": [
+                {
+                    "source": "answers",
+                    "identifier": "answer-1"
+                },
+                {
+                    "source": "supplementary_data",
+                    "identifier": "top_level_key",
+                    "selectors": ["selector"]
+                }
+            ]
+        }
     }
-  }
 ]

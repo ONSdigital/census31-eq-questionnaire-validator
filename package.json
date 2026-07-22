@@ -1,65 +1,66 @@
 {
-  "name": "eq-schema-validator",
-  "version": "1.0.0",
-  "description": "An API for validating survey schemas.",
-  "main": "gulpfile.js",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "type": "module",
-  "scripts": {
-    "test": "jest ajv/tests/*.js",
-    "lint": "npm run lint:schemas && npm run lint:test-schemas && npm run lint:ajv",
-    "start": "DEBUG=ajv-schema-validator node ajv/app.js &",
-    "stop": "kill -9 $(lsof -ti:$AJV_VALIDATOR_PORT)",
-    "lint:schemas": "prettier --check \"schemas/**/*.json\" && eslint \"schemas/**/*.json\"",
-    "lint:test-schemas": "prettier --check \"tests/schemas/**/*.json\" && eslint \"tests/schemas/**/*.json\"",
-    "lint:ajv": "prettier --check \"ajv/**/*.js\" && eslint \"ajv/**/*.js\"",
-    "format": "npm run format:schemas && npm run format:test-schemas && npm run format:ajv",
-    "format:schemas": "prettier \"schemas/**/*.json\" --write && eslint --fix \"schemas/**/*.json\"",
-    "format:test-schemas": "prettier \"tests/schemas/**/*.json\" --write && eslint --fix \"tests/schemas/**/*.json\"",
-    "format:ajv": "prettier \"ajv/**/*.js\" --write && eslint --fix \"ajv/**/*.js\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ONSdigital/eq-schema-validator.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ONSdigital/eq-schema-validator/issues"
-  },
-  "homepage": "https://github.com/ONSdigital/eq-schema-validator#readme",
-  "dependencies": {
-    "ajv": "8.20.0",
-    "axios": "1.18.1",
-    "debug": "4.4.3",
-    "express": "5.2.1",
-    "glob": "13.0.6"
-  },
-  "devDependencies": {
-    "@babel/cli": "8.0.4",
-    "@babel/core": "8.0.1",
-    "@babel/preset-env": "8.0.2",
-    "@babel/register": "8.0.1",
-    "@eslint/json": "^2.0.1",
-    "eslint": "9.39.4",
-    "eslint-plugin-chai-friendly": "1.2.1",
-    "eslint-plugin-security": "4.0.1",
-    "globals": "^17.6.0",
-    "jest": "^30.4.2",
-    "jsonc-eslint-parser": "^3.1.0",
-    "neostandard": "^0.13.0",
-    "nodemon": "3.1.14",
-    "prettier": "3.9.5",
-    "supertest": "^7.2.2"
-  },
-  "prettier": {},
-  "overrides": {
-    "brace-expansion": "5.0.6",
-    "@istanbuljs/load-nyc-config": {
-      "js-yaml": "^4.2.0"
+    "name": "eq-schema-validator",
+    "version": "1.0.0",
+    "description": "An API for validating survey schemas.",
+    "main": "gulpfile.js",
+    "directories": {
+        "doc": "doc",
+        "test": "tests"
+    },
+    "type": "module",
+    "scripts": {
+        "test": "jest ajv/tests/*.js",
+        "lint": "npm run lint:schemas && npm run lint:test-schemas && npm run lint:ajv",
+        "start": "DEBUG=ajv-schema-validator node ajv/app.js &",
+        "stop": "kill -9 $(lsof -ti:$AJV_VALIDATOR_PORT)",
+        "lint:schemas": "prettier --check \"schemas/**/*.json\" && eslint \"schemas/**/*.json\"",
+        "lint:test-schemas": "prettier --check \"tests/schemas/**/*.json\" && eslint \"tests/schemas/**/*.json\"",
+        "lint:ajv": "prettier --check \"ajv/**/*.js\" && eslint \"ajv/**/*.js\"",
+        "format": "npm run format:schemas && npm run format:test-schemas && npm run format:ajv",
+        "format:schemas": "prettier \"schemas/**/*.json\" --write && eslint --fix \"schemas/**/*.json\"",
+        "format:test-schemas": "prettier \"tests/schemas/**/*.json\" --write && eslint --fix \"tests/schemas/**/*.json\"",
+        "format:ajv": "prettier \"ajv/**/*.js\" --write && eslint --fix \"ajv/**/*.js\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ONSdigital/eq-schema-validator.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ONSdigital/eq-schema-validator/issues"
+    },
+    "homepage": "https://github.com/ONSdigital/eq-schema-validator#readme",
+    "dependencies": {
+        "ajv": "8.20.0",
+        "axios": "1.18.1",
+        "debug": "4.4.3",
+        "express": "5.2.1",
+        "glob": "13.0.6"
+    },
+    "devDependencies": {
+        "@babel/cli": "8.0.4",
+        "@babel/core": "8.0.1",
+        "@babel/preset-env": "8.0.2",
+        "@babel/register": "8.0.1",
+        "@eslint/json": "^2.0.1",
+        "eslint": "9.39.4",
+        "eslint-plugin-chai-friendly": "1.2.1",
+        "eslint-plugin-security": "4.0.1",
+        "globals": "^17.6.0",
+        "jest": "^30.4.2",
+        "jsonc-eslint-parser": "^3.1.0",
+        "neostandard": "^0.13.0",
+        "nodemon": "3.1.14",
+        "prettier": "3.9.5",
+        "supertest": "^7.2.2"
+    },
+    "prettier": {},
+    "overrides": {
+        "brace-expansion": "5.0.7",
+        "@istanbuljs/load-nyc-config": {
+            "js-yaml": "^4.3.0"
+        },
+        "fast-uri": "3.1.4"
     }
-  }
 }

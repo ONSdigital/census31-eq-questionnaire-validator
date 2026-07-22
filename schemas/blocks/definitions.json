@@ -1,81 +1,81 @@
 {
-  "$id": "/blocks/definitions.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "content": {
-    "description": "Block level content block",
-    "type": "object",
-    "properties": {
-      "title": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders",
-        "description": "The top-level heading on the page"
-      },
-      "instruction": {
-        "$ref": "../common_definitions.json#/string_array_with_placeholders"
-      },
-      "contents": {
-        "$ref": "../common_definitions.json#/contents"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["title"]
-  },
-  "content_variants": {
-    "type": "array",
-    "minItems": 2,
-    "items": {
-      "$ref": "definitions.json#/content_variant"
-    }
-  },
-  "content_variant": {
-    "type": "object",
-    "properties": {
-      "content": {
-        "$ref": "definitions.json#/content"
-      },
-      "when": {
-        "$ref": "../rules/boolean_rule.json"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["when", "content"]
-  },
-  "question_variants": {
-    "type": "array",
-    "description": "All question ids within question_variants must match",
-    "minItems": 2,
-    "items": {
-      "$ref": "definitions.json#/question_variant"
-    }
-  },
-  "question_variant": {
-    "type": "object",
-    "properties": {
-      "question": {
-        "$ref": "../questions/definitions.json#/question"
-      },
-      "when": {
-        "$ref": "../rules/boolean_rule.json"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["when", "question"]
-  },
-  "list_summary": {
-    "type": "object",
-    "properties": {
-      "for_list": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "summary": {
+    "$id": "/blocks/definitions.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "content": {
+        "description": "Block level content block",
         "type": "object",
         "properties": {
-          "item_title": {
-            "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-          }
+            "title": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders",
+                "description": "The top-level heading on the page"
+            },
+            "instruction": {
+                "$ref": "../common_definitions.json#/string_array_with_placeholders"
+            },
+            "contents": {
+                "$ref": "../common_definitions.json#/contents"
+            }
         },
         "additionalProperties": false,
-        "required": ["item_title"]
-      }
+        "required": ["title"]
+    },
+    "content_variants": {
+        "type": "array",
+        "minItems": 2,
+        "items": {
+            "$ref": "definitions.json#/content_variant"
+        }
+    },
+    "content_variant": {
+        "type": "object",
+        "properties": {
+            "content": {
+                "$ref": "definitions.json#/content"
+            },
+            "when": {
+                "$ref": "../rules/boolean_rule.json"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["when", "content"]
+    },
+    "question_variants": {
+        "type": "array",
+        "description": "All question ids within question_variants must match",
+        "minItems": 2,
+        "items": {
+            "$ref": "definitions.json#/question_variant"
+        }
+    },
+    "question_variant": {
+        "type": "object",
+        "properties": {
+            "question": {
+                "$ref": "../questions/definitions.json#/question"
+            },
+            "when": {
+                "$ref": "../rules/boolean_rule.json"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["when", "question"]
+    },
+    "list_summary": {
+        "type": "object",
+        "properties": {
+            "for_list": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "summary": {
+                "type": "object",
+                "properties": {
+                    "item_title": {
+                        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["item_title"]
+            }
+        }
     }
-  }
 }
