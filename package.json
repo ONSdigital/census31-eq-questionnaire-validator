@@ -55,7 +55,9 @@
         "prettier": "3.9.5",
         "supertest": "^7.2.2"
     },
-    "prettier": {},
+    "prettier": {
+        "printWidth": 160
+    },
     "overrides": {
         "brace-expansion": "5.0.7",
         "@istanbuljs/load-nyc-config": {

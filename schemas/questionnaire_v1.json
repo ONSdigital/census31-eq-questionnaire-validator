@@ -54,7 +54,22 @@
             "additionalProperties": false
         },
         "theme": {
-            "enum": ["business", "social", "default", "health", "northernireland", "dbt", "dbt-ni", "dbt-dsit", "dbt-dsit-ni", "orr", "desnz", "desnz-ni", "ukhsa-ons", "ons-nhs"]
+            "enum": [
+                "business",
+                "social",
+                "default",
+                "health",
+                "northernireland",
+                "dbt",
+                "dbt-ni",
+                "dbt-dsit",
+                "dbt-dsit-ni",
+                "orr",
+                "desnz",
+                "desnz-ni",
+                "ukhsa-ons",
+                "ons-nhs"
+            ]
         },
         "legal_basis": {
             "$ref": "common_definitions.json#/non_empty_string"
