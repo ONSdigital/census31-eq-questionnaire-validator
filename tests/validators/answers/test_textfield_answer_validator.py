@@ -30,7 +30,7 @@ def test_textfield_validator_success():
         "label": "What is your favourite lunchtime food",
         "mandatory": False,
         "type": "TextField",
-        "suggestions_url": "http://www.google.com/somepath",
+        "suggestions_url": "https://www.google.com/somepath",
     }
     validator = TextFieldAnswerValidator(answer, schema)
 
