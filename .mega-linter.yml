@@ -35,7 +35,8 @@ JAVASCRIPT_ES_PRE_COMMANDS:
     continue_if_failed: false
 JAVASCRIPT_ES_CLI_EXECUTABLE: [node_modules/.bin/eslint]
 
-REPOSITORY_DEVSKIM_ARGUMENTS: "--ignore-globs **/node_modules/**/*,**/megalinter-reports/**/*,**/htmlcov/**/*"
+# Ignoring currencies.json as it generates a false positive error for XTS currency (AWeakCipherModeOfOperationWasUsed)
+REPOSITORY_DEVSKIM_ARGUMENTS: "--skip-git-ignored-files true --ignore-globs **/schemas/lists/currencies.json"
 REPOSITORY_KINGFISHER_ARGUMENTS: "--exclude 'node_modules'"
 
 ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
