@@ -1,26 +1,26 @@
 {
-  "$id": "/string_interpolation/transforms/telephone_number_link.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "telephone_number_link": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "telephone_number_link"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/telephone_number_link.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "telephone_number_link": {
         "type": "object",
         "properties": {
-          "telephone_number": {
-            "type": "string",
-            "pattern": "^[0-9 ]+$"
-          }
+            "transform": {
+                "type": "string",
+                "const": "telephone_number_link"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "telephone_number": {
+                        "type": "string",
+                        "pattern": "^[0-9 ]+$"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["telephone_number"]
+            }
         },
         "additionalProperties": false,
-        "required": ["telephone_number"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

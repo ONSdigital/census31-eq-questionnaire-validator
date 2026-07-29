@@ -1,64 +1,64 @@
 {
-  "$id": "/answers/text_field.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "answer": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "q_code": {
-        "$ref": "../common_definitions.json#/q_code"
-      },
-      "label": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "guidance": {
-        "$ref": "definitions.json#/answer_guidance"
-      },
-      "description": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "suggestions": {
+    "$id": "/answers/text_field.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "answer": {
         "type": "object",
         "properties": {
-          "url": {
-            "$ref": "../common_definitions.json#/non_empty_string"
-          },
-          "allow_multiple": {
-            "type": "boolean"
-          }
-        },
-        "required": ["url"]
-      },
-      "type": {
-        "type": "string",
-        "const": "TextField"
-      },
-      "mandatory": {
-        "type": "boolean"
-      },
-      "visible": {
-        "type": "boolean"
-      },
-      "max_length": {
-        "type": "integer"
-      },
-      "validation": {
-        "type": "object",
-        "properties": {
-          "messages": {
-            "MANDATORY_TEXTFIELD": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
+            },
+            "q_code": {
+                "$ref": "../common_definitions.json#/q_code"
+            },
+            "label": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "guidance": {
+                "$ref": "definitions.json#/answer_guidance"
+            },
+            "description": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "suggestions": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "$ref": "../common_definitions.json#/non_empty_string"
+                    },
+                    "allow_multiple": {
+                        "type": "boolean"
+                    }
+                },
+                "required": ["url"]
+            },
+            "type": {
+                "type": "string",
+                "const": "TextField"
+            },
+            "mandatory": {
+                "type": "boolean"
+            },
+            "visible": {
+                "type": "boolean"
+            },
+            "max_length": {
+                "type": "integer"
+            },
+            "validation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "MANDATORY_TEXTFIELD": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        }
+                    }
+                }
+            },
+            "calculated": {
+                "$ref": "definitions.json#/calculated"
             }
-          }
-        }
-      },
-      "calculated": {
-        "$ref": "definitions.json#/calculated"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "label", "mandatory"]
-  }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type", "label", "mandatory"]
+    }
 }

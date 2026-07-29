@@ -1,43 +1,43 @@
 [
-  {
-    "description": "Date with answer value source",
-    "rule": {
-      "date": [
-        {
-          "source": "answers",
-          "identifier": "answer-1"
+    {
+        "description": "Date with answer value source",
+        "rule": {
+            "date": [
+                {
+                    "source": "answers",
+                    "identifier": "answer-1"
+                }
+            ]
         }
-      ]
-    }
-  },
-  {
-    "description": "Dynamic date `now`",
-    "rule": {
-      "date": ["now"]
-    }
-  },
-  {
-    "description": "A date with an offset",
-    "rule": {
-      "date": [
-        "now",
-        {
-          "days": 7,
-          "day_of_week": "MONDAY"
+    },
+    {
+        "description": "Dynamic date `now`",
+        "rule": {
+            "date": ["now"]
         }
-      ]
-    }
-  },
-  {
-    "description": "A date with reference to an iterations string value",
-    "rule": {
-      "date": [
-        "self",
-        {
-          "days": 7,
-          "day_of_week": "MONDAY"
+    },
+    {
+        "description": "A date with an offset",
+        "rule": {
+            "date": [
+                "now",
+                {
+                    "days": 7,
+                    "day_of_week": "MONDAY"
+                }
+            ]
         }
-      ]
+    },
+    {
+        "description": "A date with reference to an iterations string value",
+        "rule": {
+            "date": [
+                "self",
+                {
+                    "days": 7,
+                    "day_of_week": "MONDAY"
+                }
+            ]
+        }
     }
-  }
 ]

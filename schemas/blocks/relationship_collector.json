@@ -1,51 +1,51 @@
 {
-  "$id": "/blocks/relationship_collector.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "block": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "string",
-        "const": "relationships"
-      },
-      "type": {
-        "type": "string",
-        "const": "RelationshipCollector"
-      },
-      "title": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "page_title": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "for_list": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "question": {
-        "$ref": "../questions/definitions.json#/question"
-      },
-      "question_variants": {
-        "$ref": "definitions.json#/question_variants"
-      },
-      "unrelated_block": {
-        "$ref": "unrelated_question.json#/block"
-      },
-      "routing_rules": {
-        "$ref": "../common_definitions.json#/routing_rules"
-      },
-      "skip_conditions": {
-        "$ref": "../common_definitions.json#/skip_conditions"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "for_list"],
-    "oneOf": [
-      {
-        "required": ["question"]
-      },
-      {
-        "required": ["question_variants"]
-      }
-    ]
-  }
+    "$id": "/blocks/relationship_collector.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "block": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "const": "relationships"
+            },
+            "type": {
+                "type": "string",
+                "const": "RelationshipCollector"
+            },
+            "title": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "page_title": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "for_list": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "question": {
+                "$ref": "../questions/definitions.json#/question"
+            },
+            "question_variants": {
+                "$ref": "definitions.json#/question_variants"
+            },
+            "unrelated_block": {
+                "$ref": "unrelated_question.json#/block"
+            },
+            "routing_rules": {
+                "$ref": "../common_definitions.json#/routing_rules"
+            },
+            "skip_conditions": {
+                "$ref": "../common_definitions.json#/skip_conditions"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type", "for_list"],
+        "oneOf": [
+            {
+                "required": ["question"]
+            },
+            {
+                "required": ["question_variants"]
+            }
+        ]
+    }
 }
