@@ -11,7 +11,7 @@ from requests import RequestException
 
 import api
 
-os.environ.setdefault("AJV_VALIDATOR_URL", "http://mock-ajv-validator/validate")
+os.environ.setdefault("AJV_VALIDATOR_URL", "https://mock-ajv-validator/validate")
 
 
 @pytest.fixture

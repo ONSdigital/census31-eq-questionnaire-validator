@@ -1,23 +1,23 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "/rules/operators/value/map.json",
-  "description": "Applies an operation on each value of a sequence. Takes two-argument, first, the operation to apply to each item, second, the sequence of values on which the operation is applied. The reference to self within the map operator refers to the current iteration's value.",
-  "type": "object",
-  "properties": {
-    "map": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "prefixItems": [
-        {
-          "$ref": "../value/format-date.json"
-        },
-        {
-          "$ref": "../value/date-range.json"
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "/rules/operators/value/map.json",
+    "description": "Applies an operation on each value of a sequence. Takes two-argument, first, the operation to apply to each item, second, the sequence of values on which the operation is applied. The reference to self within the map operator refers to the current iteration's value.",
+    "type": "object",
+    "properties": {
+        "map": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [
+                {
+                    "$ref": "../value/format-date.json"
+                },
+                {
+                    "$ref": "../value/date-range.json"
+                }
+            ]
         }
-      ]
-    }
-  },
-  "required": ["map"],
-  "additionalProperties": false
+    },
+    "required": ["map"],
+    "additionalProperties": false
 }

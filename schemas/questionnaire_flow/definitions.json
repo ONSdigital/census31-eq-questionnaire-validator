@@ -1,40 +1,40 @@
 {
-  "$id": "/questionnaire_flow/definitions.json",
-  "flow": {
-    "type": "object",
-    "properties": {
-      "type": {
-        "type": "string",
-        "enum": ["Linear", "Hub"]
-      },
-      "options": {
-        "type": "object"
-      }
+    "$id": "/questionnaire_flow/definitions.json",
+    "flow": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": ["Linear", "Hub"]
+            },
+            "options": {
+                "type": "object"
+            }
+        },
+        "oneOf": [
+            {
+                "properties": {
+                    "type": {
+                        "const": "Hub"
+                    },
+                    "options": {
+                        "$ref": "hub.json#/options"
+                    }
+                }
+            },
+            {
+                "properties": {
+                    "type": {
+                        "const": "Linear"
+                    },
+                    "options": {
+                        "$ref": "linear.json#/options"
+                    }
+                }
+            }
+        ],
+        "additionalProperties": false,
+        "required": ["type", "options"]
     },
-    "oneOf": [
-      {
-        "properties": {
-          "type": {
-            "const": "Hub"
-          },
-          "options": {
-            "$ref": "hub.json#/options"
-          }
-        }
-      },
-      {
-        "properties": {
-          "type": {
-            "const": "Linear"
-          },
-          "options": {
-            "$ref": "linear.json#/options"
-          }
-        }
-      }
-    ],
-    "additionalProperties": false,
-    "required": ["type", "options"]
-  },
-  "$schema": "https://json-schema.org/draft/2020-12/schema"
+    "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

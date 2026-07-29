@@ -16,8 +16,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
       - run: |
-          echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
+          echo "PYTHON_VERSION=$(cat .python-version)" >> "$GITHUB_ENV"
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -26,7 +28,7 @@ jobs:
           node-version-file: ".nvmrc"
           cache: "npm"
       - run: |
-          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> $GITHUB_ENV
+          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> "$GITHUB_ENV"
       - name: Install npm deps
         run: npm install
 
@@ -48,7 +50,7 @@ jobs:
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
         run: poetry install
       - name: Lint Python
-        run: make lint
+        run: make lint-python
 
   test:
     permissions:
@@ -56,7 +58,9 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - run: echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
+        with:
+          persist-credentials: false
+      - run: echo "PYTHON_VERSION=$(cat .python-version)" >> "$GITHUB_ENV"
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -65,7 +69,7 @@ jobs:
           node-version-file: ".nvmrc"
           cache: "npm"
       - run: |
-          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> $GITHUB_ENV
+          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> "$GITHUB_ENV"
       - name: Install npm deps
         run: npm install
       - name: Running ajv tests

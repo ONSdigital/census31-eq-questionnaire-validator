@@ -1,61 +1,61 @@
 {
-  "$id": "/answer_actions/definitions.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "redirect_to_list_add_block": {
-    "type": "object",
-    "description": "An action that redirects to the list add block",
-    "properties": {
-      "type": {
-        "const": "RedirectToListAddBlock"
-      },
-      "params": {
+    "$id": "/answer_actions/definitions.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "redirect_to_list_add_block": {
         "type": "object",
+        "description": "An action that redirects to the list add block",
         "properties": {
-          "block_id": {
-            "$ref": "../common_definitions.json#/non_empty_string"
-          },
-          "list_name": {
-            "$ref": "../common_definitions.json#/non_empty_string"
-          }
+            "type": {
+                "const": "RedirectToListAddBlock"
+            },
+            "params": {
+                "type": "object",
+                "properties": {
+                    "block_id": {
+                        "$ref": "../common_definitions.json#/non_empty_string"
+                    },
+                    "list_name": {
+                        "$ref": "../common_definitions.json#/non_empty_string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["block_id", "list_name"]
+            }
+        },
+        "additionalProperties": true,
+        "required": ["type"]
+    },
+    "remove_list_item_and_answers": {
+        "type": "object",
+        "description": "An action that removes a list item and all answers associated with it",
+        "properties": {
+            "type": {
+                "const": "RemoveListItemAndAnswers"
+            }
         },
         "additionalProperties": false,
-        "required": ["block_id", "list_name"]
-      }
+        "required": ["type"]
     },
-    "additionalProperties": true,
-    "required": ["type"]
-  },
-  "remove_list_item_and_answers": {
-    "type": "object",
-    "description": "An action that removes a list item and all answers associated with it",
-    "properties": {
-      "type": {
-        "const": "RemoveListItemAndAnswers"
-      }
+    "remove_unrelated_relationships": {
+        "type": "object",
+        "description": "An action that removes the remaining unrelated relationships after an `unrelated_block`",
+        "properties": {
+            "type": {
+                "const": "RemoveUnrelatedRelationships"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["type"]
     },
-    "additionalProperties": false,
-    "required": ["type"]
-  },
-  "remove_unrelated_relationships": {
-    "type": "object",
-    "description": "An action that removes the remaining unrelated relationships after an `unrelated_block`",
-    "properties": {
-      "type": {
-        "const": "RemoveUnrelatedRelationships"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["type"]
-  },
-  "add_unrelated_relationships": {
-    "type": "object",
-    "description": "An action that adds 'Unrelated' relationships for the remaining relationships after an `unrelated_block`",
-    "properties": {
-      "type": {
-        "const": "AddUnrelatedRelationships"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["type"]
-  }
+    "add_unrelated_relationships": {
+        "type": "object",
+        "description": "An action that adds 'Unrelated' relationships for the remaining relationships after an `unrelated_block`",
+        "properties": {
+            "type": {
+                "const": "AddUnrelatedRelationships"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["type"]
+    }
 }

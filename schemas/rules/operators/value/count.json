@@ -1,20 +1,20 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "/rules/operators/value/count.json",
-  "description": "Returns the count of items in an array. Accepts a single argument which is the array",
-  "type": "object",
-  "properties": {
-    "count": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 1,
-      "prefixItems": [
-        {
-          "$ref": "../../definitions.json#/array_value"
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "/rules/operators/value/count.json",
+    "description": "Returns the count of items in an array. Accepts a single argument which is the array",
+    "type": "object",
+    "properties": {
+        "count": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "prefixItems": [
+                {
+                    "$ref": "../../definitions.json#/array_value"
+                }
+            ]
         }
-      ]
-    }
-  },
-  "required": ["count"],
-  "additionalProperties": false
+    },
+    "required": ["count"],
+    "additionalProperties": false
 }

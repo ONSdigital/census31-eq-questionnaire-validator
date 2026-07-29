@@ -1,25 +1,25 @@
 {
-  "$id": "/string_interpolation/transforms/list_has_items.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "list_has_items": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "list_has_items"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/list_has_items.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "list_has_items": {
         "type": "object",
         "properties": {
-          "list_to_check": {
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          }
+            "transform": {
+                "type": "string",
+                "const": "list_has_items"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "list_to_check": {
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["list_to_check"]
+            }
         },
         "additionalProperties": false,
-        "required": ["list_to_check"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

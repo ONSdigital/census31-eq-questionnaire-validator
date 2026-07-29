@@ -1,25 +1,25 @@
 {
-  "$id": "/string_interpolation/transforms/format_percentage.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "format_percentage": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "format_percentage"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/format_percentage.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "format_percentage": {
         "type": "object",
         "properties": {
-          "value": {
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          }
+            "transform": {
+                "type": "string",
+                "const": "format_percentage"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["value"]
+            }
         },
         "additionalProperties": false,
-        "required": ["value"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }
