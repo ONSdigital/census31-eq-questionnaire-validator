@@ -1,105 +1,105 @@
 {
-  "data_version": "0.0.3",
-  "description": "A test schema for different date formats",
-  "legal_basis": "StatisticsOfTradeAct",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "ref_p_end_date",
-      "type": "date"
-    },
-    {
-      "name": "ref_p_start_date",
-      "type": "date"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    }
-  ],
-  "mime_type": "application/json/ons/eq",
-  "language": "en",
-  "schema_version": "0.0.1",
-  "questionnaire_flow": {
-    "type": "Linear",
-    "options": {
-      "summary": {
-        "collapsible": false
-      }
-    }
-  },
-  "sections": [
-    {
-      "groups": [
+    "data_version": "0.0.3",
+    "description": "A test schema for different date formats",
+    "legal_basis": "StatisticsOfTradeAct",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "id": "date-range-block",
-              "question": {
-                "answers": [
-                  {
-                    "id": "date-range-from",
-                    "label": "Period from",
-                    "mandatory": true,
-                    "minimum": {
-                      "value": {
-                        "identifier": "ref_p_start_date",
-                        "source": "metadata"
-                      },
-                      "offset_by": {
-                        "months": -1
-                      }
-                    },
-                    "type": "MonthYearDate"
-                  },
-                  {
-                    "id": "date-range-to",
-                    "label": "Period to",
-                    "mandatory": true,
-                    "maximum": {
-                      "value": {
-                        "identifier": "ref_p_end_date",
-                        "source": "metadata"
-                      },
-                      "offset_by": {
-                        "months": 2
-                      }
-                    },
-                    "type": "MonthYearDate"
-                  }
-                ],
-                "id": "date-range-question",
-                "period_limits": {
-                  "maximum": {
-                    "days": 5,
-                    "months": 2
-                  },
-                  "minimum": {
-                    "days": 7,
-                    "months": 1
-                  }
-                },
-                "title": "Enter Date Range",
-                "type": "DateRange"
-              },
-              "type": "Question"
-            }
-          ],
-          "id": "dates",
-          "title": "Date Range Validation"
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "ref_p_end_date",
+            "type": "date"
+        },
+        {
+            "name": "ref_p_start_date",
+            "type": "date"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
         }
-      ],
-      "id": "default-section"
-    }
-  ],
-  "survey_id": "023",
-  "theme": "default",
-  "title": "Date formats"
+    ],
+    "mime_type": "application/json/ons/eq",
+    "language": "en",
+    "schema_version": "0.0.1",
+    "questionnaire_flow": {
+        "type": "Linear",
+        "options": {
+            "summary": {
+                "collapsible": false
+            }
+        }
+    },
+    "sections": [
+        {
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "id": "date-range-block",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "date-range-from",
+                                        "label": "Period from",
+                                        "mandatory": true,
+                                        "minimum": {
+                                            "value": {
+                                                "identifier": "ref_p_start_date",
+                                                "source": "metadata"
+                                            },
+                                            "offset_by": {
+                                                "months": -1
+                                            }
+                                        },
+                                        "type": "MonthYearDate"
+                                    },
+                                    {
+                                        "id": "date-range-to",
+                                        "label": "Period to",
+                                        "mandatory": true,
+                                        "maximum": {
+                                            "value": {
+                                                "identifier": "ref_p_end_date",
+                                                "source": "metadata"
+                                            },
+                                            "offset_by": {
+                                                "months": 2
+                                            }
+                                        },
+                                        "type": "MonthYearDate"
+                                    }
+                                ],
+                                "id": "date-range-question",
+                                "period_limits": {
+                                    "maximum": {
+                                        "days": 5,
+                                        "months": 2
+                                    },
+                                    "minimum": {
+                                        "days": 7,
+                                        "months": 1
+                                    }
+                                },
+                                "title": "Enter Date Range",
+                                "type": "DateRange"
+                            },
+                            "type": "Question"
+                        }
+                    ],
+                    "id": "dates",
+                    "title": "Date Range Validation"
+                }
+            ],
+            "id": "default-section"
+        }
+    ],
+    "survey_id": "023",
+    "theme": "default",
+    "title": "Date formats"
 }

@@ -1,81 +1,81 @@
 {
-  "$id": "/answers/radio.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "answer": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "q_code": {
-        "$ref": "../common_definitions.json#/q_code"
-      },
-      "voluntary": {
-        "description": "If set to true, and an option is selected then there will be an option to unselect",
-        "type": "boolean"
-      },
-      "label": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "guidance": {
-        "$ref": "definitions.json#/answer_guidance"
-      },
-      "description": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "type": {
-        "type": "string",
-        "const": "Radio"
-      },
-      "dynamic_options": {
-        "$ref": "definitions.json#/dynamic_options"
-      },
-      "options": {
-        "$ref": "definitions.json#/options"
-      },
-      "mandatory": {
-        "type": "boolean"
-      },
-      "default": {
-        "$ref": "../common_definitions.json#/non_empty_string",
-        "description": "Default value if no answer given"
-      },
-      "validation": {
+    "$id": "/answers/radio.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "answer": {
         "type": "object",
         "properties": {
-          "messages": {
-            "MANDATORY_RADIO": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
+            },
+            "q_code": {
+                "$ref": "../common_definitions.json#/q_code"
+            },
+            "voluntary": {
+                "description": "If set to true, and an option is selected then there will be an option to unselect",
+                "type": "boolean"
+            },
+            "label": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "guidance": {
+                "$ref": "definitions.json#/answer_guidance"
+            },
+            "description": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "type": {
+                "type": "string",
+                "const": "Radio"
+            },
+            "dynamic_options": {
+                "$ref": "definitions.json#/dynamic_options"
+            },
+            "options": {
+                "$ref": "definitions.json#/options"
+            },
+            "mandatory": {
+                "type": "boolean"
+            },
+            "default": {
+                "$ref": "../common_definitions.json#/non_empty_string",
+                "description": "Default value if no answer given"
+            },
+            "validation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "MANDATORY_RADIO": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        }
+                    }
+                }
             }
-          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type", "mandatory"],
+        "anyOf": [
+            {
+                "required": ["options"]
+            },
+            {
+                "required": ["dynamic_options"]
+            }
+        ],
+        "if": {
+            "properties": {
+                "mandatory": {
+                    "const": true
+                }
+            }
+        },
+        "then": {
+            "properties": {
+                "voluntary": {
+                    "not": {
+                        "const": true
+                    }
+                }
+            }
         }
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "mandatory"],
-    "anyOf": [
-      {
-        "required": ["options"]
-      },
-      {
-        "required": ["dynamic_options"]
-      }
-    ],
-    "if": {
-      "properties": {
-        "mandatory": {
-          "const": true
-        }
-      }
-    },
-    "then": {
-      "properties": {
-        "voluntary": {
-          "not": {
-            "const": true
-          }
-        }
-      }
     }
-  }
 }

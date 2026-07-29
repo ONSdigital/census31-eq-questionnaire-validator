@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-printf $(git rev-parse HEAD) > .application-version
+printf "%s" "$(git rev-parse HEAD)" >.application-version
