@@ -2,20 +2,36 @@
     "$id": "/questions/definitions.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "question": {
-        "oneOf": [
-            {
-                "$ref": "types/general.json#/question"
+        "if": {
+            "properties": { "type": { "const": "Calculated" } }
+        },
+        "then": { "$ref": "types/calculated.json#/question" },
+        "else": {
+            "if": {
+                "properties": { "type": { "const": "DateRange" } }
             },
-            {
-                "$ref": "types/calculated.json#/question"
-            },
-            {
-                "$ref": "types/date_range.json#/question"
-            },
-            {
-                "$ref": "types/mutually_exclusive.json#/question"
+            "then": { "$ref": "types/date_range.json#/question" },
+            "else": {
+                "if": {
+                    "properties": { "type": { "const": "General" } }
+                },
+                "then": { "$ref": "types/general.json#/question" },
+                "else": {
+                    "if": {
+                        "properties": { "type": { "const": "MutuallyExclusive" } }
+                    },
+                    "then": { "$ref": "types/mutually_exclusive.json#/question" },
+                    "else": {
+                        "properties": {
+                            "type": {
+                                "enum": ["Calculated", "DateRange", "General", "MutuallyExclusive"]
+                            }
+                        },
+                        "required": ["type"]
+                    }
+                }
             }
-        ]
+        }
     },
     "summary": {
         "description": "TextField string concatenations for the summary page",

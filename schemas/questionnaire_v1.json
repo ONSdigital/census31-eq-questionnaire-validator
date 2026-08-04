@@ -349,44 +349,96 @@
                                     "type": "array",
                                     "minItems": 1,
                                     "items": {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "blocks/answer_summary.json#/block"
+                                        "if": {
+                                            "properties": { "type": { "const": "AnswerSummary" } }
+                                        },
+                                        "then": { "$ref": "blocks/answer_summary.json#/block" },
+                                        "else": {
+                                            "if": {
+                                                "properties": { "type": { "const": "CalculatedSummary" } }
                                             },
-                                            {
-                                                "$ref": "blocks/calculated_summary.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/grand_calculated_summary.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/confirmation_question.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/interstitial.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/introduction.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/list_collector.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/list_collector_content.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/list_collector_driving_question.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/primary_person_list_collector.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/question.json#/block"
-                                            },
-                                            {
-                                                "$ref": "blocks/relationship_collector.json#/block"
+                                            "then": { "$ref": "blocks/calculated_summary.json#/block" },
+                                            "else": {
+                                                "if": {
+                                                    "properties": { "type": { "const": "ConfirmationQuestion" } }
+                                                },
+                                                "then": { "$ref": "blocks/confirmation_question.json#/block" },
+                                                "else": {
+                                                    "if": {
+                                                        "properties": { "type": { "const": "GrandCalculatedSummary" } }
+                                                    },
+                                                    "then": { "$ref": "blocks/grand_calculated_summary.json#/block" },
+                                                    "else": {
+                                                        "if": {
+                                                            "properties": { "type": { "const": "Interstitial" } }
+                                                        },
+                                                        "then": { "$ref": "blocks/interstitial.json#/block" },
+                                                        "else": {
+                                                            "if": {
+                                                                "properties": { "type": { "const": "Introduction" } }
+                                                            },
+                                                            "then": { "$ref": "blocks/introduction.json#/block" },
+                                                            "else": {
+                                                                "if": {
+                                                                    "properties": { "type": { "const": "ListCollector" } }
+                                                                },
+                                                                "then": { "$ref": "blocks/list_collector.json#/block" },
+                                                                "else": {
+                                                                    "if": {
+                                                                        "properties": { "type": { "const": "ListCollectorContent" } }
+                                                                    },
+                                                                    "then": { "$ref": "blocks/list_collector_content.json#/block" },
+                                                                    "else": {
+                                                                        "if": {
+                                                                            "properties": { "type": { "const": "ListCollectorDrivingQuestion" } }
+                                                                        },
+                                                                        "then": { "$ref": "blocks/list_collector_driving_question.json#/block" },
+                                                                        "else": {
+                                                                            "if": {
+                                                                                "properties": { "type": { "const": "ListRepeatingQuestion" } }
+                                                                            },
+                                                                            "then": { "$ref": "blocks/list_repeating_block.json#/block" },
+                                                                            "else": {
+                                                                                "if": {
+                                                                                    "properties": { "type": { "const": "PrimaryPersonListCollector" } }
+                                                                                },
+                                                                                "then": { "$ref": "blocks/primary_person_list_collector.json#/block" },
+                                                                                "else": {
+                                                                                    "if": {
+                                                                                        "properties": { "type": { "const": "Question" } }
+                                                                                    },
+                                                                                    "then": { "$ref": "blocks/question.json#/block" },
+                                                                                    "else": {
+                                                                                        "if": {
+                                                                                            "properties": { "type": { "const": "RelationshipCollector" } }
+                                                                                        },
+                                                                                        "then": { "$ref": "blocks/relationship_collector.json#/block" },
+                                                                                        "else": {
+                                                                                            "if": {
+                                                                                                "properties": { "type": { "const": "UnrelatedQuestion" } }
+                                                                                            },
+                                                                                            "then": { "$ref": "blocks/unrelated_question.json#/block" },
+                                                                                            "else": {
+                                                                                                "properties": {
+                                                                                                    "type": {
+                                                                                                        "enum": ["AnswerSummary", "CalculatedSummary", "ConfirmationQuestion", "GrandCalculatedSummary", "Interstitial", "Introduction", "ListCollector", "ListCollectorContent", "ListCollectorDrivingQuestion", "ListRepeatingQuestion", "PrimaryPersonListCollector", "Question", "RelationshipCollector", "UnrelatedQuestion"]
+                                                                                                    }
+                                                                                                },
+                                                                                                "required": ["type"]
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             },

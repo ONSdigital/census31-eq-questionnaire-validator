@@ -55,11 +55,11 @@
                                                 "label": "Yes",
                                                 "value": "Yes",
                                                 "action": {
-                                                    "type": "RedirectToListAddBlock"
+                                                    "typex": "RedirectToListAddBlock"
                                                 }
                                             },
                                             {
-                                                "label": "No",
+                                                "labelx": "No",
                                                 "value": "No"
                                             }
                                         ]
@@ -82,7 +82,7 @@
                                         },
                                         {
                                             "id": "last-name",
-                                            "label": "Last name",
+                                            "labelz": "Last name",
                                             "mandatory": true,
                                             "type": "TextField"
                                         }

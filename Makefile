@@ -13,14 +13,7 @@ link-development-env:
 build:
 	poetry run ./scripts/build.sh
 
-stop-ajv:
-	@echo "Stopping AJV on port $(AJV_VALIDATOR_PORT)..."
-	@AJV_VALIDATOR_PORT=$(AJV_VALIDATOR_PORT) npm run stop
-
-start-ajv: link-development-env
-	npm run start
-
-run: start-ajv
+run: link-development-env
 	poetry run python api.py
 
 .PHONY: clean
@@ -41,11 +34,6 @@ lint-python:
 
 test-python:
 	poetry run ./scripts/run_tests_python.sh
-
-test-ajv:
-	npm run test
-
-test: test-python test-ajv
 
 format-python:
 	poetry run isort .

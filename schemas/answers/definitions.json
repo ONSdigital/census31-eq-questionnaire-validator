@@ -39,20 +39,36 @@
                 },
                 "action": {
                     "type": "object",
-                    "oneOf": [
-                        {
-                            "$ref": "../answer_actions/definitions.json#/redirect_to_list_add_block"
+                    "if": {
+                        "properties": { "type": { "const": "RedirectToListAddBlock" } }
+                    },
+                    "then": { "$ref": "../answer_actions/definitions.json#/redirect_to_list_add_block" },
+                    "else": {
+                        "if": {
+                            "properties": { "type": { "const": "RemoveListItemAndAnswers" } }
                         },
-                        {
-                            "$ref": "../answer_actions/definitions.json#/remove_list_item_and_answers"
-                        },
-                        {
-                            "$ref": "../answer_actions/definitions.json#/remove_unrelated_relationships"
-                        },
-                        {
-                            "$ref": "../answer_actions/definitions.json#/add_unrelated_relationships"
+                        "then": { "$ref": "../answer_actions/definitions.json#/remove_list_item_and_answers" },
+                        "else": {
+                            "if": {
+                                "properties": { "type": { "const": "RemoveUnrelatedRelationships" } }
+                            },
+                            "then": { "$ref": "../answer_actions/definitions.json#/remove_unrelated_relationships" },
+                            "else": {
+                                "if": {
+                                    "properties": { "type": { "const": "AddUnrelatedRelationships" } }
+                                },
+                                "then": { "$ref": "../answer_actions/definitions.json#/add_unrelated_relationships" },
+                                "else": {
+                                    "properties": {
+                                        "type": {
+                                            "enum": ["AddUnrelatedRelationships", "RedirectToListAddBlock", "RemoveListItemAndAnswers", "RemoveUnrelatedRelationships"]
+                                        }
+                                    },
+                                    "required": ["type"]
+                                }
+                            }
                         }
-                    ]
+                    }
                 }
             },
             "additionalProperties": false,
