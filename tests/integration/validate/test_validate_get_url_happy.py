@@ -1,7 +1,3 @@
-import pytest
-
-
-@pytest.mark.usefixtures("mock_ajv_valid")
 def test_validate_get_url_happy_path(client):
     """Test the /validate endpoint with a valid URL."""
     valid_url = (

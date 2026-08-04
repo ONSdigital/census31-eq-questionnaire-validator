@@ -1,7 +1,7 @@
-"""API for validating questionnaire schemas using an AJV Validator service and a Questionnaire Validator instance.
-This module provides a FastAPI application for validating questionnaire schemas using both an external AJV Validator
-service and internal QuestionnaireValidator logic. It exposes endpoints for health checks and schema validation,
-supporting both direct JSON payloads and remote schema URLs.
+"""API for validating questionnaire schemas using jsonschema and a Questionnaire Validator instance.
+This module provides a FastAPI application for validating questionnaire schemas using local jsonschema files and
+internal QuestionnaireValidator logic. It exposes endpoints for health checks and schema validation, supporting both
+direct JSON payloads and remote schema URLs.
 
 
 Functions:
@@ -24,15 +24,17 @@ import logging
 import os
 import sys
 from json import JSONDecodeError
+from pathlib import Path
 from urllib import error, request
 from urllib.parse import urlparse
 
-import requests
 import structlog
 import uvicorn
 from fastapi import Body, FastAPI
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse, Response
-from requests import RequestException
+from jsonschema import Draft202012Validator
+from referencing import Registry, Resource
 
 from app.validators.questionnaire_validator import QuestionnaireValidator
 
@@ -45,17 +47,6 @@ ALLOWED_BASE_DOMAINS = {"onsdigital.uk"}
 
 ALLOWED_REPO_OWNERS = {"ONSdigital"}
 
-AJV_VALIDATOR_SCHEME = os.getenv("AJV_VALIDATOR_SCHEME")
-
-AJV_VALIDATOR_HOST = os.getenv("AJV_VALIDATOR_HOST")
-
-AJV_VALIDATOR_PORT = os.getenv("AJV_VALIDATOR_PORT")
-
-AJV_VALIDATOR_URL = os.getenv(
-    "AJV_VALIDATOR_URL",
-    f"{AJV_VALIDATOR_SCHEME}://{AJV_VALIDATOR_HOST}:{AJV_VALIDATOR_PORT}/validate",
-)
-
 VALIDATOR_VERSION = os.getenv("VALIDATOR_VERSION", "0.0.0")
 
 DEFAULT_BODY = Body(None)
@@ -63,6 +54,55 @@ DEFAULT_BODY = Body(None)
 app = FastAPI()
 
 logger = structlog.get_logger()
+
+SCHEMAS_DIR = Path(__file__).resolve().parent / "schemas"
+
+
+def _serialize_validation_error(validation_error):
+    """Convert a jsonschema ValidationError into a JSON-serializable structure."""
+    return {
+        "message": validation_error.message,
+        "validator": validation_error.validator,
+        "json_path": validation_error.json_path,
+        "instance": validation_error.instance,
+        "cause": str(validation_error.cause) if validation_error.cause else None,
+        "context": [_serialize_validation_error(context_error) for context_error in validation_error.context],
+    }
+
+
+def _build_schema_validator():
+    """Build a Draft 2020-12 validator with all local schemas preloaded."""
+    resources = {}
+    base_schema = None
+
+    for schema_path in sorted(SCHEMAS_DIR.rglob("*.json")):
+        with schema_path.open(encoding="utf-8") as schema_file:
+            schema = json.load(schema_file)
+
+        relative_schema_path = schema_path.relative_to(SCHEMAS_DIR).as_posix()
+        schema_id = schema.get("$id")
+        resource = Resource.from_contents(schema)
+
+        resources[relative_schema_path] = resource
+        resources[f"/{relative_schema_path}"] = resource
+
+        if isinstance(schema_id, str) and schema_id:
+            resources[schema_id] = resource
+            resources[schema_id.lstrip("/")] = resource
+
+        if relative_schema_path == "questionnaire_v1.json":
+            base_schema = schema
+
+    if base_schema is None:
+        error_message = "Base schema not found at schemas/questionnaire_v1.json"
+        logger.error(error_message)
+        raise ValueError(error_message)
+
+    registry = Registry().with_resources(resources.items())
+    return Draft202012Validator(base_schema, registry=registry)
+
+
+SCHEMA_VALIDATOR = _build_schema_validator()
 
 
 def configure_logging():
@@ -117,8 +157,7 @@ async def validate_schema_request_body(payload=DEFAULT_BODY):
 
     Returns:
         A response with status code 200 if the schema is valid, or a response with status code 400 containing error
-        details if the schema is invalid. If the AJV Validator service is unavailable, returns a response with status
-        code 503.
+        details if the schema is invalid.
     """
     logger.info("Schema validation request received")
     return await validate_schema(payload)
@@ -171,8 +210,10 @@ async def validate_schema_from_url(url=None):
 
 
 async def validate_schema(data):  # pylint: disable=R0911
-    """Validate a questionnaire schema provided as JSON data. The JSON data is first validated using an AJV Schema
-    Validator service, and then the contents of the schema are validated using a Questionnaire Validator instance.
+    """Validate a questionnaire schema provided as JSON data.
+
+    The JSON data is first validated against local jsonschema schema files, and then the contents of the schema are
+    validated using a Questionnaire Validator instance.
 
     Args:
         data (str or dict): The JSON data containing the questionnaire schema to be validated. This can be either
@@ -181,7 +222,6 @@ async def validate_schema(data):  # pylint: disable=R0911
     Returns:
         A response with status code 200 if the schema is valid, or a response with status code 400 containing error(s)
         details if the schema failed validation. It can also return 400 if the JSON data is invalid or not provided.
-        If the AJV Validator service is unavailable, returns a response with status code 503.
     """
     logger.debug("Attempting to validate schema from JSON data...")
     if data:
@@ -210,38 +250,25 @@ async def validate_schema(data):  # pylint: disable=R0911
         return Response(status_code=400, content="No JSON data provided for validation")
 
     response = {}
-    try:
-        logger.debug(
-            "Sending JSON data to AJV Schema Validator service...",
-            url=AJV_VALIDATOR_URL,
-        )
-        # Posts JSON data to AJV Validator service and returns a response containing any errors
-        ajv_response = requests.post(
-            AJV_VALIDATOR_URL,
-            json=json_to_validate,
-            timeout=10,
-        )
-        # Returns errors in the response if AJV Validator service returned any errors
-        if ajv_response_dict := ajv_response.json():
-            response["errors"] = ajv_response_dict["errors"]
-            logger.info(
-                "AJV Schema Validator service returned errors",
-                status=400,
-                errors=response["errors"],
-            )
-            return JSONResponse(
-                content={**response, "validator_version": VALIDATOR_VERSION, "success": False},
-                status_code=400,
-            )
+    logger.debug("Validating questionnaire against local jsonschema files")
+    validation_errors = sorted(
+        SCHEMA_VALIDATOR.iter_errors(json_to_validate),
+        key=lambda schema_error: len(schema_error.absolute_path),
+    )
 
-    except RequestException:
-        logger.exception("AJV Schema Validator service unavailable")
-        return Response(
-            content="AJV Schema Validator service unavailable",
-            status_code=503,
+    if validation_errors:
+        response["errors"] = [_serialize_validation_error(schema_error) for schema_error in validation_errors]
+        logger.info(
+            "Schema validation returned errors",
+            status=400,
+            errors=response["errors"],
+        )
+        return JSONResponse(
+            content=jsonable_encoder({**response, "validator_version": VALIDATOR_VERSION, "success": False}),
+            status_code=400,
         )
 
-    logger.info("AJV Schema Validator service returned no errors", status=200)
+    logger.info("Schema validation returned no errors")
 
     validator = QuestionnaireValidator(json_to_validate)
     logger.debug(
@@ -263,14 +290,14 @@ async def validate_schema(data):  # pylint: disable=R0911
         )
 
         return JSONResponse(
-            content={**response, "validator_version": VALIDATOR_VERSION, "success": False},
+            content=jsonable_encoder({**response, "validator_version": VALIDATOR_VERSION, "success": False}),
             status_code=400,
         )
 
     logger.info("Schema validation successfully completed with no errors", status=200)
 
     return JSONResponse(
-        content={**response, "validator_version": VALIDATOR_VERSION, "success": True},
+        content=jsonable_encoder({**response, "validator_version": VALIDATOR_VERSION, "success": True}),
         status_code=200,
     )
 

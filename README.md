@@ -4,33 +4,17 @@ An API for validating questionnaire schemas.
 
 ## Setup
 
-In order to run locally you'll need Node.js, Poetry and Python installed.
+In order to run locally you'll need Poetry and Python installed.
 It's recommended that Python is installed via pyenv but pyenv is optional.
 
-### Install NVM and pyenv
+### Install pyenv
 
-NVM and pyenv will manage your versions of Node and Python and these commands will install the
-required versions of them which will be read from `.nvmrc` and `.python-version`.
+pyenv will manage your Python versions and these commands will install the
+required version from `.python-version`.
 
 ```shell
-brew install nvm pyenv
-nvm use
+brew install pyenv
 pyenv install
-```
-
-If you get a message in the command line after running `nvm use` that the version of Node specified
-in the `.nvmrc` file isn't installed, just follow the commands to install it.
-
-e.g.
-
-```shell
-nvm install v22.15.0
-```
-
-### Install JS dependencies
-
-```shell
-npm install
 ```
 
 ### Install Poetry and Python dependencies
@@ -48,7 +32,7 @@ To run the app:
 make run
 ```
 
-Validator runs on two ports, `5001` is the main validator app and `5002` is Ajv validator.
+Validator runs on port `5001`.
 
 ### Validator
 
@@ -62,25 +46,6 @@ uvicorn.run("api:app", workers=20, port=5001, reload=True)
 
 The reload flag here will allow the service to restart if you make a change to the code,
 if you want to run the app locally using multiple server workers you need to set reload to "False".
-
-### Ajv validator
-
-Ajv validator defaults to running on `http://localhost:5002`.
-
-You can override this by setting the `AJV_VALIDATOR_SCHEME`, `AJV_VALIDATOR_HOST`,
-and `AJV_VALIDATOR_PORT` environment variables.
-These values are set by the `.development.env` file in the route of the repo file structure.
-This is linked to `.env` by the `link-development-env` command in the make file, which is triggered automatically on run.
-The linking of the `.env` files ensures that changes in one are reflected in the other.
-The defaults for these are:
-
-- `AJV_VALIDATOR_SCHEME` = http
-- `AJV_VALIDATOR_HOST` = localhost
-- `AJV_VALIDATOR_PORT` = 5002
-
-Alternatively, you can override the entire URL by setting the `AJV_VALIDATOR_URL` environment variable directly.
-(**Note**: These values are also defined in the Dockerfiles, so if you choose to run
-[Validator through Docker](#running-with-docker) these may need to be updated)
 
 ### Running against a URL
 
@@ -115,28 +80,6 @@ make validate-test-schemas
 
 This script will run Validator on the test eQ Runner schemas.
 
-### Running the Ajv (server) version of Validator
-
-Running `make run` will start up the both of services required for validation (Ajv validator
-and the Validator app itself). However, if you want to start Ajv individually, run:
-
-```shell
-make start-ajv
-```
-
-This defaults to running on port `5002`, set `AJV_VALIDATOR_PORT` in your .env file if you need to change this.
-
-Running the Ajv server returns either an empty json response when the questionnaire is valid,
-or a response containing an "errors" key.
-The errors are ordered by their path length and with first error message being the deepest path
-into the schema and should represent the best match for the questionnaire which has been posted.
-
-To stop the Ajv server:
-
-```shell
-make stop-ajv
-```
-
 ### Testing and running against local schemas
 
 By default, all schemas in the `tests/schemas/valid` and `tests/schemas/invalid` directories will be
@@ -148,17 +91,7 @@ To run the app's Python tests:
 make test-python
 ```
 
-Make sure you don't already have Ajv running on localhost:5002 by running `lsof -i tcp:5002` if you
-do make a note of the PID (process identifier) and then run `kill -9 <PID>`, replacing `<PID>` with
-the process id from the previous command.
-
-Run the Ajv validator tests:
-
-```shell
-make test-ajv
-```
-
-To run the app's unit tests and Ajv validator tests:
+To run the app's unit tests:
 
 ```shell
 make test
@@ -194,14 +127,14 @@ make validate-test-schema SCHEMA=test_checkbox SCHEMA_PATH=./schemas/
 
 ## Formatting/linting json
 
-Run the following to format the JS files in the Ajv folder, the json files in the schemas and test schemas folders
+Run the following to format the json files in the schemas and test schemas folders
 and the Python files in the repository:
 
 ```shell
 make format
 ```
 
-Run the following to lint the JS files in the Ajv folder, the json files in the schemas and test schemas folders
+Run the following to lint the json files in the schemas and test schemas folders
 and the Python files in the repository:
 
 ```shell
@@ -248,9 +181,9 @@ Make sure Colima is started every time you want to use Docker images:
 colima start
 ```
 
-When PRs are merged in this repo there is a GitHub workflow that builds 2 Docker images one for Validator
-and one for the Ajv validator and then pushes them to our GAR in GCP.
-These images can then be pulled down and run locally with Docker.
+When PRs are merged in this repo there is a GitHub workflow that builds a Docker image for Validator
+and then pushes it to our GAR in GCP.
+This image can then be pulled down and run locally with Docker.
 These images are pulled down and run from eQ Runner when `make run validator` is run which uses
 the `docker-compose-schema-validator.yml` script.
 
@@ -262,12 +195,6 @@ You will need to be authenticated with GCP to run these, to do this run `gcloud 
 
 ```shell
 docker run -it -p 5001:5001 europe-west2-docker.pkg.dev/ons-eq-ci/docker-images/eq-questionnaire-validator
-```
-
-- Ajv validator:
-
-```shell
-docker run -it -p 5002:5002 europe-west2-docker.pkg.dev/ons-eq-ci/docker-images/eq-questionnaire-validator-ajv
 ```
 
 To stop these containers you may need to use the `docker kill` command:
@@ -287,11 +214,7 @@ docker kill <CONTAINER_ID>
 
 ## Environment variables
 
-| Environment variable   | Description                                                                                   | Default value                                                                 |
-|------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `LOG_LEVEL`            | Sets the minimum log level, can be set to `DEBUG` to increase this level                      | `INFO`                                                                        |
-| `AJV_VALIDATOR_SCHEME` | Sets the scheme for the URL that Ajv validator will run on                                    | `http`                                                                        |
-| `AJV_VALIDATOR_HOST`   | Sets the host for the URL that Ajv validator will run on                                      | `localhost`                                                                   |
-| `AJV_VALIDATOR_PORT`   | Sets the port for the URL that Ajv validator will run on                                      | `5002`                                                                        |
-| `AJV_VALIDATOR_URL`    | Sets complete URL that Ajv validator will run on                                              | `<AJV_VALIDATOR_SCHEME>://<AJV_VALIDATOR_HOST>:<AJV_VALIDATOR_PORT>/validate` |
-| `VALIDATOR_VERSION`    | Sets the version of the validator, this is used in the response from the `/validate` endpoint | `0.0.0`                                                                       |
+| Environment variable | Description                                                                                   | Default value |
+|----------------------|-----------------------------------------------------------------------------------------------|---------------|
+| `LOG_LEVEL`          | Sets the minimum log level, can be set to `DEBUG` to increase this level                      | `INFO`        |
+| `VALIDATOR_VERSION`  | Sets the version of the validator, this is used in the response from the `/validate` endpoint | `0.0.0`       |

@@ -20,23 +20,12 @@ ENABLE:
   - REPOSITORY
   - YAML
 
-# JAVASCRIPT_STANDARD not used because its rules conflict with our rules set up in ESLint
-ENABLE_LINTERS:
-  - JAVASCRIPT_ES
-  - JAVASCRIPT_PRETTIER
-
-JAVASCRIPT_DEFAULT_STYLE: prettier
-
 # Ignoring currencies.json as it generates a false positive error for XTS currency (AWeakCipherModeOfOperationWasUsed)
 REPOSITORY_DEVSKIM_ARGUMENTS: "--skip-git-ignored-files true --ignore-globs **/schemas/lists/currencies.json"
-REPOSITORY_KINGFISHER_ARGUMENTS: "--exclude 'node_modules'"
 
 FORMATTERS_DISABLE_ERRORS: false # Ensures code is actually fixable when using `make megalint-apply`
 SHOW_ELAPSED_TIME: true # Displays execution time for each linter
 FLAVOR_SUGGESTIONS: false # Disables suggestions to use different MegaLinter flavors
-
-# ESLint v10 flat-config workaround: install project deps before running MegaLinter
-JAVASCRIPT_ES_CLI_EXECUTABLE: [node_modules/.bin/eslint]
 
 ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
   - GITHUB_TOKEN
