@@ -4,7 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "144",
-    "theme": "nrs-census",
+    "theme": "census-nrs",
     "title": "Test NRS Theme",
     "legal_basis": "Notice is given under section 999 of the Test Act 2000",
     "metadata": [

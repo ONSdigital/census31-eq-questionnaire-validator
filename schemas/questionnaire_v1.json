@@ -54,7 +54,7 @@
             "additionalProperties": false
         },
         "theme": {
-            "enum": ["census", "nisra-census", "nrs-census"]
+            "enum": ["census", "census-nisra", "census-nrs"]
         },
         "legal_basis": {
             "$ref": "common_definitions.json#/non_empty_string"
