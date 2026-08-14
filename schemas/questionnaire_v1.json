@@ -55,20 +55,9 @@
         },
         "theme": {
             "enum": [
-                "business",
-                "social",
-                "default",
-                "health",
-                "northernireland",
-                "dbt",
-                "dbt-ni",
-                "dbt-dsit",
-                "dbt-dsit-ni",
-                "orr",
-                "desnz",
-                "desnz-ni",
-                "ukhsa-ons",
-                "ons-nhs"
+                "census",
+                "nisra-census",
+                "nrs-census"
             ]
         },
         "legal_basis": {
