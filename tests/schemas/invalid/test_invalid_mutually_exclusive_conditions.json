@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Mutually Exclusive",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to demo mutually exclusive answers with single checkbox override",
     "metadata": [
         {

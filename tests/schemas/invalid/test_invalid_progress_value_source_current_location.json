@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Invalid progress value source current location",
-    "theme": "default",
+    "theme": "census",
     "description": "A schema to showcase referrencing the current location in progress source is invalid",
     "metadata": [
         {

@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test List Referenced Before Created",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to test list referenced as source before it has been created",
     "messages": {},
     "metadata": [

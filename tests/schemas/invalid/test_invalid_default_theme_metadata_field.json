@@ -6,7 +6,7 @@
     "survey_id": "0",
     "title": "Test default theme schema for required metadata fields present",
     "description": "Test default theme schema for required metadata fields present",
-    "theme": "default",
+    "theme": "census",
     "metadata": [
         {
             "name": "user_id",

@@ -7,7 +7,7 @@
     "data_version": "0.0.3",
     "survey_id": "3",
     "title": "String Transforms",
-    "theme": "default",
+    "theme": "census",
     "legal_basis": "StatisticsOfTradeAct",
     "navigation": {
         "visible": false

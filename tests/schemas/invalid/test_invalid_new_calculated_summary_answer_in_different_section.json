@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test Calculated Summary",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to demo an invalid calculated summary with a with a answer_id in a separate section",
     "metadata": [
         {

@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Grand Calculated Summary Inside Repeating Section",
-    "theme": "default",
+    "theme": "census",
     "description": "An invalid schema with a grand calculated summary in a repeat referencing a separate repeating calculated summary",
     "metadata": [
         {

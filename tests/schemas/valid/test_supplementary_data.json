@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "123",
     "title": "Test Supplementary Data",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to demo using Supplementary data for placeholders, validation and routing in both repeating and non repeating sections.",
     "metadata": [
         {

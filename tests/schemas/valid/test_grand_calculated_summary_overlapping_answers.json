@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Grand Calculated Summary with overlapping answers",
-    "theme": "default",
+    "theme": "census",
     "description": "A schema to showcase grand calculated summaries which include multiple calculated summaries using the same answers.",
     "metadata": [
         {

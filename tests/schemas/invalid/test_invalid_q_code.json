@@ -6,7 +6,7 @@
     "survey_id": "0",
     "session_timeout_in_seconds": 3,
     "title": "Test Missing Qcodes",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to test missing q_code for an answer",
     "metadata": [
         {

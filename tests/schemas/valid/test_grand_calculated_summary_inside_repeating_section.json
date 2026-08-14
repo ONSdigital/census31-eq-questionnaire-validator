@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Grand Calculated Summary Inside Repeating Section",
-    "theme": "default",
+    "theme": "census",
     "description": "A schema to showcase a grand calculated summary inside a repeating section",
     "metadata": [
         {

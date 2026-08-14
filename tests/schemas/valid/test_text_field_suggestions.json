@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "001",
     "title": "Textfield Suggestions",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to test textfield suggestions",
     "metadata": [
         {

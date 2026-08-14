@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test Same Name items",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to test ListCollectors where names may be the same",
     "metadata": [
         {

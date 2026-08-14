@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Invalid progress value source non linear",
-    "theme": "default",
+    "theme": "census",
     "description": "An invalid test schema for a progress value source in a non linear flow",
     "metadata": [
         {

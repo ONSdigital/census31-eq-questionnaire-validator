@@ -227,7 +227,7 @@
             ]
         }
     ],
-    "theme": "default",
+    "theme": "census",
     "legal_basis": "StatisticsOfTradeAct",
     "navigation": {
         "visible": false

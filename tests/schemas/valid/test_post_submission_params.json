@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "001",
     "title": "Test Post Submission Params",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to test post submission params",
     "metadata": [
         {

@@ -4,7 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "0",
-    "theme": "default",
+    "theme": "census",
     "title": "Test introduction with question in preview content",
     "description": "This questionnaire needs to exercise questions with context, so an answer placeholder has been added",
     "metadata": [

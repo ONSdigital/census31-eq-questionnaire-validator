@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test Grand Calculated Summary Before Calculated Summary",
-    "theme": "default",
+    "theme": "census",
     "description": "A survey that tests a grand calculated summary before one of the calculated summaries it depends on",
     "metadata": [
         {

@@ -5,7 +5,7 @@
     "data_version": "0.0.1",
     "survey_id": "0",
     "title": "q_codes on different blocks",
-    "theme": "default",
+    "theme": "census",
     "description": "A questionnaire to test q_code regex pattern for an answer",
     "metadata": [
         {
