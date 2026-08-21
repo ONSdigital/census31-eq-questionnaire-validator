@@ -24,9 +24,9 @@ RUN poetry install --only main
 RUN groupadd -r appuser && useradd -r -g appuser -u 9000 appuser && chown -R appuser:appuser .
 
 # Set the user running the application to the non-root user
-USER appuser
+USER 9000
 
-EXPOSE 9000
+EXPOSE 5000
 
 CMD ["gunicorn", "api:app", \
     "--bind", "0.0.0.0:5000", \
