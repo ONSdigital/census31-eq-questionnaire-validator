@@ -59,10 +59,10 @@
         "printWidth": 160
     },
     "overrides": {
-        "brace-expansion": "5.0.8",
+        "brace-expansion": "5.0.9",
         "@istanbuljs/load-nyc-config": {
             "js-yaml": "^4.3.0"
         },
-        "fast-uri": "3.1.4"
+        "fast-uri": "3.1.5"
     }
 }
