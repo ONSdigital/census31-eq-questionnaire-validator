@@ -33,7 +33,7 @@
     "homepage": "https://github.com/ONSdigital/eq-schema-validator#readme",
     "dependencies": {
         "ajv": "8.20.0",
-        "axios": "1.18.1",
+        "axios": "1.19.0",
         "debug": "4.4.3",
         "express": "5.2.1",
         "glob": "13.0.6"
@@ -47,9 +47,9 @@
         "eslint": "9.39.5",
         "eslint-plugin-chai-friendly": "1.2.1",
         "eslint-plugin-security": "4.0.1",
-        "globals": "^17.8.0",
+        "globals": "^17.11.0",
         "jest": "^30.4.2",
-        "jsonc-eslint-parser": "^3.1.0",
+        "jsonc-eslint-parser": "^3.3.0",
         "neostandard": "^0.13.0",
         "nodemon": "3.1.14",
         "prettier": "3.9.6",
@@ -59,10 +59,10 @@
         "printWidth": 160
     },
     "overrides": {
-        "brace-expansion": "5.0.8",
+        "brace-expansion": "5.0.9",
         "@istanbuljs/load-nyc-config": {
             "js-yaml": "^4.3.0"
         },
-        "fast-uri": "3.1.4"
+        "fast-uri": "3.1.5"
     }
 }
