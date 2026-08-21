@@ -26,7 +26,7 @@ RUN groupadd -r appuser && useradd -r -g appuser -u 9000 appuser && chown -R app
 # Set the user running the application to the non-root user
 USER appuser
 
-EXPOSE 5000
+EXPOSE 9000
 
 CMD ["gunicorn", "api:app", \
     "--bind", "0.0.0.0:5000", \
