@@ -29,6 +29,7 @@ JAVASCRIPT_DEFAULT_STYLE: prettier
 
 # Ignoring currencies.json as it generates a false positive error for XTS currency (AWeakCipherModeOfOperationWasUsed)
 REPOSITORY_DEVSKIM_ARGUMENTS: "--skip-git-ignored-files true --ignore-globs **/schemas/lists/currencies.json"
+REPOSITORY_DEVSKIM_FORWARD_EXCLUDED_DIRECTORIES: false
 REPOSITORY_KINGFISHER_ARGUMENTS: "--exclude 'node_modules'"
 
 FORMATTERS_DISABLE_ERRORS: false # Ensures code is actually fixable when using `make megalint-apply`
