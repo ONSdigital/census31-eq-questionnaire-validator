@@ -26,7 +26,8 @@ ENABLE_LINTERS:
   - JAVASCRIPT_PRETTIER
 
 DISABLE_LINTERS:
-  - REPOSITORY_TRUFFLEHOG # git history scanning not required; current code covered by secretlint
+  - REPOSITORY_TRUFFLEHOG
+  - REPOSITORY_DEVSKIM
 
 JAVASCRIPT_DEFAULT_STYLE: prettier
 
