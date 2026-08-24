@@ -1,187 +1,187 @@
 {
-  "$id": "/questions/types/calculated.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "question": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../../common_definitions.json#/identifier"
-      },
-      "title": {
-        "$ref": "../../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "number": {
-        "$ref": "../../common_definitions.json#/non_empty_string"
-      },
-      "description": {
-        "$ref": "../../common_definitions.json#/string_array_with_placeholders"
-      },
-      "warning": {
-        "$ref": "../../common_definitions.json#/non_empty_string"
-      },
-      "definitions": {
-        "$ref": "../../common_definitions.json#/question_definitions"
-      },
-      "definition": {
-        "$ref": "../../common_definitions.json#/question_definition"
-      },
-      "guidance": {
-        "$ref": "../../common_definitions.json#/guidance"
-      },
-      "type": {
-        "type": "string",
-        "const": "Calculated"
-      },
-      "dynamic_answers": {
+    "$id": "/questions/types/calculated.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "question": {
         "type": "object",
         "properties": {
-          "values": {
-            "$ref": "../../value_sources.json#/list_value_source"
-          },
-          "answers": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "oneOf": [
-                {
-                  "$ref": "../../answers/currency.json#/answer"
-                },
-                {
-                  "$ref": "../../answers/number.json#/answer"
-                },
-                {
-                  "$ref": "../../answers/percentage.json#/answer"
-                },
-                {
-                  "$ref": "../../answers/unit.json#/answer"
-                }
-              ]
-            }
-          }
-        },
-        "additionalProperties": false,
-        "required": ["answers", "values"]
-      },
-      "calculations": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "calculation_type": {
-              "type": "string",
-              "const": "sum"
-            },
-            "answer_id": {
-              "$ref": "../../common_definitions.json#/non_empty_string",
-              "description": "The id of an answer from which to obtain the total to validate against"
-            },
-            "value": {
-              "oneOf": [
-                {
-                  "type": "number",
-                  "description": "A hard coded total to validate against"
-                },
-                {
-                  "$ref": "../../value_sources.json#/value_source_for_calculations",
-                  "description": "A value source to validate against that resolves to a number."
-                }
-              ]
-            },
-            "answers_to_calculate": {
-              "type": "array",
-              "minItems": 1,
-              "items": {
+            "id": {
                 "$ref": "../../common_definitions.json#/identifier"
-              },
-              "description": "The id of the answers from which to do calculated_type to"
             },
-            "conditions": {
-              "type": "array",
-              "minItems": 1,
-              "maxItems": 2,
-              "uniqueItems": true,
-              "items": {
-                "anyOf": [
-                  {
-                    "required": ["less than"]
-                  },
-                  {
-                    "required": ["greater than"]
-                  },
-                  {
-                    "required": ["equals"]
-                  }
-                ]
-              },
-              "description": "The conditions wanted to used for grouped validations, 2 items adds an 'OR' condition"
-            }
-          },
-          "oneOf": [
-            {
-              "required": ["answer_id"]
+            "title": {
+                "$ref": "../../string_interpolation/definitions.json#/string_with_placeholders"
             },
-            {
-              "required": ["value"]
-            }
-          ],
-          "required": ["calculation_type", "answers_to_calculate", "conditions"]
+            "number": {
+                "$ref": "../../common_definitions.json#/non_empty_string"
+            },
+            "description": {
+                "$ref": "../../common_definitions.json#/string_array_with_placeholders"
+            },
+            "warning": {
+                "$ref": "../../common_definitions.json#/non_empty_string"
+            },
+            "definitions": {
+                "$ref": "../../common_definitions.json#/question_definitions"
+            },
+            "definition": {
+                "$ref": "../../common_definitions.json#/question_definition"
+            },
+            "guidance": {
+                "$ref": "../../common_definitions.json#/guidance"
+            },
+            "type": {
+                "type": "string",
+                "const": "Calculated"
+            },
+            "dynamic_answers": {
+                "type": "object",
+                "properties": {
+                    "values": {
+                        "$ref": "../../value_sources.json#/list_value_source"
+                    },
+                    "answers": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "../../answers/currency.json#/answer"
+                                },
+                                {
+                                    "$ref": "../../answers/number.json#/answer"
+                                },
+                                {
+                                    "$ref": "../../answers/percentage.json#/answer"
+                                },
+                                {
+                                    "$ref": "../../answers/unit.json#/answer"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["answers", "values"]
+            },
+            "calculations": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "calculation_type": {
+                            "type": "string",
+                            "const": "sum"
+                        },
+                        "answer_id": {
+                            "$ref": "../../common_definitions.json#/non_empty_string",
+                            "description": "The id of an answer from which to obtain the total to validate against"
+                        },
+                        "value": {
+                            "oneOf": [
+                                {
+                                    "type": "number",
+                                    "description": "A hard coded total to validate against"
+                                },
+                                {
+                                    "$ref": "../../value_sources.json#/value_source_for_calculations",
+                                    "description": "A value source to validate against that resolves to a number."
+                                }
+                            ]
+                        },
+                        "answers_to_calculate": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "../../common_definitions.json#/identifier"
+                            },
+                            "description": "The id of the answers from which to do calculated_type to"
+                        },
+                        "conditions": {
+                            "type": "array",
+                            "minItems": 1,
+                            "maxItems": 2,
+                            "uniqueItems": true,
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "required": ["less than"]
+                                    },
+                                    {
+                                        "required": ["greater than"]
+                                    },
+                                    {
+                                        "required": ["equals"]
+                                    }
+                                ]
+                            },
+                            "description": "The conditions wanted to used for grouped validations, 2 items adds an 'OR' condition"
+                        }
+                    },
+                    "oneOf": [
+                        {
+                            "required": ["answer_id"]
+                        },
+                        {
+                            "required": ["value"]
+                        }
+                    ],
+                    "required": ["calculation_type", "answers_to_calculate", "conditions"]
+                }
+            },
+            "answers": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "oneOf": [
+                        {
+                            "$ref": "../../answers/currency.json#/answer"
+                        },
+                        {
+                            "$ref": "../../answers/number.json#/answer"
+                        },
+                        {
+                            "$ref": "../../answers/percentage.json#/answer"
+                        },
+                        {
+                            "$ref": "../../answers/unit.json#/answer"
+                        }
+                    ]
+                }
+            },
+            "validation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "TOTAL_SUM_NOT_EQUALS": {
+                            "$ref": "../../common_definitions.json#/non_empty_string"
+                        },
+                        "TOTAL_SUM_NOT_LESS_THAN": {
+                            "$ref": "../../common_definitions.json#/non_empty_string"
+                        },
+                        "TOTAL_SUM_NOT_GREATER_THAN": {
+                            "$ref": "../../common_definitions.json#/non_empty_string"
+                        },
+                        "TOTAL_SUM_NOT_GREATER_THAN_OR_EQUALS": {
+                            "$ref": "../../common_definitions.json#/non_empty_string"
+                        },
+                        "TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS": {
+                            "$ref": "../../common_definitions.json#/non_empty_string"
+                        }
+                    }
+                },
+                "additionalProperties": false
+            },
+            "if": {
+                "not": {
+                    "required": ["dynamic_answers"]
+                }
+            },
+            "then": {
+                "required": ["id", "type", "calculations", "title", "answers"]
+            },
+            "else": {
+                "required": ["id", "calculations", "type", "title"]
+            },
+            "additionalProperties": false
         }
-      },
-      "answers": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "oneOf": [
-            {
-              "$ref": "../../answers/currency.json#/answer"
-            },
-            {
-              "$ref": "../../answers/number.json#/answer"
-            },
-            {
-              "$ref": "../../answers/percentage.json#/answer"
-            },
-            {
-              "$ref": "../../answers/unit.json#/answer"
-            }
-          ]
-        }
-      },
-      "validation": {
-        "type": "object",
-        "properties": {
-          "messages": {
-            "TOTAL_SUM_NOT_EQUALS": {
-              "$ref": "../../common_definitions.json#/non_empty_string"
-            },
-            "TOTAL_SUM_NOT_LESS_THAN": {
-              "$ref": "../../common_definitions.json#/non_empty_string"
-            },
-            "TOTAL_SUM_NOT_GREATER_THAN": {
-              "$ref": "../../common_definitions.json#/non_empty_string"
-            },
-            "TOTAL_SUM_NOT_GREATER_THAN_OR_EQUALS": {
-              "$ref": "../../common_definitions.json#/non_empty_string"
-            },
-            "TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS": {
-              "$ref": "../../common_definitions.json#/non_empty_string"
-            }
-          }
-        },
-        "additionalProperties": false
-      },
-      "if": {
-        "not": {
-          "required": ["dynamic_answers"]
-        }
-      },
-      "then": {
-        "required": ["id", "type", "calculations", "title", "answers"]
-      },
-      "else": {
-        "required": ["id", "calculations", "type", "title"]
-      },
-      "additionalProperties": false
     }
-  }
 }

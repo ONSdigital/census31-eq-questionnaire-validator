@@ -1,126 +1,126 @@
 {
-  "$id": "/answers/definitions.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "calculated": {
-    "type": "boolean",
-    "description": "Indicates that the answer should be treated as the result of a calculation."
-  },
-  "options": {
-    "type": "array",
-    "uniqueItems": true,
-    "items": {
-      "type": "object",
-      "properties": {
-        "label": {
-          "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-        },
-        "value": {
-          "$ref": "../common_definitions.json#/non_empty_string"
-        },
-        "q_code": {
-          "$ref": "../common_definitions.json#/q_code"
-        },
-        "detail_answer": {
-          "oneOf": [
-            {
-              "$ref": "text_field.json#/answer"
+    "$id": "/answers/definitions.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "calculated": {
+        "type": "boolean",
+        "description": "Indicates that the answer should be treated as the result of a calculation."
+    },
+    "options": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+                },
+                "value": {
+                    "$ref": "../common_definitions.json#/non_empty_string"
+                },
+                "q_code": {
+                    "$ref": "../common_definitions.json#/q_code"
+                },
+                "detail_answer": {
+                    "oneOf": [
+                        {
+                            "$ref": "text_field.json#/answer"
+                        },
+                        {
+                            "$ref": "number.json#/answer"
+                        },
+                        {
+                            "$ref": "dropdown.json#/answer"
+                        }
+                    ]
+                },
+                "description": {
+                    "$ref": "../string_interpolation/definitions.json#/string_with_placeholders",
+                    "description": "Descriptive text that appears below the option label"
+                },
+                "action": {
+                    "type": "object",
+                    "oneOf": [
+                        {
+                            "$ref": "../answer_actions/definitions.json#/redirect_to_list_add_block"
+                        },
+                        {
+                            "$ref": "../answer_actions/definitions.json#/remove_list_item_and_answers"
+                        },
+                        {
+                            "$ref": "../answer_actions/definitions.json#/remove_unrelated_relationships"
+                        },
+                        {
+                            "$ref": "../answer_actions/definitions.json#/add_unrelated_relationships"
+                        }
+                    ]
+                }
             },
-            {
-              "$ref": "number.json#/answer"
-            },
-            {
-              "$ref": "dropdown.json#/answer"
-            }
-          ]
-        },
-        "description": {
-          "$ref": "../string_interpolation/definitions.json#/string_with_placeholders",
-          "description": "Descriptive text that appears below the option label"
-        },
-        "action": {
-          "type": "object",
-          "oneOf": [
-            {
-              "$ref": "../answer_actions/definitions.json#/redirect_to_list_add_block"
-            },
-            {
-              "$ref": "../answer_actions/definitions.json#/remove_list_item_and_answers"
-            },
-            {
-              "$ref": "../answer_actions/definitions.json#/remove_unrelated_relationships"
-            },
-            {
-              "$ref": "../answer_actions/definitions.json#/add_unrelated_relationships"
-            }
-          ]
+            "additionalProperties": false,
+            "required": ["label", "value"]
         }
-      },
-      "additionalProperties": false,
-      "required": ["label", "value"]
+    },
+    "dynamic_options": {
+        "type": "object",
+        "properties": {
+            "values": {
+                "oneOf": [
+                    {
+                        "$ref": "../rules/operators/value/map.json"
+                    },
+                    {
+                        "$ref": "../value_sources.json#/any_value_source_except_location"
+                    }
+                ]
+            },
+            "transform": {
+                "$ref": "../rules/definitions.json#/non_array_value_operators"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["values", "transform"]
+    },
+    "min_value": {
+        "type": "object",
+        "properties": {
+            "value": {
+                "$ref": "../common_definitions.json#/value_reference"
+            },
+            "exclusive": {
+                "type": "boolean",
+                "description": "Whether validation is exclusive of value or not"
+            }
+        },
+        "additionalProperties": false
+    },
+    "max_value": {
+        "type": "object",
+        "properties": {
+            "value": {
+                "$ref": "../common_definitions.json#/value_reference"
+            },
+            "exclusive": {
+                "type": "boolean",
+                "description": "Whether validation is exclusive of value or not"
+            }
+        },
+        "additionalProperties": false
+    },
+    "answer_guidance": {
+        "description": "Answer guidance",
+        "type": "object",
+        "properties": {
+            "show_guidance": {
+                "$ref": "../common_definitions.json#/non_empty_string",
+                "description": "The text that is used for the 'Show guidance' link."
+            },
+            "hide_guidance": {
+                "$ref": "../common_definitions.json#/non_empty_string",
+                "description": "The text that is used for the 'Hide guidance' link."
+            },
+            "contents": {
+                "$ref": "../common_definitions.json#/contents"
+            }
+        },
+        "additionalProperties": false
     }
-  },
-  "dynamic_options": {
-    "type": "object",
-    "properties": {
-      "values": {
-        "oneOf": [
-          {
-            "$ref": "../rules/operators/value/map.json"
-          },
-          {
-            "$ref": "../value_sources.json#/any_value_source_except_location"
-          }
-        ]
-      },
-      "transform": {
-        "$ref": "../rules/definitions.json#/non_array_value_operators"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["values", "transform"]
-  },
-  "min_value": {
-    "type": "object",
-    "properties": {
-      "value": {
-        "$ref": "../common_definitions.json#/value_reference"
-      },
-      "exclusive": {
-        "type": "boolean",
-        "description": "Whether validation is exclusive of value or not"
-      }
-    },
-    "additionalProperties": false
-  },
-  "max_value": {
-    "type": "object",
-    "properties": {
-      "value": {
-        "$ref": "../common_definitions.json#/value_reference"
-      },
-      "exclusive": {
-        "type": "boolean",
-        "description": "Whether validation is exclusive of value or not"
-      }
-    },
-    "additionalProperties": false
-  },
-  "answer_guidance": {
-    "description": "Answer guidance",
-    "type": "object",
-    "properties": {
-      "show_guidance": {
-        "$ref": "../common_definitions.json#/non_empty_string",
-        "description": "The text that is used for the 'Show guidance' link."
-      },
-      "hide_guidance": {
-        "$ref": "../common_definitions.json#/non_empty_string",
-        "description": "The text that is used for the 'Hide guidance' link."
-      },
-      "contents": {
-        "$ref": "../common_definitions.json#/contents"
-      }
-    },
-    "additionalProperties": false
-  }
 }

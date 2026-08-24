@@ -1,123 +1,123 @@
 {
-  "data_version": "0.0.3",
-  "description": "A questionnaire to test currency input type",
-  "legal_basis": "StatisticsOfTradeAct",
-  "metadata": [
-    {
-      "name": "user_id",
-      "type": "string"
-    },
-    {
-      "name": "ru_name",
-      "type": "string"
-    },
-    {
-      "name": "period_id",
-      "type": "string"
-    }
-  ],
-  "mime_type": "application/json/ons/eq",
-  "language": "en",
-  "schema_version": "0.0.1",
-  "questionnaire_flow": {
-    "type": "Linear",
-    "options": {
-      "summary": {
-        "collapsible": false
-      }
-    }
-  },
-  "sections": [
-    {
-      "groups": [
+    "data_version": "0.0.3",
+    "description": "A questionnaire to test currency input type",
+    "legal_basis": "StatisticsOfTradeAct",
+    "metadata": [
         {
-          "blocks": [
-            {
-              "id": "block-1",
-              "question": {
-                "answers": [
-                  {
-                    "default": 0,
-                    "id": "answer-1",
-                    "label": "Answer 1",
-                    "mandatory": false,
-                    "type": "Number"
-                  }
-                ],
-                "id": "question-1",
-                "title": "Enter a value 1",
-                "type": "General"
-              },
-              "routing_rules": [
-                {
-                  "block": "block-3",
-                  "when": {
-                    "==": [
-                      {
-                        "source": "answers",
-                        "identifier": "answer-1"
-                      },
-                      0
-                    ]
-                  }
-                },
-                {
-                  "block": "block-2"
-                }
-              ],
-              "type": "Question"
-            },
-            {
-              "id": "block-2",
-              "question": {
-                "answers": [
-                  {
-                    "currency": "GBP",
-                    "id": "answer-2",
-                    "label": "Invalid Range",
-                    "mandatory": false,
-                    "maximum": {
-                      "value": {
-                        "identifier": "answer-1",
-                        "source": "answers"
-                      },
-                      "exclusive": true
-                    },
-                    "type": "Currency"
-                  }
-                ],
-                "id": "question-2",
-                "title": "Enter a value 2",
-                "type": "General"
-              },
-              "type": "Question"
-            },
-            {
-              "id": "block-3",
-              "question": {
-                "answers": [
-                  {
-                    "id": "answer-3",
-                    "label": "Invalid References",
-                    "mandatory": false,
-                    "type": "Percentage"
-                  }
-                ],
-                "id": "question-3",
-                "title": "Enter a value 3",
-                "type": "General"
-              },
-              "type": "Question"
-            }
-          ],
-          "id": "group",
-          "title": "Testing range of linked answers, with min/max_values"
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "ru_name",
+            "type": "string"
+        },
+        {
+            "name": "period_id",
+            "type": "string"
         }
-      ],
-      "id": "section-1"
-    }
-  ],
-  "survey_id": "0",
-  "theme": "default",
-  "title": "Minimum and maximum exclusivity"
+    ],
+    "mime_type": "application/json/ons/eq",
+    "language": "en",
+    "schema_version": "0.0.1",
+    "questionnaire_flow": {
+        "type": "Linear",
+        "options": {
+            "summary": {
+                "collapsible": false
+            }
+        }
+    },
+    "sections": [
+        {
+            "groups": [
+                {
+                    "blocks": [
+                        {
+                            "id": "block-1",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "default": 0,
+                                        "id": "answer-1",
+                                        "label": "Answer 1",
+                                        "mandatory": false,
+                                        "type": "Number"
+                                    }
+                                ],
+                                "id": "question-1",
+                                "title": "Enter a value 1",
+                                "type": "General"
+                            },
+                            "routing_rules": [
+                                {
+                                    "block": "block-3",
+                                    "when": {
+                                        "==": [
+                                            {
+                                                "source": "answers",
+                                                "identifier": "answer-1"
+                                            },
+                                            0
+                                        ]
+                                    }
+                                },
+                                {
+                                    "block": "block-2"
+                                }
+                            ],
+                            "type": "Question"
+                        },
+                        {
+                            "id": "block-2",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "currency": "GBP",
+                                        "id": "answer-2",
+                                        "label": "Invalid Range",
+                                        "mandatory": false,
+                                        "maximum": {
+                                            "value": {
+                                                "identifier": "answer-1",
+                                                "source": "answers"
+                                            },
+                                            "exclusive": true
+                                        },
+                                        "type": "Currency"
+                                    }
+                                ],
+                                "id": "question-2",
+                                "title": "Enter a value 2",
+                                "type": "General"
+                            },
+                            "type": "Question"
+                        },
+                        {
+                            "id": "block-3",
+                            "question": {
+                                "answers": [
+                                    {
+                                        "id": "answer-3",
+                                        "label": "Invalid References",
+                                        "mandatory": false,
+                                        "type": "Percentage"
+                                    }
+                                ],
+                                "id": "question-3",
+                                "title": "Enter a value 3",
+                                "type": "General"
+                            },
+                            "type": "Question"
+                        }
+                    ],
+                    "id": "group",
+                    "title": "Testing range of linked answers, with min/max_values"
+                }
+            ],
+            "id": "section-1"
+        }
+    ],
+    "survey_id": "0",
+    "theme": "default",
+    "title": "Minimum and maximum exclusivity"
 }

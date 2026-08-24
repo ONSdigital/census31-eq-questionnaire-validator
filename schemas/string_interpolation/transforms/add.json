@@ -1,52 +1,52 @@
 {
-  "$id": "/string_interpolation/transforms/add.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "add": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "add"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/add.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "add": {
         "type": "object",
         "properties": {
-          "lhs": {
-            "anyOf": [
-              {
-                "$ref": "../definitions.json#/placeholder_value_sources"
-              },
-              {
+            "transform": {
+                "type": "string",
+                "const": "add"
+            },
+            "arguments": {
                 "type": "object",
                 "properties": {
-                  "value": {
-                    "type": "number"
-                  }
-                }
-              }
-            ]
-          },
-          "rhs": {
-            "anyOf": [
-              {
-                "$ref": "../definitions.json#/placeholder_value_sources"
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "number"
-                  }
-                }
-              }
-            ]
-          }
+                    "lhs": {
+                        "anyOf": [
+                            {
+                                "$ref": "../definitions.json#/placeholder_value_sources"
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "value": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "rhs": {
+                        "anyOf": [
+                            {
+                                "$ref": "../definitions.json#/placeholder_value_sources"
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "value": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["lhs", "rhs"]
+            }
         },
         "additionalProperties": false,
-        "required": ["lhs", "rhs"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

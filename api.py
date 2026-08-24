@@ -41,7 +41,7 @@ ALLOWED_FULL_DOMAINS = {
     "https://raw.githubusercontent.com/",
 }
 
-ALLOWED_BASE_DOMAINS = {"onsdigital.uk", "localhost"}
+ALLOWED_BASE_DOMAINS = {"onsdigital.uk"}
 
 ALLOWED_REPO_OWNERS = {"ONSdigital"}
 
@@ -121,11 +121,11 @@ async def validate_schema_request_body(payload=DEFAULT_BODY):
         code 503.
     """
     logger.info("Schema validation request received")
-    return await validate_schema(payload)
+    return validate_schema(payload)
 
 
 @app.get("/validate")
-async def validate_schema_from_url(url=None):
+def validate_schema_from_url(url=None):
     """Endpoint for validating a questionnaire schema provided in a URL query parameter. The URL is validated against
     allowed domains and repo owners before the schema is loaded and validated.
 
@@ -157,7 +157,7 @@ async def validate_schema_from_url(url=None):
             # Opens the URL and validates the schema
             # Mitigation for opening ftp:// and file:// URLs with urllib.request is implemented in lines 91-95
             with request.urlopen(parsed_url.geturl()) as opened_url:  # nosec B310  # noqa: S310
-                return await validate_schema(data=opened_url.read().decode())
+                return validate_schema(data=opened_url.read().decode())
         except error.URLError:
             logger.warning(
                 "Could not load schema from allowed domain - URL not found",
@@ -170,7 +170,7 @@ async def validate_schema_from_url(url=None):
     return None
 
 
-async def validate_schema(data):  # pylint: disable=R0911
+def validate_schema(data):  # pylint: disable=R0911
     """Validate a questionnaire schema provided as JSON data. The JSON data is first validated using an AJV Schema
     Validator service, and then the contents of the schema are validated using a Questionnaire Validator instance.
 

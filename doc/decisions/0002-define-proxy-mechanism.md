@@ -203,28 +203,28 @@ Example (assumes a previous question routes to one of these depending on a proxy
 Must support proxy versions for the following features:
 
 - Answer guidance
-    - You / They
-        - `How you define your ethnic group is up to you`
-        - `How they define their ethnic group is up to them`
-    - You / Name
-        - `If you are self-employed in your own business, give the business name`
-        - `If {proxy_person_name} is self-employed in their own business, give the business name.`
+  - You / They
+    - `How you define your ethnic group is up to you`
+    - `How they define their ethnic group is up to them`
+  - You / Name
+    - `If you are self-employed in your own business, give the business name`
+    - `If {proxy_person_name} is self-employed in their own business, give the business name.`
 - Detail Answer
-    - Label may change between proxy versions:
-        - `Please describe your national identity`
-        - `Please describe their national identity`
+  - Label may change between proxy versions:
+    - `Please describe your national identity`
+    - `Please describe their national identity`
 - Interstitial
-    - Past / Present and by proxy
-        - Past: `Answer the next set of questions for your last main job`
-        - Past Proxy: `Answer the next set of questions for {proxy_name_posessive} last main job`
-        - Current: `Answer the next set of questions for your main job`
-        - Current Proxy: `Answer the next set of questions for {proxy_name_posessive} main job`
+  - Past / Present and by proxy
+    - Past: `Answer the next set of questions for your last main job`
+    - Past Proxy: `Answer the next set of questions for {proxy_name_possessive} last main job`
+    - Current: `Answer the next set of questions for your main job`
+    - Current Proxy: `Answer the next set of questions for {proxy_name_possessive} main job`
 - Response Options
-    - Confirmation
-        - `Yes, I am {age_years} old`
-        - `Yes, {proxy_name} is {age_years} old`
-        - `No, I need to change my date of birth`
-        - `No, I need to change {proxy_name_posessive} date of birth`
+  - Confirmation
+    - `Yes, I am {age_years} old`
+    - `Yes, {proxy_name} is {age_years} old`
+    - `No, I need to change my date of birth`
+    - `No, I need to change {proxy_name_possessive} date of birth`
 
 ## Proposal
 

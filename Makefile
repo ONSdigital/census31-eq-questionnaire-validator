@@ -28,9 +28,6 @@ clean: ## Clean the temporary files.
 	rm -rf .ruff_cache
 	rm -rf megalinter-reports
 
-lint: lint-python
-	npm run lint
-
 .PHONY: ruff
 ruff: ## Run ruff linter code check.
 	poetry run ruff check .
@@ -50,16 +47,21 @@ test-ajv:
 
 test: test-python test-ajv
 
-format: format-python
-	npm run format
-
 format-python:
 	poetry run isort .
 	poetry run black .
 
-.PHONY: megalint
-megalint:  clean ## Run the MegaLinter.
+.PHONY: megalint megalint-apply clean-megalint
+megalint:
 	docker run --platform linux/amd64 --rm \
-		-v /var/run/docker.sock:/var/run/docker.sock:rw \
 		-v $(shell pwd):/tmp/lint:rw \
-		ghcr.io/oxsecurity/megalinter-python:v9.5.0
+		ghcr.io/oxsecurity/megalinter:v10.0.0
+
+megalint-apply:
+	docker run --platform linux/amd64 --rm \
+		-v $(shell pwd):/tmp/lint:rw \
+		-e APPLY_FIXES=all \
+		ghcr.io/oxsecurity/megalinter:v10.0.0
+
+clean-megalint:
+	rm -rf megalinter-reports

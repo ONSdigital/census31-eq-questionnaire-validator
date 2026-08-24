@@ -65,38 +65,33 @@ def get_block(questionnaire_schema, block_id):
     return questionnaire_schema.blocks_by_id.get(block_id, None)
 
 
+def _get_filter_conditions(filters):
+    return [f'@.{key}=="{value}"' for key, value in filters.items()]
+
+
+def _get_blocks_for_conditions(questionnaire_schema, conditions, block_id_to_filter=None):
+    if not conditions:
+        return questionnaire_schema.blocks
+
+    final_condition = " & ".join(conditions)
+    query = (
+        f"$..blocks[?({final_condition})]"
+        if block_id_to_filter is None
+        else f'$..blocks[?(@.id != "{block_id_to_filter}" & {final_condition})]'
+    )
+    return [match.value for match in ext_parse(query).find(questionnaire_schema.schema)]
+
+
 @lru_cache
 def get_blocks(questionnaire_schema, **filters):
-    conditions = []
-    for key, value in filters.items():
-        conditions.append(f'@.{key}=="{value}"')
-
-    if conditions:
-        final_condition = " & ".join(conditions)
-        return [
-            match.value
-            for match in ext_parse(f"$..blocks[?({final_condition})]").find(
-                questionnaire_schema.schema,
-            )
-        ]
-    return questionnaire_schema.blocks
+    conditions = _get_filter_conditions(filters)
+    return _get_blocks_for_conditions(questionnaire_schema, conditions)
 
 
 @lru_cache
 def get_other_blocks(questionnaire_schema, block_id_to_filter, **filters):
-    conditions = []
-    for key, value in filters.items():
-        conditions.append(f'@.{key}=="{value}"')
-
-    if conditions:
-        final_condition = " & ".join(conditions)
-        return [
-            match.value
-            for match in ext_parse(
-                f'$..blocks[?(@.id != "{block_id_to_filter}" & {final_condition})]',
-            ).find(questionnaire_schema.schema)
-        ]
-    return questionnaire_schema.blocks
+    conditions = _get_filter_conditions(filters)
+    return _get_blocks_for_conditions(questionnaire_schema, conditions, block_id_to_filter=block_id_to_filter)
 
 
 @lru_cache

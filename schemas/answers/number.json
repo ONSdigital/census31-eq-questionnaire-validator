@@ -1,87 +1,87 @@
 {
-  "$id": "/answers/number.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "answer": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "q_code": {
-        "$ref": "../common_definitions.json#/q_code"
-      },
-      "label": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "guidance": {
-        "$ref": "definitions.json#/answer_guidance"
-      },
-      "description": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "type": {
-        "type": "string",
-        "const": "Number"
-      },
-      "mandatory": {
-        "type": "boolean"
-      },
-      "visible": {
-        "type": "boolean"
-      },
-      "max_length": {
-        "type": "integer"
-      },
-      "decimal_places": {
-        "type": "integer",
-        "description": "Number of decimal places allowed"
-      },
-      "default": {
-        "type": "integer",
-        "description": "Default value if no answer given"
-      },
-      "maximum": {
-        "$ref": "definitions.json#/max_value"
-      },
-      "minimum": {
-        "$ref": "definitions.json#/min_value"
-      },
-      "validation": {
+    "$id": "/answers/number.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "answer": {
         "type": "object",
         "properties": {
-          "messages": {
-            "MANDATORY_NUMBER": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
             },
-            "NUMBER_TOO_SMALL": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "q_code": {
+                "$ref": "../common_definitions.json#/q_code"
             },
-            "NUMBER_TOO_LARGE": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "label": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
             },
-            "NUMBER_TOO_SMALL_EXCLUSIVE": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "guidance": {
+                "$ref": "definitions.json#/answer_guidance"
             },
-            "NUMBER_TOO_LARGE_EXCLUSIVE": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "description": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
             },
-            "INVALID_NUMBER": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "type": {
+                "type": "string",
+                "const": "Number"
             },
-            "INVALID_INTEGER": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "mandatory": {
+                "type": "boolean"
             },
-            "INVALID_DECIMAL": {
-              "$ref": "../common_definitions.json#/non_empty_string"
+            "visible": {
+                "type": "boolean"
+            },
+            "max_length": {
+                "type": "integer"
+            },
+            "decimal_places": {
+                "type": "integer",
+                "description": "Number of decimal places allowed"
+            },
+            "default": {
+                "type": "integer",
+                "description": "Default value if no answer given"
+            },
+            "maximum": {
+                "$ref": "definitions.json#/max_value"
+            },
+            "minimum": {
+                "$ref": "definitions.json#/min_value"
+            },
+            "validation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "MANDATORY_NUMBER": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "NUMBER_TOO_SMALL": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "NUMBER_TOO_LARGE": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "NUMBER_TOO_SMALL_EXCLUSIVE": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "NUMBER_TOO_LARGE_EXCLUSIVE": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "INVALID_NUMBER": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "INVALID_INTEGER": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        },
+                        "INVALID_DECIMAL": {
+                            "$ref": "../common_definitions.json#/non_empty_string"
+                        }
+                    }
+                }
+            },
+            "calculated": {
+                "$ref": "definitions.json#/calculated"
             }
-          }
-        }
-      },
-      "calculated": {
-        "$ref": "definitions.json#/calculated"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "mandatory", "label"]
-  }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type", "mandatory", "label"]
+    }
 }

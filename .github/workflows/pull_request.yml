@@ -15,18 +15,20 @@ jobs:
       contents: read
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: |
-          echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+          echo "PYTHON_VERSION=$(cat .python-version)" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".nvmrc"
           cache: "npm"
       - run: |
-          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> $GITHUB_ENV
+          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> "$GITHUB_ENV"
       - name: Install npm deps
         run: npm install
 
@@ -39,7 +41,7 @@ jobs:
           virtualenvs-path: ~/.virtualenvs
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         id: cache-virtualenv
         with:
           path: ~/.virtualenvs
@@ -48,24 +50,26 @@ jobs:
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
         run: poetry install
       - name: Lint Python
-        run: make lint
+        run: make lint-python
 
   test:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - run: echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: echo "PYTHON_VERSION=$(cat .python-version)" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".nvmrc"
           cache: "npm"
       - run: |
-          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> $GITHUB_ENV
+          echo "PYTHON_VERSION=$(python -c 'import platform; print(platform.python_version())')" >> "$GITHUB_ENV"
       - name: Install npm deps
         run: npm install
       - name: Running ajv tests
@@ -80,7 +84,7 @@ jobs:
           virtualenvs-path: ~/.virtualenvs
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         id: cache-virtualenv
         with:
           path: ~/.virtualenvs
@@ -97,7 +101,7 @@ jobs:
   #     id-token: write
   #   runs-on: ubuntu-24.04
   #   steps:
-  #     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+  #     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
   #     - id: auth
   #       name: Authenticate to Google Cloud

@@ -1,18 +1,18 @@
 {
-  "$id": "/questionnaire_flow/hub.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "options": {
-    "type": "object",
-    "properties": {
-      "required_completed_sections": {
-        "description": "The sections that need to be complete prior to the hub displaying",
-        "type": "array",
-        "items": {
-          "$ref": "../common_definitions.json#/non_empty_string"
+    "$id": "/questionnaire_flow/hub.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "options": {
+        "type": "object",
+        "properties": {
+            "required_completed_sections": {
+                "description": "The sections that need to be complete prior to the hub displaying",
+                "type": "array",
+                "items": {
+                    "$ref": "../common_definitions.json#/non_empty_string"
+                },
+                "minItems": 1
+            }
         },
-        "minItems": 1
-      }
-    },
-    "additionalProperties": false
-  }
+        "additionalProperties": false
+    }
 }

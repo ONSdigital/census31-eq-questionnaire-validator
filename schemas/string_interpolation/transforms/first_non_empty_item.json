@@ -1,30 +1,30 @@
 {
-  "$id": "/string_interpolation/transforms/first_non_empty_item.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "first_non_empty_item": {
-    "description": "A transform for selecting the first non empty item",
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "first_non_empty_item"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/first_non_empty_item.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "first_non_empty_item": {
+        "description": "A transform for selecting the first non empty item",
         "type": "object",
         "properties": {
-          "items": {
-            "description": "A list of value_sources to evaluate the first non empty item.",
-            "type": "array",
-            "items": {
-              "$ref": "../definitions.json#/placeholder_value_sources"
+            "transform": {
+                "type": "string",
+                "const": "first_non_empty_item"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "description": "A list of value_sources to evaluate the first non empty item.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "../definitions.json#/placeholder_value_sources"
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["items"]
             }
-          }
         },
         "additionalProperties": false,
-        "required": ["items"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

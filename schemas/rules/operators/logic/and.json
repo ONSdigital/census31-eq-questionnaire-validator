@@ -1,17 +1,17 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "/rules/operators/logic/and.json",
-  "description": "Evaluates boolean `and`",
-  "type": "object",
-  "properties": {
-    "and": {
-      "type": "array",
-      "minItems": 2,
-      "items": {
-        "$ref": "../../definitions.json#/boolean_operators"
-      }
-    }
-  },
-  "required": ["and"],
-  "additionalProperties": false
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "/rules/operators/logic/and.json",
+    "description": "Evaluates boolean `and`",
+    "type": "object",
+    "properties": {
+        "and": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "$ref": "../../definitions.json#/boolean_operators"
+            }
+        }
+    },
+    "required": ["and"],
+    "additionalProperties": false
 }

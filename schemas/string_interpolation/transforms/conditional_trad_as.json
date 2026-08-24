@@ -1,36 +1,36 @@
 {
-  "$id": "/string_interpolation/transforms/conditional_trad_as.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "conditional_trad_as": {
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "conditional_trad_as"
-      },
-      "arguments": {
+    "$id": "/string_interpolation/transforms/conditional_trad_as.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "conditional_trad_as": {
         "type": "object",
         "properties": {
-          "trad_as": {
-            "properties": {
-              "identifier": {
+            "transform": {
                 "type": "string",
-                "const": "trad_as"
-              },
-              "source": {
-                "type": "string",
-                "const": "metadata"
-              }
+                "const": "conditional_trad_as"
             },
-            "additionalProperties": false,
-            "required": ["identifier", "source"]
-          }
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "trad_as": {
+                        "properties": {
+                            "identifier": {
+                                "type": "string",
+                                "const": "trad_as"
+                            },
+                            "source": {
+                                "type": "string",
+                                "const": "metadata"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["identifier", "source"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["trad_as"]
+            }
         },
         "additionalProperties": false,
-        "required": ["trad_as"]
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "required": ["transform", "arguments"]
+    }
 }

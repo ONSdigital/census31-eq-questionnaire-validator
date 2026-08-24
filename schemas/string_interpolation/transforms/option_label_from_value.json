@@ -1,29 +1,29 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "/string_interpolation/transforms/option_label_from_value.json",
-  "option_label_from_value": {
-    "description": "Get the label of an answer option based on its value. Takes two arguments, the option value and the answer id",
-    "type": "object",
-    "properties": {
-      "transform": {
-        "type": "string",
-        "const": "option_label_from_value"
-      },
-      "arguments": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "/string_interpolation/transforms/option_label_from_value.json",
+    "option_label_from_value": {
+        "description": "Get the label of an answer option based on its value. Takes two arguments, the option value and the answer id",
         "type": "object",
         "properties": {
-          "value": {
-            "$ref": "../definitions.json#/placeholder_value_sources"
-          },
-          "answer_id": {
-            "type": "string"
-          }
+            "transform": {
+                "type": "string",
+                "const": "option_label_from_value"
+            },
+            "arguments": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "$ref": "../definitions.json#/placeholder_value_sources"
+                    },
+                    "answer_id": {
+                        "type": "string"
+                    }
+                },
+                "required": ["value", "answer_id"],
+                "additionalProperties": false
+            }
         },
-        "required": ["value", "answer_id"],
-        "additionalProperties": false
-      }
-    },
-    "additionalProperties": false,
-    "required": ["transform", "arguments"]
-  }
+        "additionalProperties": false,
+        "required": ["transform", "arguments"]
+    }
 }

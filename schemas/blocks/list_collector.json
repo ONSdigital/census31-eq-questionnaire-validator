@@ -1,76 +1,76 @@
 {
-  "$id": "/blocks/list_collector.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "summary": {
-    "type": "object",
-    "properties": {
-      "item_title": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      },
-      "title": {
-        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
-      }
+    "$id": "/blocks/list_collector.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "summary": {
+        "type": "object",
+        "properties": {
+            "item_title": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "title": {
+                "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["item_title", "title"]
     },
-    "additionalProperties": false,
-    "required": ["item_title", "title"]
-  },
-  "block": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "../common_definitions.json#/identifier"
-      },
-      "type": {
-        "type": "string",
-        "const": "ListCollector"
-      },
-      "page_title": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "for_list": {
-        "$ref": "../common_definitions.json#/non_empty_string"
-      },
-      "same_name_answer_ids": {
-        "$ref": "../common_definitions.json#/string_array"
-      },
-      "question": {
-        "$ref": "../questions/definitions.json#/question"
-      },
-      "question_variants": {
-        "$ref": "definitions.json#/question_variants"
-      },
-      "routing_rules": {
-        "$ref": "../common_definitions.json#/routing_rules"
-      },
-      "add_block": {
-        "$ref": "list_add_edit_remove_question.json#/block"
-      },
-      "repeating_blocks": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "list_repeating_block.json#/block"
-        }
-      },
-      "edit_block": {
-        "$ref": "list_add_edit_remove_question.json#/block"
-      },
-      "remove_block": {
-        "$ref": "list_add_edit_remove_question.json#/block"
-      },
-      "summary": {
-        "$ref": "list_collector.json#/summary"
-      }
-    },
-    "additionalProperties": false,
-    "required": ["id", "type", "for_list", "add_block", "edit_block", "remove_block"],
-    "oneOf": [
-      {
-        "required": ["question"]
-      },
-      {
-        "required": ["question_variants"]
-      }
-    ]
-  }
+    "block": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "../common_definitions.json#/identifier"
+            },
+            "type": {
+                "type": "string",
+                "const": "ListCollector"
+            },
+            "page_title": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "for_list": {
+                "$ref": "../common_definitions.json#/non_empty_string"
+            },
+            "same_name_answer_ids": {
+                "$ref": "../common_definitions.json#/string_array"
+            },
+            "question": {
+                "$ref": "../questions/definitions.json#/question"
+            },
+            "question_variants": {
+                "$ref": "definitions.json#/question_variants"
+            },
+            "routing_rules": {
+                "$ref": "../common_definitions.json#/routing_rules"
+            },
+            "add_block": {
+                "$ref": "list_add_edit_remove_question.json#/block"
+            },
+            "repeating_blocks": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "$ref": "list_repeating_block.json#/block"
+                }
+            },
+            "edit_block": {
+                "$ref": "list_add_edit_remove_question.json#/block"
+            },
+            "remove_block": {
+                "$ref": "list_add_edit_remove_question.json#/block"
+            },
+            "summary": {
+                "$ref": "list_collector.json#/summary"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["id", "type", "for_list", "add_block", "edit_block", "remove_block"],
+        "oneOf": [
+            {
+                "required": ["question"]
+            },
+            {
+                "required": ["question_variants"]
+            }
+        ]
+    }
 }
