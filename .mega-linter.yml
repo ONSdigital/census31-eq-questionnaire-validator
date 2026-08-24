@@ -36,6 +36,7 @@ REPOSITORY_DEVSKIM_ARGUMENTS: "--skip-git-ignored-files true --ignore-globs **/s
 REPOSITORY_DEVSKIM_FORWARD_EXCLUDED_DIRECTORIES: false
 REPOSITORY_KINGFISHER_ARGUMENTS: "--exclude 'node_modules'"
 REPOSITORY_TRIVY_FORWARD_EXCLUDED_DIRECTORIES: false
+REPOSITORY_TRIVY_SBOM_FORWARD_EXCLUDED_DIRECTORIES: false
 
 FORMATTERS_DISABLE_ERRORS: false # Ensures code is actually fixable when using `make megalint-apply`
 SHOW_ELAPSED_TIME: true # Displays execution time for each linter
