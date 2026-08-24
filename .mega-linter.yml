@@ -24,10 +24,11 @@ ENABLE:
 ENABLE_LINTERS:
   - JAVASCRIPT_ES
   - JAVASCRIPT_PRETTIER
-JAVASCRIPT_DEFAULT_STYLE: prettier
 
-# TruffleHog false positive are heuristically matched as a Lob key in test files.
-REPOSITORY_TRUFFLEHOG_FILTER_REGEX_EXCLUDE: "(^|/)tests/*.py$"
+DISABLE_LINTERS:
+  - REPOSITORY_TRUFFLEHOG # git history scanning not required; current code covered by secretlint
+
+JAVASCRIPT_DEFAULT_STYLE: prettier
 
 # Ignoring currencies.json as it generates a false positive error for XTS currency (AWeakCipherModeOfOperationWasUsed)
 REPOSITORY_DEVSKIM_ARGUMENTS: "--skip-git-ignored-files true --ignore-globs **/schemas/lists/currencies.json"
