@@ -1,0 +1,45 @@
+steps:
+  # Install dependencies
+  - name: python:3.11
+    id: install-deps
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        pip install -r requirements.txt
+
+  # Run tests
+  - name: python:3.11
+    id: run-tests
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        pytest -q
+
+  # Build Docker image
+  - name: gcr.io/cloud-builders/docker
+    id: docker-build
+    args:
+      - build
+      - "-t"
+      - "europe-west2-docker.pkg.dev/$PROJECT_ID/census31-eq-questionnaire-validator/validator:$SHORT_SHA"
+      - .
+
+  # Push Docker image to GAR
+  - name: gcr.io/cloud-builders/docker
+    id: docker-push
+    args:
+      - push
+      - "europe-west2-docker.pkg.dev/$PROJECT_ID/census31-eq-questionnaire-validator/validator:$SHORT_SHA"
+
+images:
+  - "europe-west2-docker.pkg.dev/$PROJECT_ID/census31-eq-questionnaire-validator/validator:$SHORT_SHA"
+
+substitutions:
+  _ICON_EMOJI: ":cicd:"
+  _SLACK_PUBLISHER_SERVICE_ACCOUNT: "$_SLACK_PUBLISHER_SERVICE_ACCOUNT"
+  _TRIGGER_NAME: "$_TRIGGER_NAME"
+
+options:
+  logging: CLOUD_LOGGING_ONLY

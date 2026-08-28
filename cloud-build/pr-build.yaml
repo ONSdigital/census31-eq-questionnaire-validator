@@ -1,0 +1,39 @@
+steps:
+  # Install dependencies
+  - name: python:3.11
+    id: install-deps
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        pip install -r requirements.txt
+
+  # Run unit tests
+  - name: python:3.11
+    id: run-tests
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        pytest -q
+
+  # Linting
+  - name: python:3.11
+    id: lint
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        flake8 .
+
+  # Build Docker image (PR-only, no push)
+  - name: gcr.io/cloud-builders/docker
+    id: docker-build-eq-validator
+    args:
+      - build
+      - "-t"
+      - "validator-pr:$SHORT_SHA"
+      - .
+
+options:
+  logging: CLOUD_LOGGING_ONLY
