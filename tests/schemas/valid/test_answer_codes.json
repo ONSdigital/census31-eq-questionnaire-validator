@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Other input fields",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to demo answer codes.",
     "messages": {
         "NUMBER_TOO_LARGE": "Number is too large",

@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test a Simple List Collector with Repeating Blocks",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to test a simple list collector with repeating blocks and no additional blocks or sections.",
     "metadata": [
         {

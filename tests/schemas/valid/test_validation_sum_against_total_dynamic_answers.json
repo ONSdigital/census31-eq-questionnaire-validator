@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "A test schema to validate a sum of dynamic answers are equal to a given total",
-    "theme": "census",
+    "theme": "default",
     "description": "A survey that tests calculated answers against a total",
     "metadata": [
         {

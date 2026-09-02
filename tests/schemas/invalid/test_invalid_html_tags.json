@@ -4,7 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
     "survey_id": "144",
-    "theme": "census",
+    "theme": "default",
     "title": "Test invalid html",
     "legal_basis": "Notice is given under section 999 of the Test Act 2000",
     "metadata": [

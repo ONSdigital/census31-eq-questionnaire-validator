@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Dynamic answer options driven by a Checkbox (No static options)",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to demo dynamic answer options driven by a Checkbox with no extra static options",
     "metadata": [
         {

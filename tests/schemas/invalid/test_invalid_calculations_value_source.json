@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Calculated question with value sources test survey",
-    "theme": "census",
+    "theme": "default",
     "description": "A survey that tests validation against value sources, answer value source is not one of Number types which is expected for calculations",
     "metadata": [
         {

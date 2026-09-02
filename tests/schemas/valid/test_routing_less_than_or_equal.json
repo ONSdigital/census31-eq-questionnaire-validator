@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "001",
     "title": "Test Routing Number Less Than or Equal",
-    "theme": "census",
+    "theme": "default",
     "description": "A test survey for routing based on a number less than or equal",
     "metadata": [
         {

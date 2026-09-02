@@ -58,6 +58,6 @@
         }
     ],
     "survey_id": "0",
-    "theme": "census",
+    "theme": "default",
     "title": "Test Schema ID"
 }

@@ -124,6 +124,6 @@
         }
     ],
     "survey_id": "144",
-    "theme": "census",
+    "theme": "default",
     "title": "Test Schema Context"
 }

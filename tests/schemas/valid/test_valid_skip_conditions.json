@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Skip group",
-    "theme": "census",
+    "theme": "default",
     "metadata": [
         {
             "name": "user_id",

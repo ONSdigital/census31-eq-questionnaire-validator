@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "A test schema to demo Calculated Summary",
-    "theme": "census",
+    "theme": "default",
     "description": "An invalid schema demonstrating setting a calculated summary value source before the answers that make up the calculated summary total.",
     "metadata": [
         {

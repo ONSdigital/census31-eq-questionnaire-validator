@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Calculated Summary with Dynamic Answers",
-    "theme": "census",
+    "theme": "default",
     "description": "Demo of invalid calculated summary which references a single static answer from a question with both static and dynamic answers.",
     "metadata": [
         {

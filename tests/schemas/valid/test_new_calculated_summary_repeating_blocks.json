@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Calculated Summary of answers from Repeating blocks",
-    "theme": "census",
+    "theme": "default",
     "description": "A demo of a calculated summary which uses a answers from the repeating blocks in a list collector.",
     "metadata": [
         {

@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Simple Grand Calculated Summary demo",
-    "theme": "census",
+    "theme": "default",
     "description": "A schema to showcase Grand Calculated Summary.",
     "metadata": [
         {

@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test List Referenced Before Created (Repeating Blocks)",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to test list referenced as source in repeating blocks before it has been created",
     "metadata": [
         {

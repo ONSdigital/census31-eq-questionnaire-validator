@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "001",
     "title": "Test Routing Answer Comparisons",
-    "theme": "census",
+    "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based comparison with answers",
     "metadata": [

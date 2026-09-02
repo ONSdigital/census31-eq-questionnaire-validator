@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Repeating Section Summaries",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to test placeholders based on the first item in a list",
     "metadata": [
         {

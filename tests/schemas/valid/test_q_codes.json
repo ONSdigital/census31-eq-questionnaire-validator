@@ -5,7 +5,7 @@
     "data_version": "0.0.1",
     "survey_id": "0",
     "title": "q_codes on different blocks",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to demo q_codes in answers for data version 0.0.1",
     "metadata": [
         {

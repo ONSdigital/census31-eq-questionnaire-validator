@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test option label from value",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to demo an invalid answer type for option_label_from_value transform",
     "metadata": [
         {

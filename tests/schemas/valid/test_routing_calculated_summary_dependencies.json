@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "001",
     "title": "Routing and Skipping Section Dependencies based on Calculated Summary",
-    "theme": "census",
+    "theme": "default",
     "description": "A questionnaire to test routing and skipping rules, when the rule references a different section to its current section",
     "metadata": [
         {

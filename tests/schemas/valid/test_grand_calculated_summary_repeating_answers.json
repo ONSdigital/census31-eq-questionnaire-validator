@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Grand Calculated Summary cross section demo",
-    "theme": "census",
+    "theme": "default",
     "description": "A schema to showcase grand calculated summary across multiple sections featuring static, dynamic and list repeating block answers",
     "metadata": [
         {

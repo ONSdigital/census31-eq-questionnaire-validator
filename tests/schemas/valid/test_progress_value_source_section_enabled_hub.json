@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "001",
     "title": "Test progress value source section enabled hub",
-    "theme": "census",
+    "theme": "default",
     "description": "Testing the progress value source for section enabled in a hub",
     "metadata": [
         {

@@ -3,7 +3,7 @@
     "language": "en",
     "schema_version": "0.0.1",
     "survey_id": "139",
-    "theme": "census",
+    "theme": "default",
     "title": "Confirmation Question Test",
     "data_version": "0.0.3",
     "description": "A questionnaire to test answers referenced as source before it has been added.",

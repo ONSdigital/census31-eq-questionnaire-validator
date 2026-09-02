@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "A test schema to demo invalid value sources",
-    "theme": "census",
+    "theme": "default",
     "description": "A schema to showcase invalid Calculated Summary and Grand Calculated Summary Value sources.",
     "metadata": [
         {

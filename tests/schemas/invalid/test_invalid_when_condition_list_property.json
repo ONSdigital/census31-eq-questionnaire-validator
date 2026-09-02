@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Other input fields",
-    "theme": "census",
+    "theme": "default",
     "description": "An invalid questionnaire to demo a when condition referencing a list that doesn’t exist",
     "metadata": [
         {

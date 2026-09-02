@@ -5,7 +5,7 @@
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Calculated question with a number value test survey",
-    "theme": "census",
+    "theme": "default",
     "description": "A survey that tests validation against a calculated question with a valid number value",
     "metadata": [
         {

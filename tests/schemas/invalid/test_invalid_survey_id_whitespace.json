@@ -29,7 +29,7 @@
     "language": "en",
     "schema_version": "0.0.1",
     "survey_id": "lms ",
-    "theme": "census",
+    "theme": "default",
     "title": "Labour Market Survey (Alpha)",
     "questionnaire_flow": {
         "type": "Linear",

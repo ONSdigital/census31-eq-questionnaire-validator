@@ -3,7 +3,7 @@
     "language": "en",
     "schema_version": "0.0.1",
     "survey_id": "139",
-    "theme": "census",
+    "theme": "default",
     "title": "Invalid progress value source block in past repeating section",
     "data_version": "0.0.3",
     "description": "A schema to showcase the use of the progress value source in a non-linear questionnaire",
