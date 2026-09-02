@@ -3,81 +3,67 @@
     "language": "en",
     "schema_version": "0.0.1",
     "data_version": "0.0.3",
-    "survey_id": "144",
+    "survey_id": "999",
+    "title": "Test Theme Census",
     "theme": "census",
-    "title": "Test Census Theme",
-    "legal_basis": "Notice is given under section 999 of the Test Act 2000",
+    "description": "A questionnaire to demo the census survey theme",
     "metadata": [
         {
-            "name": "user_id",
+            "name": "qid",
             "type": "string"
-        },
-        {
-            "name": "period_id",
-            "type": "string"
-        },
-        {
-            "name": "ru_name",
-            "type": "string"
-        },
-        {
-            "name": "ru_ref",
-            "type": "string"
-        },
-        {
-            "name": "trad_as",
-            "type": "string",
-            "optional": true
         }
     ],
+    "post_submission": {
+        "view_response": true,
+        "feedback": true
+    },
     "questionnaire_flow": {
         "type": "Linear",
-        "options": {}
+        "options": {
+            "summary": {
+                "collapsible": false
+            }
+        }
     },
     "sections": [
         {
-            "id": "introduction-section",
-            "title": "Introduction",
+            "id": "section",
             "groups": [
                 {
-                    "id": "introduction-group",
-                    "title": "General Business Information",
                     "blocks": [
                         {
-                            "id": "introduction",
-                            "type": "Introduction",
-                            "primary_content": [
-                                {
-                                    "id": "business-details",
-                                    "title": "You are completing this for ESSENTIAL ENTERPRISE LTD.",
-                                    "contents": [
-                                        {
-                                            "guidance": {
-                                                "contents": [
-                                                    {
-                                                        "title": "Coronavirus (COVID-19) guidance",
-                                                        "description": "<strong>Explain your figures</strong> in the comment section to minimise us contacting you and to help us tell an industry story"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Interstitial",
-                            "id": "general-business-information-completed",
-                            "content": {
-                                "title": "Section complete",
-                                "contents": [
+                            "type": "Question",
+                            "id": "radio",
+                            "question": {
+                                "answers": [
                                     {
-                                        "description": "<p>You have successfully completed this section</p>"
+                                        "id": "radio-answer",
+                                        "mandatory": false,
+                                        "options": [
+                                            {
+                                                "label": "Bacon",
+                                                "value": "Bacon"
+                                            },
+                                            {
+                                                "label": "Eggs",
+                                                "value": "Eggs"
+                                            },
+                                            {
+                                                "label": "Sausage",
+                                                "value": "Sausage"
+                                            }
+                                        ],
+                                        "type": "Radio"
                                     }
-                                ]
+                                ],
+                                "id": "radio-question",
+                                "title": "What is your favourite breakfast food?",
+                                "type": "General"
                             }
                         }
-                    ]
+                    ],
+                    "id": "group",
+                    "title": "Census Theme Test"
                 }
             ]
         }
