@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - main
+#  release:
+#    types:
+#      - published
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  tag-release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag and Push Release Images
+        run: |
+          REGISTRY_IMAGE=$(echo "ghcr.io/${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          RELEASE_TAG="release-test"
+          
+          # Pull latest images
+          docker pull "${REGISTRY_IMAGE}:latest"
+          docker pull "${REGISTRY_IMAGE}-ajv:latest"
+          
+          # Tag with version
+          docker tag "${REGISTRY_IMAGE}:latest" "${REGISTRY_IMAGE}:${RELEASE_TAG}"
+          docker tag "${REGISTRY_IMAGE}-ajv:latest" "${REGISTRY_IMAGE}-ajv:${RELEASE_TAG}"
+          
+          # Push versioned images
+          echo "Pushing Python Validator image with version tag ${RELEASE_TAG}"
+          docker push "${REGISTRY_IMAGE}:${RELEASE_TAG}"
+
+          echo "Pushing AJV Validator image with version tag ${RELEASE_TAG}"
+          docker push "${REGISTRY_IMAGE}-ajv:${RELEASE_TAG}"
