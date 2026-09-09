@@ -113,14 +113,14 @@ jobs:
           # Convert repository to lowercase for Docker tags
           REGISTRY_IMAGE=$(echo "ghcr.io/${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
           echo "REGISTRY_IMAGE=${REGISTRY_IMAGE}" >> "$GITHUB_ENV"
-          
+
           # On push to main, use 'latest', otherwise use sanitized branch name
-          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.base_ref }}" = "main" ]; then
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.base_ref }}" = "main" ]; then
             TAG="latest"
           else
             TAG="${GITHUB_REF_NAME//[^a-zA-Z0-9_-]/-}"
           fi
-          
+
           echo "TAG=${TAG}" >> "$GITHUB_ENV"
         env:
           GITHUB_REF_NAME: ${{ github.ref_name }}
