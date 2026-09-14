@@ -114,16 +114,16 @@ jobs:
           REGISTRY_IMAGE=$(echo "ghcr.io/${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
           echo "REGISTRY_IMAGE=${REGISTRY_IMAGE}" >> "$GITHUB_ENV"
 
-          # On PR, use branch name; on push to main, use 'latest'
+          # On PR, use PR number and head ref; on push to main, use 'latest'
           if [ "${EVENT_NAME}" = "pull_request" ]; then
-            TAG="${HEAD_REF//[^a-zA-Z0-9_-]/-}"
+            TAG="pr-${{ github.event.pull_request.number }}-${HEAD_REF}"
+            TAG="${TAG//[^a-zA-Z0-9_.-]/-}"
           else
             TAG="latest"
           fi
 
           echo "TAG=${TAG}" >> "$GITHUB_ENV"
         env:
-          GITHUB_REF_NAME: ${{ github.ref_name }}
           EVENT_NAME: ${{ github.event_name }}
           HEAD_REF: ${{ github.head_ref }}
 
