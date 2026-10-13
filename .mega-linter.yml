@@ -28,6 +28,9 @@ ENABLE_LINTERS:
 DISABLE_LINTERS:
   - REPOSITORY_TRUFFLEHOG
   - REPOSITORY_DEVSKIM
+  - REPOSITORY_GRYPE # Gives little value alongside dependabot CTE-339. Possibly to be reintroduced closer to release
+  - REPOSITORY_OSV_SCANNER # Gives little value alongside dependabot CTE-339. Possibly to be reintroduced closer to release
+  - REPOSITORY_TRIVY # Gives little value alongside dependabot CTE-339. Possibly to be reintroduced closer to release
 
 JAVASCRIPT_DEFAULT_STYLE: prettier
 
