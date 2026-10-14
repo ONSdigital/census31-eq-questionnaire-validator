@@ -29,6 +29,8 @@ DISABLE_LINTERS:
   - REPOSITORY_TRUFFLEHOG
   - REPOSITORY_DEVSKIM
   - REPOSITORY_GRYPE # Gives little value alongside dependabot CTE-339. Possibly to be reintroduced closer to release
+  - REPOSITORY_SYFT # Gives little value alongside dependabot CTE-339. Redundant if Trivy enabled
+  - REPOSITORY_TRIVY_SBOM # Gives little value alongside dependabot CTE-339. Redundant if Trivy enabled
   - REPOSITORY_OSV_SCANNER # Gives little value alongside dependabot CTE-339. Possibly to be reintroduced closer to release
   - REPOSITORY_TRIVY # Gives little value alongside dependabot CTE-339. Possibly to be reintroduced closer to release
 
