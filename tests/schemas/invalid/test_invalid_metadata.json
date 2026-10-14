@@ -58,7 +58,7 @@
     ],
     "mime_type": "application/json/ons/eq",
     "language": "en",
-    "schema_version": "0.0.1",
+    "schemas_version": "0.0.1",
     "questionnaire_flow": {
         "type": "Linear",
         "options": {}

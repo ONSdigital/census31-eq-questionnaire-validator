@@ -2,7 +2,7 @@
     "$id": "/questionnaire_v1.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "required": ["mime_type", "schema_version", "data_version", "survey_id", "title", "sections", "theme", "metadata", "language", "questionnaire_flow"],
+    "required": ["mime_type", "schemas_version", "data_version", "survey_id", "title", "sections", "theme", "metadata", "language", "questionnaire_flow"],
     "properties": {
         "language": {
             "enum": ["cy", "en", "eo", "ga"]
@@ -13,7 +13,7 @@
         "mime_type": {
             "type": "string"
         },
-        "schema_version": {
+        "schemas_version": {
             "type": "string"
         },
         "data_version": {

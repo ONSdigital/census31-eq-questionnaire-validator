@@ -36,7 +36,7 @@ The JSON that is decrypted from the above `data` property would look like this:
 
 ```json
 {
-    "schema_version": "v1",
+    "schemas_version": "v1",
     "identifier": "79900005222",
     "note": {
         "title": "Volume of total production",
