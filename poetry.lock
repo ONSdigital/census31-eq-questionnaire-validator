@@ -628,14 +628,14 @@ colors = ["colorama"]
 
 [[package]]
 name = "jsonpath-ng"
-version = "1.10.0"
+version = "1.10.1"
 description = "A final implementation of JSONPath for Python that aims to be standard compliant, including arithmetic and binary comparison operators and providing clear AST for metaprogramming."
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "jsonpath_ng-1.10.0-py3-none-any.whl", hash = "sha256:e7456c4649e63c0f71b5c1724fcf2dee33caac024fb00cf9c8f65aaade6e138f"},
-    {file = "jsonpath_ng-1.10.0.tar.gz", hash = "sha256:e5fd041a757778dd5b75375a5d92237589cfd3b681c154654c3998ea37a09e64"},
+    {file = "jsonpath_ng-1.10.1-py3-none-any.whl", hash = "sha256:9355047e5e6a8919f5ae0ccfd5b793bff69e4165f1248b1763e8962457b58ff5"},
+    {file = "jsonpath_ng-1.10.1.tar.gz", hash = "sha256:1247d0983361ebe44f47741e759bbb76e74213c68f25abb4b65f6de21d1934d6"},
 ]
 
 [[package]]
@@ -1503,4 +1503,4 @@ standard = ["httptools (>=0.8.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-content-hash = "623fdb091225ffc44f7e228b572f6ea7a40ad2d8c2ddac8a7277cd75a284654a"
+content-hash = "eec4aade10b0c638f202abb919805a0677fcb6a2168861d7d242a2f6dc0c28b7"
