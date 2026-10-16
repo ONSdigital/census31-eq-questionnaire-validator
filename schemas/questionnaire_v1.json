@@ -13,9 +13,13 @@
         "mime_type": {
             "type": "string"
         },
-        "schemas_version": {
-            "type": "string"
+        "is_test_schema": {
+            "type": "boolean",
+            "description": "A flag that determines if a schema is used for testing. If true schemas_version is not required"
         },
+        "schemas_version": {
+            "type": ["string"]
+        },  
         "data_version": {
             "enum": ["0.0.1", "0.0.3"]
         },
@@ -405,6 +409,17 @@
             "type": "boolean",
             "description": "A flag that is used to determine if the questions can be previewed before the questionnaire start"
         }
+    },
+    "if": {
+            "not": {
+            "properties": {
+                "skipVersion": { "const": true }
+            },
+            "required": ["is_test_schema"]
+            }
+        },
+        "then": {
+            "required": ["schemas_version"]
     },
     "allOf": [
         {
