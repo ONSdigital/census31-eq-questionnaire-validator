@@ -1,6 +1,6 @@
 {
     "name": "eq-schema-validator",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "An API for validating survey schemas.",
     "main": "gulpfile.js",
     "directories": {

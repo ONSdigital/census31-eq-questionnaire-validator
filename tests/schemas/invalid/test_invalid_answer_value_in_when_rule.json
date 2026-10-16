@@ -1,7 +1,7 @@
 {
     "mime_type": "application/json/ons/eq",
     "language": "en",
-    "schema_version": "0.0.2",
+    "schemas_version": "0.0.2",
     "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Test invalid answer value in when rule",
