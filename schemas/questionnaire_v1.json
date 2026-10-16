@@ -18,8 +18,8 @@
             "description": "A flag that determines if a schema is used for testing. If true schemas_version is not required"
         },
         "schemas_version": {
-            "type": ["string"]
-        },  
+            "type": ["string", "null"]
+        },
         "data_version": {
             "enum": ["0.0.1", "0.0.3"]
         },
@@ -411,15 +411,25 @@
         }
     },
     "if": {
-            "not": {
-            "properties": {
-                "skipVersion": { "const": true }
-            },
-            "required": ["is_test_schema"]
-            }
+        "properties": {
+            "is_test_schema": { "const": true }
         },
-        "then": {
-            "required": ["schemas_version"]
+        "required": ["is_test_schema"]
+    },
+    "then": {
+        "properties": {
+            "schemas_version": {
+                "type": "null"
+            }
+        }
+    },
+    "else": {
+        "required": ["schemas_version"],
+        "properties": {
+            "schemas_version": {
+                "type": "string"
+            }
+        }
     },
     "allOf": [
         {
